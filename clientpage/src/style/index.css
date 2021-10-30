@@ -1,0 +1,76 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: left;
+  min-height: 100vh;
+  background-color: #e5e7e9;
+}
+
+.header {
+  background-color: white;
+  padding: 5px 5px 0px 5px;
+  height: 40px;
+  text-align: left;
+  position: sticky;
+  font-weight: 700;
+  top: 0;
+  z-index: 2;
+  font-size: 19px;
+  text-overflow: ellipsis; 
+  overflow: hidden; 
+  white-space: nowrap;
+}
+
+.body {
+  width: calc(99% - 355px);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+.bth {
+  cursor: pointer;
+  padding: 5px;
+  position: relative;
+  margin-left: 20px;
+}
+
+.homeicon {
+  background-color: rgba(16, 3, 75, 0.89);
+  border-radius: 20%;
+  color: white;
+  padding: 2px;
+}
+
+.bth span {
+  color: rgba(16, 3, 75, 0.89);
+  position: absolute;
+  margin-left: 20px;
+}
+
+.bth:hover .homeicon {
+  background-color: rgb(16, 3, 75);
+}
+
+.bth:hover span {
+  color: rgb(16, 3, 75);
+}
+
+.cartbutton {
+  cursor: pointer;
+  color: red;
+  right: 150px;
+  position: fixed;
+}
+
+.cartbutton span {
+  margin-left: 10px;
+  position: absolute;
+  font-size: 19px;
+  font-weight: 700;
+}

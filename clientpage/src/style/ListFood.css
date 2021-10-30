@@ -1,0 +1,47 @@
+
+
+.Food {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 100%;
+  border: 1px solid #e5e7e9;
+  border-radius: 20px;
+  position: relative;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.Food img{
+    max-height: 250px;
+    border-radius: 20px 20px 0 0;
+    background-color: #e5e7e9;
+}
+
+.NameFood {
+  height: auto;
+  text-align: center;
+}
+
+.BottomFood {
+  height: 25px;
+}
+
+.IconCart {
+  background-color: red;
+  color: white;
+  position: absolute;
+  right: 10px;
+  padding: 3px;
+  border-radius: 20%;
+  bottom: 5px;
+}
+
+.BottomFood .Price {
+  margin: 10px;
+}
+
+.Price {
+  color: red;
+  font-weight: 700;
+}
