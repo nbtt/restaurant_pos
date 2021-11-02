@@ -8,6 +8,7 @@ body {
   text-align: left;
   min-height: 100vh;
   background-color: #e5e7e9;
+  overflow-x: hidden;
 }
 
 .header {

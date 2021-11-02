@@ -1,18 +1,14 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import Menu from "./component/Menu.js";
 import HomeIcon from '@material-ui/icons/Home';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Cart from './component/Cart'
-
+import { CartProvider } from "./contexts/CartContext.js";
 
 export default class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {cart: new Map()}
-  }
   render() {
     return (
-      <div>
+      <CartProvider>
         <div className="header">
           <span className="bth">
             <HomeIcon className="homeicon"/>
@@ -29,7 +25,7 @@ export default class App extends Component {
         <div className="body">
             <Menu/>
         </div>
-      </div>
+      </CartProvider>
     )
   }
 }

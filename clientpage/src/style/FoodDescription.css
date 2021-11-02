@@ -9,10 +9,6 @@
     z-index: 3;
 }
 
-.hidden {
-    visibility: hidden;
-}
-
 .box {
     position: relative;
     width: calc(350px + 20%);
@@ -60,7 +56,6 @@
     width: 100%;
     height: 15%;
     background-color: white;
-    border-bottom: grey solid 0.5px ;
 }
 
 /* TABLE OF HEADER INFO */
@@ -106,55 +101,36 @@ color: #000000;
 }
 /* END OF TABLE */
 
-.box .quantity
+.quantity
 {
     position: relative;
     background-color: white;
     height: 10%;
     border-bottom: grey solid 0.5px ;
+    border-top: grey solid 0.5px ;
+    display: flex;
 }
-.box .quantity .adj
+
+.quantity-text
 {
     position: absolute;
-    right: 5%;
-    top: 0px;
-    width: 100px;
-    height: 100%;
+    top: 20%;
+    flex: 1;
 }
-.quantity .adj span
-{
-    display: block;
-    position: absolute;
-    width: 100%;
-    text-align: center;
-    line-height: 100%;
-    font-weight: bold;
-    font-size: 16px;
-    top: 50%;
-    transform: translateY(-50%);
+
+.controlQty {
+    position: absolute;   
+    flex: 2;
+    right: 20px;
+    top: 20%;
+    display: flex;
 }
-.quantity .adj .add
-{
-    position: absolute;
-    color: red;
-    border-radius: 20%;
-    border: red solid 1px;
-    background-color: white;
-    
-    top: 50%;
-    transform: translateY(-50%);
+
+.valueQty {
+    margin: 0 15px;
+    top: 30%
 }
-.info .adj .sub
-{
-    position: absolute;
-    right: 0;
-    color: black;
-    border-radius: 20%;
-    border: black solid 1px;
-    background-color: white;
-    top: 50%;
-    transform: translateY(-50%);
-}
+
 .info .detail-info
 {
     background-color: white;
@@ -253,7 +229,7 @@ input[type=checkbox] {
   
 /* END CHECK BOX AREA */
 
-.payment
+.paymentButton
 {
     position: relative;
     background-color: red;
@@ -262,9 +238,10 @@ input[type=checkbox] {
     width: 90%;
     height: 10%;
     top: 10px;
+    cursor: pointer;
 }
 
-.payment .cart-payment
+.paymentButton .cart-payment
 {
     display: inline-block;
     position: relative;
@@ -276,7 +253,7 @@ input[type=checkbox] {
     transform: translateY(-50%);
 }
 
-.payment p
+.paymentButton p
 {
     position: absolute;
     display: inline-block;

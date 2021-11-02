@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import ListFoodType from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -70,7 +70,6 @@ export default class Menu extends Component {
                 }
             }]
         };
-
         return (
             <div>
                 <div className='Menu'>

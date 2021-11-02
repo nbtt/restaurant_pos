@@ -1,15 +1,15 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import '../style/FoodDescription.css'
 import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
 import RemoveOutlinedIcon from '@material-ui/icons/RemoveOutlined';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
+import { CartContext } from "../contexts/CartContext";
 
 export default class FoodDescription extends Component {
-    // constructor(props) {
-    //     super(props)
-    //     this.setType = this.setType.bind(this)
-    //     this.state = { type: 0 };
-    // }
+    constructor(props) {
+        super(props)
+        this.state = { qty: 1 };
+    }
 
     render() {
         const {food, setFood} = this.props
@@ -39,18 +39,18 @@ export default class FoodDescription extends Component {
                                   <tr>
                                       <td>401</td>
                                       <td>Burgur</td>
-                                      <td className="last-col-row">kr {food.price}</td>
+                                      <td className="last-col-row">{food.price} $</td>
                                   </tr>
                               </tbody>
                           </table>
                       </div>
                       <div className="quantity">
-                          Quantity
-                          <div className="adj">
-                              <AddOutlinedIcon className="add"/>
-                              <span> 1 </span>
-                              <RemoveOutlinedIcon className="sub"/>
-                          </div>   
+                          <span className="quantity-text">Quantity</span>
+                          <span className="controlQty">
+                                <RemoveOutlinedIcon className="sub" onClick={() => this.setState({qty: this.state.qty > 1 ? this.state.qty - 1 : 1})}/>
+                                <span className="valueQty"> {this.state.qty} </span>
+                                <AddOutlinedIcon className="add" onClick={() => this.setState({qty: this.state.qty + 1})}/>
+                          </span>   
                       </div>
                       <div className="detail-info">
                           <b>Protein:</b> <p>What is lorem ipsum</p> <br/>
@@ -67,10 +67,14 @@ export default class FoodDescription extends Component {
                               <label for="check-dish">Vegetables</label>
                           </div>
                       </div>
-                      <div className="payment">
-                         <ShoppingCartOutlinedIcon className="cart-payment"/> 
-                         <p>Kr {food.price}</p>
-                      </div>
+                      <CartContext.Consumer>
+                        {({ addFood }) => (
+                            <div className="paymentButton" onClick={() => {addFood(food, this.state.qty); setFood(-1)}}>
+                                <ShoppingCartOutlinedIcon className="cart-payment"/> 
+                                <p>{food.price * this.state.qty} $</p>
+                            </div>
+                        )}
+                      </CartContext.Consumer>
                   </div>
               </div>
             </div>

@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import '../style/ListFood.css'
 import Grid from "@material-ui/core/Grid";
-import { ShoppingCartOutlined } from "@material-ui/icons";
+// import { ShoppingCartOutlined } from "@material-ui/icons";
 
 export default class ListFood extends Component{
     render() {
@@ -28,8 +28,8 @@ class Food extends Component{
                 <img src={food.image} alt={food.name} />
                 <h3 className="NameFood">{food.name}</h3>
                 <div className="BottomFood">
-                    <span className="Price"> $ {food.price}</span>
-                    <ShoppingCartOutlined className="IconCart" fontSize="small"/>
+                    <span className="Price">{food.price} $</span>
+                    {/* <ShoppingCartOutlined className="IconCart" fontSize="small"/> */}
                 </div>
             </div>
         );
