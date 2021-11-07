@@ -18,7 +18,7 @@ export class CartProvider extends Component {
     addFood(food, qty) {
       var exist = this.state.cartItems.find((e => food.name === e.food.name))
       if (exist) {
-        exist.qty += 1
+        exist.qty += qty
         this.setState({
           cartItems: this.state.cartItems
         })

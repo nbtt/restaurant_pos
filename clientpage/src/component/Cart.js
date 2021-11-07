@@ -1,10 +1,12 @@
 import { Component } from "react";
+import {Link} from 'react-router-dom'
 import '../style/cart.css'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Grid from "@material-ui/core/Grid";
 import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
 import RemoveOutlinedIcon from '@material-ui/icons/RemoveOutlined';
 import { CartContext } from "../contexts/CartContext";
+import { Button } from '@mui/material';
 
 export default class Cart extends Component {
     render() {
@@ -30,16 +32,18 @@ export default class Cart extends Component {
                                 <span className='orderPriceText'>Total: </span>
                                 <span className='itemprice'>
                                     <div className='Price'>
-                                        {total} $
+                                        {total} VND
                                     </div>
                                     <div style={{fontSize: '11px'}}>
-                                        (Incl tax bla bla abc xyz)
+                                        {/* (Incl tax bla bla abc xyz) */}
                                     </div>
                                 </span>
                             </div>
-                            <button className='paymentButton'>
-                                PAYMENT
-                            </button>
+                            <div>
+                                <Button component={Link} to={'/payment'} className='paymentButton'>
+                                    PAYMENT
+                                </Button>
+                            </div>
                         </div>
                     </div>   
                 )}
@@ -67,10 +71,10 @@ class CartItem extends Component {
                         </span>
                         <span className='itemprice'>
                             <div className='Price'>
-                                {cartItem.food.price * cartItem.qty} $
+                                {cartItem.food.price * cartItem.qty} VND
                             </div>
                             <div style={{fontSize: '11px'}}>
-                                (Incl tax bla bla abc xyz)
+                                {/* (Incl tax bla bla abc xyz) */}
                             </div>
                         </span>
                     </div>
