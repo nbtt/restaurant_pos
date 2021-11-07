@@ -5,10 +5,9 @@ import Select from 'react-select';
 import { BsFillTrashFill } from "react-icons/bs";
 import "../../node_modules/@syncfusion/ej2-base/styles/material.css";
 import "../../node_modules/@syncfusion/ej2-react-lists/styles/material.css";
-import "../style/ListSearch.css"
+import "../style/ListFoodManagement.css"
 import FoodDescription from "./FoodDescription.js";
 import NewFood from "./NewFood";
-import data from '../data/data'
 
 export default class ListSearch extends Component {
     constructor(props) {
