@@ -239,6 +239,17 @@ input[type=checkbox] {
     height: 10%;
     top: 10px;
     cursor: pointer;
+    box-shadow: 0 4px #999;
+}
+
+.paymentButton:hover
+{
+    background-color: rgba(196, 10, 10, 0.842);
+}
+
+.paymentButton:active {
+    box-shadow: 0 2px rgb(39, 39, 39);
+    transform: translateY(2px);
 }
 
 .paymentButton .cart-payment
@@ -280,7 +291,6 @@ input[type=checkbox] {
 }
 
 .popup-background .header-bar .close-icon {
-    content: 'x';
     cursor: pointer;
     position: absolute;
     right: 2%;
@@ -288,4 +298,9 @@ input[type=checkbox] {
     background: none;
     font-size: 25px;
     color: rgb(41, 41, 41);
+}
+
+.popup-background .header-bar .close-icon:hover {
+    color: black;
+    font-size: 26px;
 }

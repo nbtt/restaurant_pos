@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import ProductList from './product-list';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -46,7 +46,7 @@ export default function PaymentDone() {
                         </Typography>
                     </Box>
                 </div>
-                <div className="list" className={classes.productPayment}>
+                <div className={"list" + classes.productPayment}>
                     <ProductList/>
                 </div>
             </div>

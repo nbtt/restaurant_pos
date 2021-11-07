@@ -30,7 +30,7 @@
   cursor: pointer;
 }
 
-.FoodType img{
+.FoodType img {
   width: 60%;
   height: 60%;
   border-radius: 50%;
@@ -43,8 +43,8 @@
 
 .FoodType span {
   position: absolute;
-  text-overflow: ellipsis; 
-  overflow: hidden; 
+  text-overflow: ellipsis;
+  overflow: hidden;
   white-space: nowrap;
   left: 50%;
   bottom: 10%;
@@ -53,7 +53,7 @@
   transform: translate(-50%, 0);
 }
 
-.slide:hover {
+.FoodType:hover {
   background-color: rgba(16, 3, 75, 0.171);
   color: white;
 }
@@ -63,7 +63,8 @@
   color: white;
 }
 
-.prev_button, .next_button {
+.prev_button,
+.next_button {
   position: absolute;
   top: 25%;
   border-top: 2.5vw solid #e5e7e9;

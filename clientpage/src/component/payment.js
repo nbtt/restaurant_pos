@@ -1,14 +1,29 @@
-import * as React from 'react';
+import React, { Component } from 'react'
+import ButtonAppBar from './app-bar';
+import '../style/payment.css'
 import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import BasicTabs from './tab-pay';
 import { Button } from '@mui/material';
-import Link from '@mui/material/Link';
+import { Link } from 'react-router-dom';
 
-
+export default class Payment extends Component {
+    render(){
+        return (
+            <div className="container">
+                <ButtonAppBar/>
+                <div className = "payment-field" >
+                    <div className="payment-box">
+                        <FullWidthGrid/>
+                    </div>
+                </div>
+            </div>
+            
+        );
+    }
+}
 
 const useStyles = makeStyles(theme => ({
     root:{
@@ -28,7 +43,7 @@ const Item = styled(Paper)(({ theme }) => ({
     
   }));
 
-export default function FullWidthGrid() {
+function FullWidthGrid() {
     const classes = useStyles();
     const logo = 'https://shipdoandemff.com/wp-content/uploads/2018/05/Hamburger-bò.png'
     return (
@@ -43,14 +58,14 @@ export default function FullWidthGrid() {
 
                 <Grid item xs={12} >
                     <Item style={{boxShadow: "none", flexGrow: "1"}}> 
-                        <img src= {logo} style={{width: "10vw"}}></img> 
+                        <img src= {logo} style={{width: "10vw"}} alt=""></img> 
                     </Item>
                 </Grid>
                 <Grid item xs={12} >
                    <BasicTabs/>
                 </Grid>
                 <Grid item xs={12} md={12} >
-                    <Link href="#" alignItems="center" underline="none">
+                    <Link to="/payment-done" alignItems="center" underline="none">
                         <Button variant="text" style={{position: 'relative', left: '50%', transform: 'translateX(-50%)'}}>
                             PAY 25000VND
                         </Button>
@@ -58,7 +73,7 @@ export default function FullWidthGrid() {
                 </Grid>
                 <Grid item xs={12} md={8} ></Grid>
                 <Grid item xs={12} md={4} >
-                    <Link href="#" alignItems="center" underline="none">
+                    <Link to="/" alignItems="center" underline="none">
                         <Button variant="text" style={{position: 'relative', left: '50%', transform: 'translateX(-50%)'}}>
                             CANCEL
                         </Button>

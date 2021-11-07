@@ -1,4 +1,5 @@
 import { Component } from "react";
+import {Link} from 'react-router-dom'
 import '../style/cart.css'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Grid from "@material-ui/core/Grid";
@@ -33,13 +34,17 @@ export default class Cart extends Component {
                                         {total} $
                                     </div>
                                     <div style={{fontSize: '11px'}}>
-                                        (Incl tax bla bla abc xyz)
+                                        {/* (Incl tax bla bla abc xyz) */}
                                     </div>
                                 </span>
                             </div>
-                            <button className='paymentButton'>
-                                PAYMENT
-                            </button>
+                            <div>
+                            <Link to='/payment'>
+                                <button className='paymentButton' >
+                                    PAYMENT
+                                </button>
+                            </Link>
+                            </div>
                         </div>
                     </div>   
                 )}
@@ -70,7 +75,7 @@ class CartItem extends Component {
                                 {cartItem.food.price * cartItem.qty} $
                             </div>
                             <div style={{fontSize: '11px'}}>
-                                (Incl tax bla bla abc xyz)
+                                {/* (Incl tax bla bla abc xyz) */}
                             </div>
                         </span>
                     </div>
