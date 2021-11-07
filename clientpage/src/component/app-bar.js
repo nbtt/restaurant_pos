@@ -21,7 +21,7 @@ export default function ButtonAppBar() {
             >
               <ArrowBackIcon/>
             </IconButton>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} component={Link} to={'/'} style={{textDecoration: 'none '}}>
+            <Typography variant="h6" sx={{ flexGrow: 1 }} component={Link} to={'/'} style={{textDecoration: 'none '}}>
               Back
             </Typography>
           

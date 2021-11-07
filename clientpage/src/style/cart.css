@@ -136,9 +136,20 @@
 
 .payment .paymentButton {
     position: absolute;
+    background-color: red;
+    color: white;
     left: 20px;
     height: 50px;
     font-size: x-large;
     margin-top: 60px;
     border: transparent;
+}
+
+.payment .paymentButton:hover {
+    background-color: rgba(196, 10, 10, 0.842);
+}
+
+.payment .paymentButton:active {
+    box-shadow: 0 2px rgb(39, 39, 39);
+    transform: translateY(2px);
 }
