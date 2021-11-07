@@ -1,0 +1,86 @@
+.cart {
+    width: 350px;
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    background-color: white;
+    z-index: 3;
+    box-shadow: -5px 0 5px -5px rgba(0,0,0,0.2);
+}
+
+.inCart {
+    position: absolute;
+    left: 5px;
+    top: 10px;
+}
+
+.listItem {
+    position: absolute;
+    top: 6%;
+    width: 100%;
+    height: 75%;
+}
+
+.item {
+    width: 90%;
+    height: auto;
+    margin-left: 5%;
+    position: relative;
+    display: flex;
+    border-radius: 5px;
+    border: 1px solid rgba(80, 79, 79, 0.295);
+}
+
+.item img{
+    flex: 1;
+    width: 40px;
+    height: 40px;
+    max-width: 40px;
+    max-height: 40px;
+    border-radius: 50%;
+    margin: 20px 10px;
+}
+
+.iteminfo {
+    flex: 2;
+}
+
+.itembody {
+    position: relative;
+    display: flex;
+}
+
+.control {
+    flex: 1;
+    display: flex;
+    width: auto;
+}
+
+.add {
+    color: red;
+    border: 1px solid red;
+    border-radius: 20%;
+}
+
+.sub {
+    color: black;
+    border: 1px solid black;
+    border-radius: 20%;
+}
+
+.control span {
+    margin: 0 15px;
+}
+
+.itemprice {
+    position: absolute;
+    right: 0;
+    flex: 2;
+    text-align: right;
+    margin-right: 5px;
+}
+
+.itemhead {
+    margin: 2px 0px 5px;
+}
