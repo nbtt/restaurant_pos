@@ -32,7 +32,7 @@ export default class Cart extends Component {
                                 <span className='orderPriceText'>Total: </span>
                                 <span className='itemprice'>
                                     <div className='Price'>
-                                        {total} $
+                                        {total} VND
                                     </div>
                                     <div style={{fontSize: '11px'}}>
                                         {/* (Incl tax bla bla abc xyz) */}
@@ -71,7 +71,7 @@ class CartItem extends Component {
                         </span>
                         <span className='itemprice'>
                             <div className='Price'>
-                                {cartItem.food.price * cartItem.qty} $
+                                {cartItem.food.price * cartItem.qty} VND
                             </div>
                             <div style={{fontSize: '11px'}}>
                                 {/* (Incl tax bla bla abc xyz) */}

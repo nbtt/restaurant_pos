@@ -39,7 +39,7 @@ export default class FoodDescription extends Component {
                                   <tr>
                                       <td>401</td>
                                       <td>Burgur</td>
-                                      <td className="last-col-row">{food.price} $</td>
+                                      <td className="last-col-row">{food.price} VND</td>
                                   </tr>
                               </tbody>
                           </table>
