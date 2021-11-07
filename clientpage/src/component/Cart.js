@@ -6,6 +6,7 @@ import Grid from "@material-ui/core/Grid";
 import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
 import RemoveOutlinedIcon from '@material-ui/icons/RemoveOutlined';
 import { CartContext } from "../contexts/CartContext";
+import { Button } from '@mui/material';
 
 export default class Cart extends Component {
     render() {
@@ -39,11 +40,9 @@ export default class Cart extends Component {
                                 </span>
                             </div>
                             <div>
-                            <Link to='/payment'>
-                                <button className='paymentButton' >
+                                <Button className='paymentButton' component={Link} to={'/payment'}>
                                     PAYMENT
-                                </button>
-                            </Link>
+                                </Button>
                             </div>
                         </div>
                     </div>   

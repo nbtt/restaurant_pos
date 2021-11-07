@@ -46,7 +46,7 @@ export default function PaymentDone() {
                         </Typography>
                     </Box>
                 </div>
-                <div className={"list" + classes.productPayment}>
+                <div className={classes.productPayment}>
                     <ProductList/>
                 </div>
             </div>

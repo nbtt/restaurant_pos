@@ -10,20 +10,22 @@ export default function ButtonAppBar() {
   return (
       <AppBar position="static" style={{backgroundColor: "white", color: "black"}}>
         <Toolbar style={{height: '100%'}}>
-          <Link to="/">
+          
             <IconButton
               size="large"
               edge="start"
               color="inherit"
               aria-label="menu"
               sx={{ mr: 2 }}
+              component={Link} to={'/'}
             >
               <ArrowBackIcon/>
             </IconButton>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} component={Link} to={'/'} style={{textDecoration: 'none '}}>
               Back
             </Typography>
-          </Link>
+          
+
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             PAYMENT
           </Typography>

@@ -3,7 +3,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
 import { CartContext } from "../contexts/CartContext";
 
 import Typography from '@mui/material/Typography';
@@ -22,9 +22,20 @@ export default function ProductList() {
                     cartItems.map((cartItem) => (
                         <ListItem>
                             <ListItemAvatar>
-                                <Avatar>
-                                    <img src={cartItem.food.image} alt=''/>
-                                </Avatar>
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    flexWrap: 'wrap',
+                                    '& > :not(style)': {
+                                    m: 1,
+                                    width: 128,
+                                    height: 128,
+                                    },
+                                }}
+                                >
+                                <img src={cartItem.food.image} alt=''/>
+                                </Box>
+                                
                             </ListItemAvatar>
                             <ListItemText 
                                 primary={cartItem.food.name}

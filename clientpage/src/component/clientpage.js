@@ -24,7 +24,7 @@ export default class ClientPage extends Component {
         <div className="body">
             <Menu/>
         </div>
-      </div>
+      </div>  
     )
   }
 }
