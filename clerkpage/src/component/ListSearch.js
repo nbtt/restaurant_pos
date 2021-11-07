@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { ListViewComponent } from '@syncfusion/ej2-react-lists';
-import { ButtonComponent } from '@syncfusion/ej2-react-buttons';
 import { DataManager, Query } from "@syncfusion/ej2-data";
 import Select from 'react-select';
 import { BsFillTrashFill } from "react-icons/bs";
 import "../../node_modules/@syncfusion/ej2-base/styles/material.css";
 import "../../node_modules/@syncfusion/ej2-react-lists/styles/material.css";
-import "../style/listSearch.css"
-import Popup from "./Popup";
+import "../style/ListSearch.css"
+import FoodDescription from "./FoodDescription.js";
+import NewFood from "./NewFood";
+import data from '../data/data'
 
 export default class ListSearch extends Component {
     constructor(props) {
@@ -27,9 +28,20 @@ export default class ListSearch extends Component {
             { name: 'Banh ngot', price: '30.000 VNĐ', id: '10', image: 'https://shipdoandemff.com/wp-content/uploads/2018/05/Hamburger-bò.png', category: 'Đồ ngọt', icon: 'delete-icon' },
         ];
         this.fields = { text: 'name', groupBy: 'category', iconCss: 'icon' };
-        this.state = { listData: this.data, isSorted: false, isChose: false };
+        this.state = { 
+            listData: this.data, 
+            isSorted: false, 
+            isChose: false, 
+            numElement: 7,
+            typeID: 0,
+            foodID: -2,
+        };
         this.clickButtonName = this.clickButtonName.bind(this)
+        this.clickButtonLoad = this.clickButtonLoad.bind(this)
+        this.clickButtonAdd = this.clickButtonAdd.bind(this)
+        this.setFoodID = this.setFoodID.bind(this)
     }
+
     // Set customized list template
     listTemplate(data) {
         return (
@@ -55,6 +67,7 @@ export default class ListSearch extends Component {
         );
     }
     addItem() {
+        // Add new data
         let data = {
             name: "Dish -- " + (Math.random() * 1000).toFixed(0),
             price: "20.000 VNĐ -- " + (Math.random() * 1000).toFixed(0),
@@ -66,6 +79,7 @@ export default class ListSearch extends Component {
         this.listViewInstance.addItem([data]);
     }
     deleteItem(args) {
+        // Remove data
         args.stopPropagation();
         let liItem = args.target.closest('li');
         this.listViewInstance.removeItem(liItem);
@@ -90,6 +104,17 @@ export default class ListSearch extends Component {
             isChose: !prevState.isChose
         }));
     }
+    clickButtonLoad() {
+        this.setState(prevState => ({
+            numElement: prevState.numElement + 5
+        }));
+    }
+    clickButtonAdd() {
+        this.setState({foodID: -1})
+    }
+    setFoodID(id) {
+        this.setState({foodID: id})
+    }
     render() {
         const options = [
             { value: 'lowToHigh', label: 'Thấp đến Cao' },
@@ -104,11 +129,19 @@ export default class ListSearch extends Component {
                     </label>
                     <Select options={options} className="price" placeholder="Giá" isSearchable/>
                     <input type='text' className='inputSearch' placeholder="Filter" onKeyUp={this.onKeyUp.bind(this)} title="Type in a name"/>
-                    <button className='buttonAdd' onClick={this.addItem.bind(this)}>Thêm món mới</button>
+                    <button className='buttonAdd' onClick={this.clickButtonAdd}>Thêm món mới</button>
                 </div>
-                <ListViewComponent id="sample-list" dataSource={this.state.listData} fields={this.fields} template={this.listTemplate.bind(this)} groupTemplate={this.groupTemplate} sortOrder={this.state.isSorted ? "Ascending" : null} cssClass='e-list-template' ref={listView => {
+                <ListViewComponent id="sample-list" dataSource={this.state.listData.slice(0, this.state.numElement)} fields={this.fields} template={this.listTemplate.bind(this)} sortOrder={this.state.isSorted ? "Ascending" : null} groupTemplate={this.groupTemplate.bind(this)} cssClass='e-list-template' ref={listView => {
                     this.listViewInstance = listView;
                 }}/>
+                <div style={{justifyContent: 'center', display: 'flex'}}>
+                    <button className="loadButton" onClick={this.clickButtonLoad}>
+                        Load More
+                    </button>
+                </div>
+                <div>
+                    {this.state.foodID === -1 ? <NewFood setFoodID={this.setFoodID} updateList={this.addItem.bind(this)}/> : <div/>}
+                </div>
             </div>
         );
     }

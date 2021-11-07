@@ -4,7 +4,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Cart from './component/Cart'
 import ListSearch from "./component/ListSearch.js";
-import Popup from "./component/ListSearch.js"
+import FoodDescription from "./component/FoodDescription.js";
 
 export default class App extends Component {
   constructor(props) {
@@ -29,7 +29,7 @@ export default class App extends Component {
           <ListSearch/>
         </div>
         {/* <div>
-          <Popup/>
+        <FoodDescription image="https://shipdoandemff.com/wp-content/uploads/2018/05/Hamburger-bò.png" name="a" price="1"/>
         </div> */}
       </div>
     )
