@@ -14,27 +14,26 @@ export default class ListSearch extends Component {
         super(props);
         // Define an array of JSON data
         this.listViewInstance = null;
-        this.data = [
-            { name: 'Coca', price: '10.000 VNĐ', id: '1', image: 'https://shipdoandemff.com/wp-content/uploads/2018/05/Hamburger-bò.png', category: 'Nước giải khát', icon: 'delete-icon' },
-            { name: 'Pepsi', price: '10.000 VNĐ', id: '2', image: 'https://shipdoandemff.com/wp-content/uploads/2018/05/Hamburger-bò.png', category: 'Nước giải khát', icon: 'delete-icon' },
-            { name: 'Nuoc loc', price: '5.000 VNĐ', id: '3', image: 'https://shipdoandemff.com/wp-content/uploads/2018/05/Hamburger-bò.png', category: 'Nước giải khát', icon: 'delete-icon' },
-            { name: 'Bun bo ', price: '25.000 VNĐ', id: '4', image: 'https://shipdoandemff.com/wp-content/uploads/2018/05/Hamburger-bò.png', category: 'Món ăn', icon: 'delete-icon' },
-            { name: 'Bun cha ca', price: '25.000 VNĐ', id: '5', image: 'https://shipdoandemff.com/wp-content/uploads/2018/05/Hamburger-bò.png', category: 'Món ăn', icon: 'delete-icon' },
-            { name: 'Com tam', price: '25.000 VNĐ', id: '6', image: 'https://shipdoandemff.com/wp-content/uploads/2018/05/Hamburger-bò.png', category: 'Món ăn', icon: "delete-icon" },
-            { name: 'Lau bo', price: '200.000 VNĐ', id: '7', image: 'https://shipdoandemff.com/wp-content/uploads/2018/05/Hamburger-bò.png', category: 'Lẩu', icon: 'delete-icon' },
-            { name: 'Lau hai san', price: '150.000 VNĐ', id: '8', image: 'https://shipdoandemff.com/wp-content/uploads/2018/05/Hamburger-bò.png', category: 'Lẩu', icon: 'delete-icon' },
-            { name: 'Kem', price: '20.000 VNĐ', id: '9', image: 'https://shipdoandemff.com/wp-content/uploads/2018/05/Hamburger-bò.png', category: 'Đồ ngọt', icon: 'delete-icon' },
-            { name: 'Banh ngot', price: '30.000 VNĐ', id: '10', image: 'https://shipdoandemff.com/wp-content/uploads/2018/05/Hamburger-bò.png', category: 'Đồ ngọt', icon: 'delete-icon' },
-        ];
         this.fields = { text: 'name', groupBy: 'category', iconCss: 'icon' };
         this.state = { 
-            listData: this.data, 
+            listData: [], 
             isSorted: false, 
             isChose: false, 
             numElement: 7,
             typeID: 0,
             foodID: -2,
         };
+        
+        fetch('/api/menu_management/data/all').then(
+            (u) => u.json()
+        ).then(
+            (data) => data.map(item => {item["icon"] = "delete-icon"; return item})
+        ).then(
+            (data) => this.setState({listData: data})
+        );
+
+        this.data = this.state.listData; // Maybe need fixing
+
         this.clickButtonName = this.clickButtonName.bind(this)
         this.clickButtonLoad = this.clickButtonLoad.bind(this)
         this.clickButtonAdd = this.clickButtonAdd.bind(this)
