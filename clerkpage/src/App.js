@@ -3,8 +3,7 @@ import Slick from "./component/Slick.js";
 import HomeIcon from '@material-ui/icons/Home';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Cart from './component/Cart'
-import ListSearch from "./component/ListSearch.js";
-import Popup from "./component/ListSearch.js"
+import ListFoodManagement from "./component/ListFoodManagement";
 
 export default class App extends Component {
   constructor(props) {
@@ -26,11 +25,8 @@ export default class App extends Component {
           </div>
         </div>
         <div className="body">
-          <ListSearch/>
+          <ListFoodManagement/>
         </div>
-        {/* <div>
-          <Popup/>
-        </div> */}
       </div>
     )
   }

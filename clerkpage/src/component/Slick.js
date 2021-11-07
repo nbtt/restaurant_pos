@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import ListProduct from "./ListProduct"
 import '../style/slick.css'
 import data from '../data/data'
-import Popup from './Popup'
+import FoodDescription from './FoodDescription'
 import queryTypes from '../data/types'
 
 export default class Slick extends Component {
@@ -90,7 +90,7 @@ export default class Slick extends Component {
                 </div>
 
                 <div className = 'hidden'>
-                    <Popup/>
+                    <FoodDescription/>
                 </div>
                 <div className='listProduct'>
                     <ListProduct products={data(this.state.type)}/>
