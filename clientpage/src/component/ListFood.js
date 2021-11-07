@@ -28,7 +28,7 @@ class Food extends Component{
                 <img src={food.image} alt={food.name} />
                 <h3 className="NameFood">{food.name}</h3>
                 <div className="BottomFood">
-                    <span className="Price">{food.price} $</span>
+                    <span className="Price">{food.price} VND</span>
                     {/* <ShoppingCartOutlined className="IconCart" fontSize="small"/> */}
                 </div>
             </div>

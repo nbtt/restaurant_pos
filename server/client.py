@@ -17,7 +17,6 @@ def queryAllDishesType():
     typeList = flask.json.load(open(jsonUrl, "r"))
     return flask.jsonify(typeList)
 
-
 @app.route("/api/dishes_management/types", methods = ["GET"])
 def queryDishesType():
     '''Get dishes type by ID'''
@@ -25,18 +24,32 @@ def queryDishesType():
     id = flask.request.args.get("id")
     if (id == None):
         return flask.Response("Invalid syntax, please specify an id", status=400)
-    else:
-        id = int(id)
 
     #https://stackoverflow.com/questions/21133976/flask-load-local-json
     SITEROOT = os.path.realpath(os.path.dirname(__file__))
     jsonUrl = os.path.join(SITEROOT, "data", "types.json")
     typeList = flask.json.load(open(jsonUrl, "r"))
 
-    for entry in typeList:
-        if (entry["id"] == id):
-            return flask.jsonify(entry)
-    return flask.Response("Can't find the specified type",status=404)
+    if id in typeList:
+        return flask.jsonify(typeList[id])
+    else:
+        return flask.Response("Can't find the specified type", status=404)
+
+@app.route("/api/dishes_management/dishes", methods = ["GET"])
+def queryAllDishes():
+    id = flask.request.args.get("id")
+    if (id == None):
+        return flask.Response("Invalid syntax, please specify an id", status=400)
+
+    SITEROOT = os.path.realpath(os.path.dirname(__file__))
+    jsonUrl = os.path.join(SITEROOT, "data", "data.json")
+    foodList = flask.json.load(open(jsonUrl, "r"))
+    if id in foodList:
+        return flask.jsonify(foodList[id])
+    else:
+        return flask.Response("Can't find the specified dishes", status=404)
+
+
 
 app.run()
 

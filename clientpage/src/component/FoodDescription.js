@@ -39,7 +39,7 @@ export default class FoodDescription extends Component {
                                   <tr>
                                       <td>401</td>
                                       <td>Burgur</td>
-                                      <td className="last-col-row">{food.price} $</td>
+                                      <td className="last-col-row">{food.price} VND</td>
                                   </tr>
                               </tbody>
                           </table>
@@ -71,7 +71,7 @@ export default class FoodDescription extends Component {
                         {({ addFood }) => (
                             <div className="paymentButton" onClick={() => {addFood(food, this.state.qty); setFood(-1)}}>
                                 <ShoppingCartOutlinedIcon className="cart-payment"/> 
-                                <p>{food.price * this.state.qty} $</p>
+                                <p>{food.price * this.state.qty} VND</p>
                             </div>
                         )}
                       </CartContext.Consumer>
