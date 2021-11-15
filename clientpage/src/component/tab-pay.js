@@ -104,9 +104,10 @@ function BasicTextFields() {
       alignItems="center"
       justifyContent ="center"
     >
-      <TextField centered required id="standard-basic" label="Card number" variant="standard" style={{width: '20vw', minWidth: '200px'}}/>
-      <TextField required id="standard-basic" label="CVV" variant="standard" />
-      <TextField required id="standard-basic" label="MM/YY" variant="standard" />
+      <TextField centered required id="standard-basic" label="Phone number" variant="standard" style={{width: '10vw', minWidth: '200px'}}/>
+      <TextField centered required id="standard-basic" label="Card number" variant="standard" style={{width: '10vw', minWidth: '200px'}}/>
+      <TextField required id="standard-basic" label="CVV" variant="standard" style={{width: '10vw', minWidth: '200px'}}/>
+      <TextField required id="standard-basic" label="MM/YY" variant="standard" style={{width: '10vw', minWidth: '200px'}} />
     </Box>
   );
 }
