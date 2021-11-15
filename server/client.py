@@ -50,6 +50,5 @@ def queryAllDishes():
         return flask.Response("Can't find the specified dishes", status=404)
 
 
-
 app.run()
 
