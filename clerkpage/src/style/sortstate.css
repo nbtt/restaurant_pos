@@ -1,0 +1,32 @@
+.sortstate{
+    margin-left: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    display:contents;
+}
+.st{
+    position: absolute;
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: 20px;
+    margin-top: 25px;
+}
+.choose{
+    position: static;
+    width: 200px;
+    height: 30px;
+    font-size: 16px;
+    margin-left: 140px;
+    margin-top: 25px;
+    background-color: antiquewhite;
+}
+.statesort-btn{
+    position: absolute;
+    margin-left: 20px;
+    margin-top: 25px;
+    width: 100px;
+    height: 30px;
+    font-weight: bold;
+    font-size: 17px;
+    background-color: beige;
+}
