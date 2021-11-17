@@ -89,6 +89,19 @@ export default class ListSearch extends Component {
         // Remove data
         args.stopPropagation();
         let liItem = args.target.closest('li');
+        let data = {
+            id: '1',
+            category: 'Cupcake'
+        }
+        fetch('/api/menu_management/data/delete', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(
+            (u) => console.log(u)
+        );
         this.listViewInstance.removeItem(liItem);
     }
     onKeyUp(e) {
