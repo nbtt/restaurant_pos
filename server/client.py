@@ -1,14 +1,14 @@
 import os
 import flask
 
-app = flask.Flask(__name__)
+client = flask.Blueprint('client', __name__)
 
-@app.route("/", methods=["GET"])
+@client.route("/", methods=["GET"])
 def index():
     return '''<h1>Test API for Software engineering</h1>
 <p>Frost's stupid code</p>'''
 
-@app.route("/api/dishes_management/types/all", methods = ["GET"])
+@client.route("/api/dishes_management/types/all", methods = ["GET"])
 def queryAllDishesType():
     '''Get dishes type by ID'''
     #https://stackoverflow.com/questions/21133976/flask-load-local-json
@@ -17,7 +17,7 @@ def queryAllDishesType():
     typeList = flask.json.load(open(jsonUrl, "r"))
     return flask.jsonify(list(typeList.values()))
 
-@app.route("/api/dishes_management/types", methods = ["GET"])
+@client.route("/api/dishes_management/types", methods = ["GET"])
 def queryDishesType():
     '''Get dishes type by ID'''
 
@@ -35,7 +35,7 @@ def queryDishesType():
     else:
         return flask.Response("Can't find the specified type", status=404)
 
-@app.route("/api/dishes_management/dishes", methods = ["GET"])
+@client.route("/api/dishes_management/dishes", methods = ["GET"])
 def queryAllDishes():
     id = flask.request.args.get("id")
     if (id == None):
@@ -48,7 +48,3 @@ def queryAllDishes():
         return flask.jsonify(foodList[id])
     else:
         return flask.Response("Can't find the specified dishes", status=404)
-
-
-app.run()
-

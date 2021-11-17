@@ -15,7 +15,7 @@ export class CartProvider extends Component {
         this.updateTotal = this.updateTotal.bind(this)
     }
 
-    addFood(food, qty) {
+    addFood(typeID, food, qty) {
       var exist = this.state.cartItems.find((e => food.name === e.food.name))
       if (exist) {
         exist.qty += qty
@@ -24,6 +24,7 @@ export class CartProvider extends Component {
         })
       } else {
         var cartItem = {
+          typeID: typeID,
           food: food,
           qty: qty
         }

@@ -1,9 +1,9 @@
 import os
 import flask
 
-app = flask.Flask(__name__)
+clerk = flask.Blueprint('clerk', __name__)
 
-@app.route('/api/menu_management/data/all', methods=["GET"])
+@clerk.route('/api/menu_management/data/all', methods=["GET"])
 def getListDishes():
     SITEROOT = os.path.realpath(os.path.dirname(__file__))
     jsonUrl = os.path.join(SITEROOT, "data", "data.json")
@@ -15,5 +15,3 @@ def getListDishes():
     dishes = [{**dish, "category" : type_dishes[type_id]["name"]} for type_id in dishes for dish in dishes[type_id]]
     
     return flask.jsonify(dishes)
-
-app.run()

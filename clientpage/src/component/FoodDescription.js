@@ -12,7 +12,7 @@ export default class FoodDescription extends Component {
     }
 
     render() {
-        const {food, setFood} = this.props
+        const {food, setFood, typeID} = this.props
         return (
             <div className="popup-background">
             <div className="box">
@@ -69,7 +69,7 @@ export default class FoodDescription extends Component {
                       </div>
                       <CartContext.Consumer>
                         {({ addFood }) => (
-                            <div className="paymentButton" onClick={() => {addFood(food, this.state.qty); setFood(-1)}}>
+                            <div className="paymentButton" onClick={() => {addFood(typeID, food, this.state.qty); setFood(-1)}}>
                                 <ShoppingCartOutlinedIcon className="cart-payment"/> 
                                 <p>{food.price * this.state.qty} VND</p>
                             </div>

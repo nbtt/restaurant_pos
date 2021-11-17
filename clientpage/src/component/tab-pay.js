@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import QrCode2TwoToneIcon from '@mui/icons-material/QrCode2TwoTone';
+import { useState } from 'react'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -59,12 +60,29 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-export default function BasicTabs() {
-  const [value, setValue] = React.useState(0);
+export default function BasicTabs(props) {
+  const [value, setValue] = useState(0);
+  
   const classes = useStyles();
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  const isValidPhoneNumber = function(phoneNumber) {
+    return (phoneNumber !== "" || !props.submited) && !isNaN(phoneNumber) 
+  } 
+
+  const isValidCardNumber = function(cardNumber) {
+    return (cardNumber !== "" || !props.submited) && !isNaN(cardNumber) 
+  }
+
+  const isValidCVV = function(CVV) {
+    return (CVV !== "" || !props.submited) && !isNaN(CVV) 
+  }
+
+  const isValidDate = function(date) {
+    return (date !== "" || !props.submited) && !isNaN(date) 
+  }
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -76,24 +94,38 @@ export default function BasicTabs() {
             indicatorColor="secondary"
             centered
           >
-              <Tab label="Visa" {...a11yProps(0)} />
-              <Tab label="Momo" {...a11yProps(1)} />
-              <Tab label="Cash" {...a11yProps(2)} />
+              <Tab label="Visa" {...a11yProps(0)} onClick={() => props.setTypePayment(0)}/>
+              <Tab label="Momo" {...a11yProps(1)} onClick={() => props.setTypePayment(1)}/>
+              <Tab label="Cash" {...a11yProps(2)} onClick={() => props.setTypePayment(2)}/>
           </Tabs>
         </Box>
 
-        <TabPanel  className={classes.tabpanel} value={value} index={0}>
-          <BasicTextFields className ={classes.textFieldBox}/>
+        <TabPanel className={classes.tabpanel} value={value} index={0}>
+          <Box
+            component="form"
+            sx={{
+              '& > :not(style)': { m: 1, width: '20ch' },
+            }}
+            noValidate
+            autoComplete="off"
+            alignItems="center"
+            justifyContent ="center"
+          >
+            <TextField error={!isValidPhoneNumber(props.phoneNumberState[0])} centered required id="standard-basic" label="Phone number" variant="standard" style={{width: '10vw', minWidth: '200px'}} onChange={(e) => props.phoneNumberState[1](e.target.value.replace(/\s/g, ''))}/>
+            <TextField error={!isValidCardNumber(props.cardNumberState[0])} centered required id="standard-basic" label="Card number" variant="standard" style={{width: '10vw', minWidth: '200px'}} onChange={(e) => props.cardNumberState[1](e.target.value.replace(/\s/g, ''))}/>
+            <TextField error={!isValidCVV(props.CVVState[0])} required id="standard-basic" label="CVV" variant="standard" style={{width: '10vw', minWidth: '200px'}} onChange={(e) => props.CVVState[1](e.target.value.replace(/\s/g, ''))}/>
+            <TextField error={!isValidDate(props.dateState[0])} required id="standard-basic" label="MM/YY" variant="standard" style={{width: '10vw', minWidth: '200px'}} onChange={(e) => props.dateState[1](e.target.value.replace(/\s/g, ''))}/>
+          </Box>
         </TabPanel>
 
         <TabPanel value={value} index={1}>
-          <TextField centered required id="standard-basic" label="Phone number" variant="standard" className={classes.superCenter} style={{width: '90%', minWidth: '200px'}}/>
+          <TextField error={!isValidPhoneNumber(props.phoneNumberState[0])} centered required id="standard-basic" label="Phone number" variant="standard" className={classes.superCenter} style={{width: '90%', minWidth: '200px'}} onChange={(e) => props.phoneNumberState[1](e.target.value.replace(/\s/g, ''))}/>
           <QrCode2TwoToneIcon style={{fontSize: '7rem', position: 'relative', left: '50%', transform: 'translateX(-50%)'}}/>
         </TabPanel>
 
         <TabPanel value={value} index={2}>
           <Box height="10vh" marginTop="50px">
-          <TextField centered required id="standard-basic" label="Phone number" variant="standard" className={classes.superCenter} style={{width: '90%', minWidth: '200px', marginBottom: '3vh'}}/>
+          <TextField error={!isValidPhoneNumber(props.phoneNumberState[0])} centered required id="standard-basic" label="Phone number" variant="standard" className={classes.superCenter} style={{width: '90%', minWidth: '200px', marginBottom: '3vh'}} onChange={(e) => props.phoneNumberState[1](e.target.value.replace(/\s/g, ''))}/>
             <Typography variant='h5' textAlign='center' >Please prepare cash</Typography>
           </Box>
         </TabPanel>
@@ -101,22 +133,3 @@ export default function BasicTabs() {
   );
 }
 
-function BasicTextFields() {
-  return (
-    <Box
-      component="form"
-      sx={{
-        '& > :not(style)': { m: 1, width: '20ch' },
-      }}
-      noValidate
-      autoComplete="off"
-      alignItems="center"
-      justifyContent ="center"
-    >
-      <TextField centered required id="standard-basic" label="Phone number" variant="standard" style={{width: '10vw', minWidth: '200px'}}/>
-      <TextField centered required id="standard-basic" label="Card number" variant="standard" style={{width: '10vw', minWidth: '200px'}}/>
-      <TextField required id="standard-basic" label="CVV" variant="standard" style={{width: '10vw', minWidth: '200px'}}/>
-      <TextField required id="standard-basic" label="MM/YY" variant="standard" style={{width: '10vw', minWidth: '200px'}} />
-    </Box>
-  );
-}
