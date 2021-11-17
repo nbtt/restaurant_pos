@@ -54,21 +54,26 @@ function FullWidthGrid() {
     const [cardNumber, setCardNumber] = useState("")
     const [CVV, setCVV] = useState("")
     const [date, setDate] = useState("")
+    
+    var validCardNumber = /^4[0-9]{12}(?:[0-9]{3})?$/;
+    var validPhoneNumber = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
+    const validCVV = /^[0-9]{3}$/;
+    const validDate = /^(0[1-9]|1[0-2])\/?([2-9][1-9])$/;
 
     const isValidPhoneNumber = function(phoneNumber) {
-        return (phoneNumber !== "") && !isNaN(phoneNumber) 
+        return (validPhoneNumber.test(phoneNumber)) && !isNaN(phoneNumber) 
       } 
     
       const isValidCardNumber = function(cardNumber) {
-        return (cardNumber !== "") && !isNaN(cardNumber) 
+        return (validCardNumber.test(cardNumber)) && !isNaN(cardNumber) 
       }
     
       const isValidCVV = function(CVV) {
-        return (CVV !== "") && !isNaN(CVV) 
+        return (validCVV.test(CVV)) && !isNaN(CVV) 
       }
     
       const isValidDate = function(date) {
-        return (date !== "") && !isNaN(date) 
+        return (validDate.test(date)) && !isNaN(date) 
       }
 
     const navigate = useNavigate();
