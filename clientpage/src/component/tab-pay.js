@@ -87,14 +87,14 @@ export default function BasicTabs() {
         </TabPanel>
 
         <TabPanel value={value} index={1}>
-          <TextField centered required id="standard-basic" label="Phone number" variant="standard" className={classes.superCenter} style={{width: '80%', minWidth: '200px'}}/>
+          <TextField centered required id="standard-basic" label="Phone number" variant="standard" className={classes.superCenter} style={{width: '90%', minWidth: '200px'}}/>
           <QrCode2TwoToneIcon style={{fontSize: '7rem', position: 'relative', left: '50%', transform: 'translateX(-50%)'}}/>
         </TabPanel>
 
         <TabPanel value={value} index={2}>
           <Box height="10vh" marginTop="50px">
-          <TextField centered required id="standard-basic" label="Phone number" variant="standard" className={classes.superCenter} style={{width: '80%', minWidth: '200px', marginBottom: '3vh'}}/>
-            <Typography variant='h5' textAlign='center'  >Please prepare cash</Typography>
+          <TextField centered required id="standard-basic" label="Phone number" variant="standard" className={classes.superCenter} style={{width: '90%', minWidth: '200px', marginBottom: '3vh'}}/>
+            <Typography variant='h5' textAlign='center' >Please prepare cash</Typography>
           </Box>
         </TabPanel>
     </Box>
