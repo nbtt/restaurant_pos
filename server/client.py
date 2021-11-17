@@ -15,7 +15,7 @@ def queryAllDishesType():
     SITEROOT = os.path.realpath(os.path.dirname(__file__))
     jsonUrl = os.path.join(SITEROOT, "data", "types.json")
     typeList = flask.json.load(open(jsonUrl, "r"))
-    return flask.jsonify(typeList)
+    return flask.jsonify(list(typeList.values()))
 
 @app.route("/api/dishes_management/types", methods = ["GET"])
 def queryDishesType():
@@ -43,7 +43,7 @@ def queryAllDishes():
 
     SITEROOT = os.path.realpath(os.path.dirname(__file__))
     jsonUrl = os.path.join(SITEROOT, "data", "data.json")
-    foodList = flask.json.load(open(jsonUrl, "r"))
+    foodList = flask.json.load(open(jsonUrl, "r", encoding='utf8'))
     if id in foodList:
         return flask.jsonify(foodList[id])
     else:

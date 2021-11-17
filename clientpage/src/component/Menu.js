@@ -4,9 +4,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ListFood from "./ListFood"
 import '../style/Menu.css'
-import data from '../data/data'
+// import data from '../data/data'
 import FoodDescription from './FoodDescription'
-import queryTypes from '../data/types'
+// import queryTypes from '../data/types'
 
 
 export default class Menu extends Component {
@@ -15,17 +15,38 @@ export default class Menu extends Component {
         this.setFoodType = this.setFoodType.bind(this)
         this.setFoodDescription = this.setFoodDescription.bind(this)
         this.state = { typeID: 0,
-                       foodID: -1};
+                       foodID: -1,
+                       types: [],
+                       foods: []};
+        
+        fetch('/api/dishes_management/types/all').then(
+            (u) => u.json()
+        ).then(
+            (data) => {this.setState({types: data})}
+        );
+
+        fetch('/api/dishes_management/dishes?id=' + 0).then(
+            (u) => u.json()
+        ).then(
+            (data) => {this.setState({foods: data})}
+        );
     }
 
     setFoodType(id) {
         this.setState({typeID: id})
+
+        fetch('/api/dishes_management/dishes?id=' + id).then(
+            (u) => u.json()
+        ).then(
+            (data) => {this.setState({foods: data})}
+        );
     }
 
     setFoodDescription(id) {
         this.setState({foodID: id})
     }
     
+
     render() {
         const NextBtn = (props) => (
             <button {...props} className={'next_button'}/>
@@ -74,15 +95,15 @@ export default class Menu extends Component {
             <div>
                 <div className='Menu'>
                     <ListFoodType className='ListFoodType' {...settings}>
-                        {queryTypes().map((item) => <FoodType key={item.id} item={item} setFoodType={this.setFoodType} type={this.state.typeID}/>)}
+                        {this.state.types.map((item) => <FoodType key={item.id} item={item} setFoodType={this.setFoodType} type={this.state.typeID}/>)}
                     </ListFoodType>
-                    <h2 style={{ textAlign: "left", margin: "10px 20px 10px 20px" }}>{queryTypes()[this.state.typeID].name }</h2>
+                    {/* <h2 style={{ textAlign: "left", margin: "10px 20px 10px 20px" }}>{this.state.types[this.state.typeID].name}</h2> */}
                 </div>
                 <div className='ListFood'>
-                    <ListFood foods={data(this.state.typeID)} setFood={this.setFoodDescription}/>
+                    <ListFood foods={this.state.foods} setFood={this.setFoodDescription}/>
                 </div>
                 <div>
-                    {this.state.foodID !== -1 ? <FoodDescription food={data(this.state.typeID)[this.state.foodID]} setFood={this.setFoodDescription}/> : <div/>}
+                    {this.state.foodID !== -1 ? <FoodDescription food={this.state.foods.find(element => element.id === this.state.foodID)} setFood={this.setFoodDescription}/> : <div/>}
                 </div>
             </div>
         );
