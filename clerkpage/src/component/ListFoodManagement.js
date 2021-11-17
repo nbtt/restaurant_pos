@@ -72,8 +72,17 @@ export default class ListSearch extends Component {
             id: (Math.random() * 1000).toFixed(0).toString(),
             image: 'https://shipdoandemff.com/wp-content/uploads/2018/05/Hamburger-bò.png',
             category: "New",
-            icon: "delete-icon"
+            // icon: "delete-icon" // Must remove it before POST
         };
+        fetch('/api/menu_management/data', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(
+            (u) => console.log(u)
+        );
         this.listViewInstance.addItem([data]);
     }
     deleteItem(args) {
