@@ -1,37 +1,37 @@
 {
-        "0": {
-            "id": 0,
-            "name": "Cupcake",
-            "img": "https://vncooking.com/files/cuisine/2019/01/26/muc-nuong-sa-te-cay-2c2j.jpg"
-        },
-        "1": {
-            "id": 1,
-            "name": "Sea Food",
-            "img": "https://vncooking.com/files/cuisine/2019/01/26/muc-nuong-sa-te-cay-2c2j.jpg"
-        },
-        "2": {
-            "id": 2,
-            "name": "Juice",
-            "img": "https://popeyes.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/c/o/coca.png"
-        },
-        "3": {
-            "id": 3,
-            "name": "Coca",
-            "img": "https://popeyes.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/c/o/coca.png"
-        },
-        "4": { 
-            "id": 4,
-            "name": "Orange Juice",
-            "img": "https://popeyes.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/c/o/coca.png"
-        },
-        "5": { 
-            "id": 5,
-            "name": "1",
-            "img": "https://p.kindpng.com/picc/s/63-636174_cupcake-chocolate-brownie-ganache-torte-vanilla-cupcake-vector.png"
-        },
-        "6": { 
-            "id": 6,
-            "name": "2",
-            "img": "https://popeyes.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/c/o/coca.png"
-        }
+    "0": {
+        "id": 0,
+        "name": "Cupcake",
+        "img": "https://media.cooky.vn/images/blog-2016/cach-phan-biet-2-loai-banh-cupcake-voi-muffin-3.jpg"
+    },
+    "1": {
+        "id": 1,
+        "name": "Sea Food",
+        "img": "https://images.pexels.com/photos/1194431/pexels-photo-1194431.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+    },
+    "2": {
+        "id": 2,
+        "name": "Juice",
+        "img": "https://thumbs.dreamstime.com/b/ripe-fruit-juice-17306008.jpg"
+    },
+    "3": {
+        "id": 3,
+        "name": "Drink",
+        "img": "https://popeyes.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/c/o/coca.png"
+    },
+    "4": { 
+        "id": 4,
+        "name": "Vietnamese Foods",
+        "img": "https://thewanderlustkitchen.com/wp-content/uploads/2017/02/vegan-bun-chay-vietnamese-noodle-salad-7.jpg"
+    },
+    "5": { 
+        "id": 5,
+        "name": "Vegetarian Foods",
+        "img": "https://i.ibb.co/kQBqr0X/ve.jpg"
+    },
+    "6": { 
+        "id": 6,
+        "name": "Dessert",
+        "img": "https://imgs.vietnamnet.vn/Images/2017/10/17/14/20171017144313-banh-flan.JPG"
+    }
 }
