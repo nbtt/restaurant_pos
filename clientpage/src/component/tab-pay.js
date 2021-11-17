@@ -67,25 +67,25 @@ export default function BasicTabs(props) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  var validCardNumber = /^4[0-9]{12}(?:[0-9]{3})?$/;
-  var validPhoneNumber = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
+  const validCardNumber = /^4[0-9]{12}(?:[0-9]{3})?$/;
+  const validPhoneNumber = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
   const validCVV = /^[0-9]{3}$/;
-  const validDate = /^(0[1-9]|1[0-2])\/?([2-9][1-9])$/;
+  const validDate = /^((0[1-9])|(1[0-2]))\/(([2-9][1-9]))$/;
 
   const isValidPhoneNumber = function(phoneNumber) {
-    return (validPhoneNumber.test(phoneNumber) || !props.submited) && !isNaN(phoneNumber) 
+    return (validPhoneNumber.test(phoneNumber) ) && (phoneNumber !== "" || !props.submited)
   } 
 
   const isValidCardNumber = function(cardNumber) {
-    return (validCardNumber.test(cardNumber) || !props.submited) && !isNaN(cardNumber) 
+    return (validCardNumber.test(cardNumber)) && (cardNumber !== "" || !props.submited)
   }
 
   const isValidCVV = function(CVV) {
-    return (validCVV.test(CVV) || !props.submited) && !isNaN(CVV) 
+    return (validCVV.test(CVV))  && (CVV !== "" || !props.submited)
   }
 
   const isValidDate = function(date) {
-    return (validDate.test(date)|| !props.submited) && !isNaN(date) 
+    return (validDate.test(date)) && (date !== "" || !props.submited)
   }
 
   return (

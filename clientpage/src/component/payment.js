@@ -55,25 +55,25 @@ function FullWidthGrid() {
     const [CVV, setCVV] = useState("")
     const [date, setDate] = useState("")
     
-    var validCardNumber = /^4[0-9]{12}(?:[0-9]{3})?$/;
-    var validPhoneNumber = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
+    const validCardNumber = /^4[0-9]{12}(?:[0-9]{3})?$/;
+    const validPhoneNumber = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
     const validCVV = /^[0-9]{3}$/;
-    const validDate = /^(0[1-9]|1[0-2])\/?([2-9][1-9])$/;
+    const validDate = /^((0[1-9])|(1[0-2]))\/(([2-9][1-9]))$/;
 
     const isValidPhoneNumber = function(phoneNumber) {
-        return (validPhoneNumber.test(phoneNumber)) && !isNaN(phoneNumber) 
+        return (validPhoneNumber.test(phoneNumber)) && (phoneNumber !== "")
       } 
     
       const isValidCardNumber = function(cardNumber) {
-        return (validCardNumber.test(cardNumber)) && !isNaN(cardNumber) 
+        return (validCardNumber.test(cardNumber)) && (cardNumber !== "")
       }
     
       const isValidCVV = function(CVV) {
-        return (validCVV.test(CVV)) && !isNaN(CVV) 
+        return (validCVV.test(CVV)) && (CVV !== "")
       }
     
       const isValidDate = function(date) {
-        return (validDate.test(date)) && !isNaN(date) 
+        return (validDate.test(date)) && (date !== "")
       }
 
     const navigate = useNavigate();
