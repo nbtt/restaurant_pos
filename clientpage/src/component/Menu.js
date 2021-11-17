@@ -97,7 +97,13 @@ export default class Menu extends Component {
                     <ListFoodType className='ListFoodType' {...settings}>
                         {this.state.types.map((item) => <FoodType key={item.id} item={item} setFoodType={this.setFoodType} type={this.state.typeID}/>)}
                     </ListFoodType>
-                    {/* <h2 style={{ textAlign: "left", margin: "10px 20px 10px 20px" }}>{this.state.types[this.state.typeID].name}</h2> */}
+                    <div>
+                        {this.state.types.map((item) => item.id === this.state.typeID ?
+                            <h2 style={{ textAlign: "left", margin: "10px 20px 10px 20px" }}>
+                                {item.name}
+                            </h2> : <p/>)}
+                    </div>
+                    
                 </div>
                 <div className='ListFood'>
                     <ListFood foods={this.state.foods} setFood={this.setFoodDescription}/>

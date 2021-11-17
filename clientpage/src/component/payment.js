@@ -9,7 +9,7 @@ import BasicTabs from './tab-pay';
 import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { CartContext } from "../contexts/CartContext";
-import logo from './Logo BK.png'
+import logo from '../Logo BK.png'
 import {useNavigate} from 'react-router-dom';
 
 export default class Payment extends Component {
