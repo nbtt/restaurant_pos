@@ -49,7 +49,14 @@ const useStyles = makeStyles(theme => ({
     marginLeft: "10%",
     marginRight: "auto"
 
-}
+  },
+  superCenter: {
+    position: 'relative',
+    left: '50%',
+    transform: 'translateX(-50%)'
+  }
+
+
 }));
 
 export default function BasicTabs() {
@@ -80,12 +87,14 @@ export default function BasicTabs() {
         </TabPanel>
 
         <TabPanel value={value} index={1}>
+          <TextField centered required id="standard-basic" label="Phone number" variant="standard" className={classes.superCenter} style={{width: '90%', minWidth: '200px'}}/>
           <QrCode2TwoToneIcon style={{fontSize: '7rem', position: 'relative', left: '50%', transform: 'translateX(-50%)'}}/>
         </TabPanel>
 
         <TabPanel value={value} index={2}>
-          <Box height="10vh" marginTop="5vh">
-            <Typography variant='h5' textAlign='center'>You are so corny for payment via cash</Typography>
+          <Box height="10vh" marginTop="50px">
+          <TextField centered required id="standard-basic" label="Phone number" variant="standard" className={classes.superCenter} style={{width: '90%', minWidth: '200px', marginBottom: '3vh'}}/>
+            <Typography variant='h5' textAlign='center' >Please prepare cash</Typography>
           </Box>
         </TabPanel>
     </Box>
@@ -104,9 +113,10 @@ function BasicTextFields() {
       alignItems="center"
       justifyContent ="center"
     >
-      <TextField centered required id="standard-basic" label="Card number" variant="standard" style={{width: '20vw', minWidth: '200px'}}/>
-      <TextField required id="standard-basic" label="CVV" variant="standard" />
-      <TextField required id="standard-basic" label="MM/YY" variant="standard" />
+      <TextField centered required id="standard-basic" label="Phone number" variant="standard" style={{width: '10vw', minWidth: '200px'}}/>
+      <TextField centered required id="standard-basic" label="Card number" variant="standard" style={{width: '10vw', minWidth: '200px'}}/>
+      <TextField required id="standard-basic" label="CVV" variant="standard" style={{width: '10vw', minWidth: '200px'}}/>
+      <TextField required id="standard-basic" label="MM/YY" variant="standard" style={{width: '10vw', minWidth: '200px'}} />
     </Box>
   );
 }

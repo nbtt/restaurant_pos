@@ -9,6 +9,7 @@ import BasicTabs from './tab-pay';
 import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { CartContext } from "../contexts/CartContext";
+import logo from './Logo BK.png'
 
 export default class Payment extends Component {
     render(){
@@ -46,7 +47,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 function FullWidthGrid() {
     const classes = useStyles();
-    const logo = 'https://shipdoandemff.com/wp-content/uploads/2018/05/Hamburger-bò.png'
+
     return (
         <CartContext.Consumer>
         {({total}) => (
@@ -77,7 +78,7 @@ function FullWidthGrid() {
                 <Grid item xs={12} md={8} ></Grid>
                 <Grid item xs={12} md={4} >
                  
-                        <Button component={Link} to={'/'} variant="text" style={{position: 'relative', left: '50%', transform: 'translateX(-50%)', textDecoration: 'none'}}>
+                        <Button component={Link} to={'/'} variant="text" style={{position: 'relative', left: '50%', transform: 'translateX(-50%)', textDecoration: 'none', }}>
                             CANCEL
                         </Button>
 
