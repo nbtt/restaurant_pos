@@ -4,13 +4,13 @@ from flask import request, session, redirect, url_for
 import json
 from datetime import datetime
 
-app = flask.Flask(__name__)
+order = flask.Blueprint('order', __name__)
 
-@app.route("/", methods=["GET"])
+@order.route("/", methods=["GET"])
 def index():
     return '''<h1>Test API for Software engineering</h1>'''
 
-@app.route("/api/order_management/order", methods = ["GET"])
+@order.route("/api/order_management/order", methods = ["GET"])
 def queryOrder():
     '''Get order by ID'''
     id = flask.request.args.get("id")
@@ -40,7 +40,7 @@ def queryOrder():
         dishes.append([foodName, quantity, foodPrice])
     return flask.jsonify([id, dishes, date, status])
     
-@app.route("/api/order_management/getLish", methods = ["GET"])
+@order.route("/api/order_management/getLish", methods = ["GET"])
 def getOrderList():
     '''Get order list'''
     SITEROOT = os.path.realpath(os.path.dirname(__file__))
@@ -67,7 +67,7 @@ def getOrderList():
         ListOrder.append([id, dishes, date, status])
     return flask.jsonify(ListOrder)
 
-@app.route("/api/dishes_management/edit", methods = ["GET", "POST"])
+@order.route("/api/dishes_management/edit", methods = ["GET", "POST"])
 def updateOrder():
     '''update order after edit'''
     id = flask.request.args.get("id")
@@ -93,7 +93,7 @@ def updateOrder():
     else:
         return redirect(url_for("getOrderList"))
 
-@app.route("/api/dishes_management/add", methods = ["POST"])
+@order.route("/api/dishes_management/add", methods = ["POST"])
 def addOrder():
     '''add new order'''
     SITEROOT = os.path.realpath(os.path.dirname(__file__))
@@ -128,7 +128,7 @@ def addOrder():
     #return flask.jsonify(orderList)
     return flask.Response("Success", status=200)
 
-@app.route("/api/dishes_management/remove", methods = ["POST"])
+@order.route("/api/dishes_management/remove", methods = ["POST"])
 def removeOrder():
     '''remove order form list'''
 
@@ -151,6 +151,3 @@ def removeOrder():
         with open(jsonUrl, "w") as f:
             f.write(json.dumps(orderList, indent=4))
         return flask.Response("Success", status=200)
-
-'''run'''
-app.run(debug=True)

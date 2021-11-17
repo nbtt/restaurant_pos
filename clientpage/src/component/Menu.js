@@ -103,7 +103,7 @@ export default class Menu extends Component {
                     <ListFood foods={this.state.foods} setFood={this.setFoodDescription}/>
                 </div>
                 <div>
-                    {this.state.foodID !== -1 ? <FoodDescription food={this.state.foods.find(element => element.id === this.state.foodID)} setFood={this.setFoodDescription}/> : <div/>}
+                    {this.state.foodID !== -1 ? <FoodDescription food={this.state.foods.find(element => element.id === this.state.foodID)} setFood={this.setFoodDescription} typeID={this.state.typeID}/> : <div/>}
                 </div>
             </div>
         );
