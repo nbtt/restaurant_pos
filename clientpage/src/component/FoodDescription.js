@@ -53,14 +53,10 @@ export default class FoodDescription extends Component {
                           </span>   
                       </div>
                       <div className="detail-info">
-                          <b>Protein:</b> <p>What is lorem ipsum</p> <br/>
-                          <b>Additives:</b> <p>What is lorem ipsum</p> <br/>
-                          <b>Baking material:</b> <p>What is lorem ipsum</p> <br/>
-                          <b>Food decration:</b> <p>What is lorem ipsum</p> <br/>
-          
+                          {Object.keys(food.Description).map( k => <div><b>{k} </b> : <p> {food.Description[k]}</p></div>)}         
                       </div>
                       <div className="side-dishes"> 
-                          <span>Side dishes (<b>*</b>): </span> <p >Selected quantity 0</p> <br/>
+                          {/* <span>Side dishes (<b>*</b>): </span> <p >Selected quantity 0</p> <br/> */}
                           <article>Please select one of the properties below </article>
                           <div className="dishes">
                               <input className="check-box-dish" id="check-dish" type="checkbox" name="default-check" value="vegetables"/>

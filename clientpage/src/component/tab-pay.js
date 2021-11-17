@@ -73,19 +73,19 @@ export default function BasicTabs(props) {
   const validDate = /^((0[1-9])|(1[0-2]))\/(([2-9][1-9]))$/;
 
   const isValidPhoneNumber = function(phoneNumber) {
-    return (validPhoneNumber.test(phoneNumber) ) && (phoneNumber !== "" || !props.submited)
+    return (validPhoneNumber.test(phoneNumber)) || (phoneNumber === "" && !props.submited)
   } 
 
   const isValidCardNumber = function(cardNumber) {
-    return (validCardNumber.test(cardNumber)) && (cardNumber !== "" || !props.submited)
+    return (validCardNumber.test(cardNumber)) || (cardNumber === "" && !props.submited)
   }
 
   const isValidCVV = function(CVV) {
-    return (validCVV.test(CVV))  && (CVV !== "" || !props.submited)
+    return (validCVV.test(CVV)) || (CVV === "" && !props.submited)
   }
 
   const isValidDate = function(date) {
-    return (validDate.test(date)) && (date !== "" || !props.submited)
+    return (validDate.test(date)) || (date === "" && !props.submited)
   }
 
   return (

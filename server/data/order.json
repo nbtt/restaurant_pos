@@ -66,5 +66,37 @@
         ],
         "id": "3",
         "date": "2021/11/17"
+    },
+    "4": {
+        "phoneNumber": "123123",
+        "listDish": [
+            {
+                "typeID": 5,
+                "foodID": "3",
+                "quantity": 1
+            },
+            {
+                "typeID": 5,
+                "foodID": "1",
+                "quantity": 1
+            },
+            {
+                "typeID": 4,
+                "foodID": "1",
+                "quantity": 1
+            },
+            {
+                "typeID": 4,
+                "foodID": "3",
+                "quantity": 1
+            },
+            {
+                "typeID": 4,
+                "foodID": "4",
+                "quantity": 1
+            }
+        ],
+        "id": "4",
+        "date": "2021/11/17"
     }
 }
