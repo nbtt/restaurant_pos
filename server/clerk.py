@@ -8,10 +8,10 @@ app = flask.Flask(__name__)
 def getListDishes():
     SITEROOT = os.path.realpath(os.path.dirname(__file__))
     jsonUrl = os.path.join(SITEROOT, "data", "data.json")
-    dishes = flask.json.load(open(jsonUrl, "r"))
+    dishes = flask.json.load(open(jsonUrl, "r", encoding="utf8"))
     
     jsonUrl = os.path.join(SITEROOT, "data", "types.json")
-    type_dishes = flask.json.load(open(jsonUrl, "r"))
+    type_dishes = flask.json.load(open(jsonUrl, "r", encoding="utf8"))
 
     dishes = [{**dish, "category" : type_dishes[type_id]["name"]} for type_id in dishes for dish in dishes[type_id]]
     
@@ -22,10 +22,10 @@ def addDish():
     # Open data
     SITEROOT = os.path.realpath(os.path.dirname(__file__))
     jsonUrl_dishes = os.path.join(SITEROOT, "data", "data.json")
-    dishes = flask.json.load(open(jsonUrl_dishes, "r"))
+    dishes = flask.json.load(open(jsonUrl_dishes, "r", encoding="utf8"))
     
     jsonUrl_type_dishes = os.path.join(SITEROOT, "data", "types.json")
-    type_dishes = flask.json.load(open(jsonUrl_type_dishes, "r"))
+    type_dishes = flask.json.load(open(jsonUrl_type_dishes, "r", encoding="utf8"))
     typename_dishes = {type_dishes[type_id]["name"] : type_id for type_id in dishes for dish in dishes[type_id]}
 
     # Get request data
@@ -49,8 +49,8 @@ def addDish():
     dishes[cur_typeid].append(data)
 
     # Save
-    flask.json.dump(dishes, open(jsonUrl_dishes, "w"), indent=4)
-    flask.json.dump(type_dishes, open(jsonUrl_type_dishes, "w"), indent=4)
+    flask.json.dump(dishes, open(jsonUrl_dishes, "w", encoding="utf8"), indent=4, ensure_ascii=False)
+    flask.json.dump(type_dishes, open(jsonUrl_type_dishes, "w", encoding="utf8"), indent=4, ensure_ascii=False)
 
     return "Add OK"
 
@@ -59,10 +59,10 @@ def removeDish():
     # Open data
     SITEROOT = os.path.realpath(os.path.dirname(__file__))
     jsonUrl_dishes = os.path.join(SITEROOT, "data", "data.json")
-    dishes = flask.json.load(open(jsonUrl_dishes, "r"))
+    dishes = flask.json.load(open(jsonUrl_dishes, "r", encoding="utf8"))
     
     jsonUrl_type_dishes = os.path.join(SITEROOT, "data", "types.json")
-    type_dishes = flask.json.load(open(jsonUrl_type_dishes, "r"))
+    type_dishes = flask.json.load(open(jsonUrl_type_dishes, "r", encoding="utf8"))
     typename_dishes = {type_dishes[type_id]["name"] : type_id for type_id in dishes for dish in dishes[type_id]}
 
     # Get request data
@@ -85,7 +85,7 @@ def removeDish():
     dishes[typename_dishes[data["category"]]].pop(cur_type_dishes_id[data["id"]])
 
     # Save
-    flask.json.dump(dishes, open(jsonUrl_dishes, "w"), indent=4)
+    flask.json.dump(dishes, open(jsonUrl_dishes, "w", encoding="utf8"), indent=4, ensure_ascii=False)
 
     return "Delete OK"
 
