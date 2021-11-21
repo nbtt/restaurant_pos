@@ -6,7 +6,7 @@ clerk = flask.Blueprint('clerk', __name__)
 @clerk.route('/api/menu_management/data/all', methods=["GET"])
 def getListDishes():
     SITEROOT = os.path.realpath(os.path.dirname(__file__))
-    jsonUrl = os.path.join(SITEROOT, "data", "data.json")
+    jsonUrl = os.path.join(SITEROOT, "data", "foods.json")
     dishes = flask.json.load(open(jsonUrl, "r"))
     
     jsonUrl = os.path.join(SITEROOT, "data", "types.json")

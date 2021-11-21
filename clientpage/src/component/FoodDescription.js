@@ -11,6 +11,11 @@ export default class FoodDescription extends Component {
         this.state = { qty: 1 };
     }
 
+    modifyQuantity(qty) {
+        if (this.state.qty + qty < 1) return;
+        this.setState({qty: this.state.qty + qty})
+    }
+
     render() {
         const {food, setFood, typeID} = this.props
         return (
@@ -47,9 +52,9 @@ export default class FoodDescription extends Component {
                       <div className="quantity">
                           <span className="quantity-text">Quantity</span>
                           <span className="controlQty">
-                                <RemoveOutlinedIcon className="sub" onClick={() => this.setState({qty: this.state.qty > 1 ? this.state.qty - 1 : 1})}/>
-                                <span className="valueQty"> {this.state.qty} </span>
-                                <AddOutlinedIcon className="add" onClick={() => this.setState({qty: this.state.qty + 1})}/>
+                                <RemoveOutlinedIcon className="sub" onClick={() => this.modifyQuantity(-1)}/>
+                                    <span className="valueQty"> {this.state.qty} </span>
+                                <AddOutlinedIcon className="add" onClick={() => this.modifyQuantity(1)}/>
                           </span>   
                       </div>
                       <div className="detail-info">

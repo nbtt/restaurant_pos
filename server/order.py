@@ -24,7 +24,7 @@ def queryOrder():
     jsonUrl = os.path.join(SITEROOT, "data", "order.json")
     orderList = flask.json.load(open(jsonUrl, "r"))
 
-    jsonUrl = os.path.join(SITEROOT, "data", "data.json")
+    jsonUrl = os.path.join(SITEROOT, "data", "foods.json")
     data = flask.json.load(open(jsonUrl, "r"))
 
     order = orderList[id]
@@ -47,7 +47,7 @@ def getOrderList():
     jsonUrl = os.path.join(SITEROOT, "data", "order.json")
     orderList = flask.json.load(open(jsonUrl, "r"))
 
-    jsonUrl = os.path.join(SITEROOT, "data", "data.json")
+    jsonUrl = os.path.join(SITEROOT, "data", "foods.json")
     data = flask.json.load(open(jsonUrl, "r"))
 
     ListOrder = []

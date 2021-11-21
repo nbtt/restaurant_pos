@@ -17,24 +17,24 @@ export default class Menu extends Component {
         this.state = { typeID: 0,
                        foodID: -1,
                        types: [],
-                       foods: []};
+                       foods: [],
+                       nameType: ""};
         
         fetch('/api/dishes_management/types/all').then(
-            (u) => u.json()
+            (response) => response.json()
         ).then(
-            (data) => {this.setState({types: data})}
+            (data) => {this.setState({types: data, nameType: data[0].name})}
         );
 
         fetch('/api/dishes_management/dishes?id=' + 0).then(
-            (u) => u.json()
+            (reponse) => reponse.json()
         ).then(
             (data) => {this.setState({foods: data})}
         );
     }
 
     setFoodType(id) {
-        this.setState({typeID: id})
-
+        this.setState({typeID: id, nameType: this.state.types[id].name})
         fetch('/api/dishes_management/dishes?id=' + id).then(
             (u) => u.json()
         ).then(
@@ -97,16 +97,10 @@ export default class Menu extends Component {
                     <ListFoodType className='ListFoodType' {...settings}>
                         {this.state.types.map((item) => <FoodType key={item.id} item={item} setFoodType={this.setFoodType} type={this.state.typeID}/>)}
                     </ListFoodType>
-                    <div>
-                        {this.state.types.map((item) => item.id === this.state.typeID ?
-                            <h2 style={{ textAlign: "left", margin: "10px 20px 10px 20px" }}>
-                                {item.name}
-                            </h2> : <p/>)}
-                    </div>
-                    
+                    <h2 style={{ textAlign: "left", margin: "10px 20px 10px 20px" }}>{this.state.nameType}</h2>                  
                 </div>
                 <div className='ListFood'>
-                    <ListFood foods={this.state.foods} setFood={this.setFoodDescription}/>
+                    <ListFood foods={this.state.foods} setFoodDescription={this.setFoodDescription}/>
                 </div>
                 <div>
                     {this.state.foodID !== -1 ? <FoodDescription food={this.state.foods.find(element => element.id === this.state.foodID)} setFood={this.setFoodDescription} typeID={this.state.typeID}/> : <div/>}

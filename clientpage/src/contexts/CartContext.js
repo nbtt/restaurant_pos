@@ -16,7 +16,7 @@ export class CartProvider extends Component {
     }
 
     addFood(typeID, food, qty) {
-      var exist = this.state.cartItems.find((e => food.name === e.food.name))
+      var exist = this.state.cartItems.find((e => food.id === e.food.id))
       if (exist) {
         exist.qty += qty
         this.setState({
@@ -37,7 +37,7 @@ export class CartProvider extends Component {
     }
 
     editQuantity(food, qty) {
-      var cartItem = this.state.cartItems.find((e => food.name === e.food.name))
+      var cartItem = this.state.cartItems.find((e => food.id === e.food.id))
       if (cartItem.qty + qty === 0) {
         this.deleteFood(food)
       } else {
@@ -50,7 +50,7 @@ export class CartProvider extends Component {
     }
 
     deleteFood(food) {
-      var index = this.state.cartItems.findIndex((e => food.name === e.food.name))
+      var index = this.state.cartItems.findIndex((e => food.id === e.food.id))
       this.state.cartItems.splice(index, 1)
       this.setState({
         cartItems: this.state.cartItems
