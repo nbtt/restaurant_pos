@@ -11,8 +11,13 @@ export default class FoodDescription extends Component {
         this.state = { qty: 1 };
     }
 
+    modifyQuantity(qty) {
+        if (this.state.qty + qty < 1) return;
+        this.setState({qty: this.state.qty + qty})
+    }
+
     render() {
-        const {food, setFood} = this.props
+        const {food, setFood, typeID} = this.props
         return (
             <div className="popup-background">
             <div className="box">
@@ -47,20 +52,16 @@ export default class FoodDescription extends Component {
                       <div className="quantity">
                           <span className="quantity-text">Quantity</span>
                           <span className="controlQty">
-                                <RemoveOutlinedIcon className="sub" onClick={() => this.setState({qty: this.state.qty > 1 ? this.state.qty - 1 : 1})}/>
-                                <span className="valueQty"> {this.state.qty} </span>
-                                <AddOutlinedIcon className="add" onClick={() => this.setState({qty: this.state.qty + 1})}/>
+                                <RemoveOutlinedIcon className="sub" onClick={() => this.modifyQuantity(-1)}/>
+                                    <span className="valueQty"> {this.state.qty} </span>
+                                <AddOutlinedIcon className="add" onClick={() => this.modifyQuantity(1)}/>
                           </span>   
                       </div>
                       <div className="detail-info">
-                          <b>Protein:</b> <p>What is lorem ipsum</p> <br/>
-                          <b>Additives:</b> <p>What is lorem ipsum</p> <br/>
-                          <b>Baking material:</b> <p>What is lorem ipsum</p> <br/>
-                          <b>Food decration:</b> <p>What is lorem ipsum</p> <br/>
-          
+                          {Object.keys(food.Description).map( k => <div><b>{k} </b> : <p> {food.Description[k]}</p></div>)}         
                       </div>
                       <div className="side-dishes"> 
-                          <span>Side dishes (<b>*</b>): </span> <p >Selected quantity 0</p> <br/>
+                          {/* <span>Side dishes (<b>*</b>): </span> <p >Selected quantity 0</p> <br/> */}
                           <article>Please select one of the properties below </article>
                           <div className="dishes">
                               <input className="check-box-dish" id="check-dish" type="checkbox" name="default-check" value="vegetables"/>
@@ -69,7 +70,7 @@ export default class FoodDescription extends Component {
                       </div>
                       <CartContext.Consumer>
                         {({ addFood }) => (
-                            <div className="paymentButton" onClick={() => {addFood(food, this.state.qty); setFood(-1)}}>
+                            <div className="paymentButton" onClick={() => {addFood(typeID, food, this.state.qty); setFood(-1)}}>
                                 <ShoppingCartOutlinedIcon className="cart-payment"/> 
                                 <p>{food.price * this.state.qty} VND</p>
                             </div>

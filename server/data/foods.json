@@ -1,0 +1,340 @@
+{
+    "0": [
+        {
+            "id": "1",
+            "name": "Strawberry Cupcake",
+            "price": 35000,
+            "image": "https://images.pexels.com/photos/1055272/pexels-photo-1055272.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+            "Description": {
+                "Protein": 51,
+                "Additives": 0,
+                "Baking materials": 29,
+                "Food decoration": 4
+            }
+        },
+        {
+            "id": "2",
+            "name": "Banana Cupcake",
+            "price": 25000,
+            "image": "https://images.pexels.com/photos/1055271/pexels-photo-1055271.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+            "Description": {
+                "Protein": 56,
+                "Additives": 4,
+                "Baking materials": 29,
+                "Food decoration": 2
+            }
+        },
+        {
+            "id": "3",
+            "name": "Mix fruit cupcake",
+            "price": 40000,
+            "image": "https://images.pexels.com/photos/1055270/pexels-photo-1055270.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+            "Description": {
+                "Protein": 64,
+                "Additives": 3,
+                "Baking materials": 29,
+                "Food decoration": 5
+            }
+        },
+        {
+            "id": "4",
+            "name": "Butterscotch Cupcake",
+            "price": 35000,
+            "image": "https://i.ibb.co/F88mcKx/Butterscotch-Cupcakes-16.jpg",
+            "Description": {
+                "Protein": 61,
+                "Additives": 1,
+                "Baking materials": 44,
+                "Food decoration": 5
+            }
+        }
+    ],
+    "1": [
+        {
+            "id": "1",
+            "name": "Basic Seafood Hotpot",
+            "price": 500000,
+            "image": "https://i.ibb.co/KqJMJtt/mixsf1.jpg",
+            "Description": {
+                "Protein": 54,
+                "Additives": 1,
+                "Baking materials": 24,
+                "Food decoration": 3
+            }
+        },
+        {
+            "id": "2",
+            "name": "Lobster Combo",
+            "price": 750000,
+            "image": "https://file.hstatic.net/1000166699/file/healthy_022ccd87f8344b0ca805c5fa929958c1_grande.jpg",
+            "Description": {
+                "Protein": 57,
+                "Additives": 2,
+                "Baking materials": 48,
+                "Food decoration": 0
+            }
+        },
+        {
+            "id": "3",
+            "name": "King Crab",
+            "price": 1000000,
+            "image": "https://haisanthuycung.com/wp-content/uploads/2021/09/cua-king-crab2.jpg",
+            "Description": {
+                "Protein": 54,
+                "Additives": 3,
+                "Baking materials": 56,
+                "Food decoration": 0
+            }
+        },
+        {
+            "id": "4",
+            "name": "Korean Seafood Combo",
+            "price": 5000000,
+            "image": "https://i.ibb.co/cFNMQ3k/getlstd-property-photo.jpg",
+            "Description": {
+                "Protein": 52,
+                "Additives": 3,
+                "Baking materials": 19,
+                "Food decoration": 1
+            }
+        }
+    ],
+    "2": [
+        {
+            "id": "1",
+            "name": "Mango Juice",
+            "price": 10000,
+            "image": "https://copperkettle.ae/wp-content/uploads/2021/03/Mango-Juice-Dubai-3.jpg",
+            "Description": {
+                "Protein": 59,
+                "Additives": 3,
+                "Baking materials": 22,
+                "Food decoration": 0
+            }
+        },
+        {
+            "id": "2",
+            "name": "Orange Juice",
+            "price": 10000,
+            "image": "https://content.mrbostondrinks.com/recipes/harvey-wallbanger-2012/50/360.jpg",
+            "Description": {
+                "Protein": 56,
+                "Additives": 2,
+                "Baking materials": 27,
+                "Food decoration": 0
+            }
+        },
+        {
+            "id": "3",
+            "name": "Watermelon Juice",
+            "price": 10000,
+            "image": "https://i.pinimg.com/originals/91/50/d4/9150d4e950f900a1e68622651479d56c.jpg",
+            "Description": {
+                "Protein": 68,
+                "Additives": 1,
+                "Baking materials": 30,
+                "Food decoration": 1
+            }
+        }
+    ],
+    "3": [
+        {
+            "id": "1",
+            "name": "Pepsi",
+            "price": 20000,
+            "image": "https://perfectgrocers.com/wp-content/uploads/2020/05/afp-000116139-e1589220780904.png",
+            "Description": {
+                "Protein": 62,
+                "Additives": 4,
+                "Baking materials": 41,
+                "Food decoration": 3
+            }
+        },
+        {
+            "id": "2",
+            "name": "Sprite",
+            "price": 20000,
+            "image": "https://d2mekbzx20fc11.cloudfront.net/uploads/Sprite_1__1_-web.png",
+            "Description": {
+                "Protein": 56,
+                "Additives": 2,
+                "Baking materials": 27,
+                "Food decoration": 5
+            }
+        },
+        {
+            "id": "3",
+            "name": "Aquafina",
+            "price": 10000,
+            "image": "https://www.pepsico.com/images/album/product-information/aquafina_20oz.png?sfvrsn=23a654ac_2",
+            "Description": {
+                "Protein": 53,
+                "Additives": 4,
+                "Baking materials": 45,
+                "Food decoration": 2
+            }
+        },
+        {
+            "id": "4",
+            "name": "Tiger Beer",
+            "price": 25000,
+            "image": "https://th.bing.com/th/id/OIP.XzcOj79nWn4CwlPapHh6LQAAAA?pid=ImgDet&w=423&h=500&rs=1",
+            "Description": {
+                "Protein": 70,
+                "Additives": 1,
+                "Baking materials": 33,
+                "Food decoration": 5
+            }
+        }
+    ],
+    "4": [
+        {
+            "id": "1",
+            "name": "Pho Ha Noi",
+            "price": 45000,
+            "image": "https://i.ibb.co/YNS7tzD/pho.jpg",
+            "Description": {
+                "Protein": 54,
+                "Additives": 0,
+                "Baking materials": 49,
+                "Food decoration": 5
+            }
+        },
+        {
+            "id": "2",
+            "name": "Banh Mi",
+            "price": 35000,
+            "image": "https://th.bing.com/th/id/OIP.WiCtlAEWOppHyPGYD7ccsAAAAA?pid=ImgDet&w=354&h=354&rs=1",
+            "Description": {
+                "Protein": 70,
+                "Additives": 4,
+                "Baking materials": 29,
+                "Food decoration": 4
+            }
+        },
+        {
+            "id": "3",
+            "name": "Banh Xeo",
+            "price": 35000,
+            "image": "https://images.foody.vn/res/g108/1074877/s750x750/e72052f2-a76f-4342-abc6-7f3c9f31-04b22c98-210426165833.jpeg",
+            "Description": {
+                "Protein": 69,
+                "Additives": 4,
+                "Baking materials": 23,
+                "Food decoration": 1
+            }
+        },
+        {
+            "id": "4",
+            "name": "Bun Bo Hue",
+            "price": 45000,
+            "image": "https://top10hcm.vn/wp-content/uploads/2021/07/BUN-BO-HUE-149-min.jpg",
+            "Description": {
+                "Protein": 56,
+                "Additives": 2,
+                "Baking materials": 21,
+                "Food decoration": 5
+            }
+        }
+    ],
+    "5": [
+        {
+            "id": "1",
+            "name": "Mushroom Hotpot",
+            "price": 150000,
+            "image": "https://i.ibb.co/TwtgyvP/mhp.jpg",
+            "Description": {
+                "Protein": 69,
+                "Additives": 2,
+                "Baking materials": 49,
+                "Food decoration": 0
+            }
+        },
+        {
+            "id": "2",
+            "name": "Vegan Broccoli Soup",
+            "price": 150000,
+            "image": "https://planttestkitchen.com/wp-content/uploads/2020/02/86B95EA1-E04F-4393-B846-AC01B8176CE9-750x750.jpeg",
+            "Description": {
+                "Protein": 51,
+                "Additives": 1,
+                "Baking materials": 47,
+                "Food decoration": 3
+            }
+        },
+        {
+            "id": "3",
+            "name": "Basic Vegan Hotpot",
+            "price": 100000,
+            "image": "https://tikibook.com/upload/news/102020/quan-lau-chay-kieu-dam-0.jpg",
+            "Description": {
+                "Protein": 59,
+                "Additives": 3,
+                "Baking materials": 51,
+                "Food decoration": 1
+            }
+        },
+        {
+            "id": "3",
+            "name": "Vegan Spring Roll",
+            "price": 100000,
+            "image": "https://images.foody.vn/res/g64/630353/s750/foody-nha-hang-chay-thuc-duong-thien-duong-931-636219953639378790.jpg",
+            "Description": {
+                "Protein": 61,
+                "Additives": 1,
+                "Baking materials": 53,
+                "Food decoration": 2
+            }
+        }
+    ],
+    "6": [
+        {
+            "id": "1",
+            "name": "Che Suong Xa Hat Luu",
+            "price": 35000,
+            "image": "https://www.sangia.vn/uploads/productimg/8116/Banh%20Lot%20Xuong%20sa%20Hat%20Luu.jpg",
+            "Description": {
+                "Protein": 68,
+                "Additives": 5,
+                "Baking materials": 40,
+                "Food decoration": 4
+            }
+        },
+        {
+            "id": "2",
+            "name": "Basic Flan",
+            "price": 25000,
+            "image": "https://www.sangia.vn/uploads/productimg/6301/Flan.jpg",
+            "Description": {
+                "Protein": 62,
+                "Additives": 4,
+                "Baking materials": 11,
+                "Food decoration": 0
+            }
+        },
+        {
+            "id": "3",
+            "name": "Donut",
+            "price": 30000,
+            "image": "https://i.pinimg.com/originals/cb/54/42/cb5442fae193c20f89d5c8b00586ac2a.jpg",
+            "Description": {
+                "Protein": 51,
+                "Additives": 1,
+                "Baking materials": 25,
+                "Food decoration": 5
+            }
+        },
+        {
+            "id": "4",
+            "name": "Log Cake",
+            "price": 35000,
+            "image": "https://i.pinimg.com/originals/3d/4e/79/3d4e798530067fb67b689f43902d52ec.jpg",
+            "Description": {
+                "Protein": 58,
+                "Additives": 0,
+                "Baking materials": 13,
+                "Food decoration": 5
+            }
+        }
+    ]
+}

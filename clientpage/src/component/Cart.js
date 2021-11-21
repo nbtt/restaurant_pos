@@ -40,7 +40,7 @@ export default class Cart extends Component {
                                 </span>
                             </div>
                             <div>
-                                <Button component={Link} to={'/payment'} className='paymentButton'>
+                                <Button disabled={cartItems.length === 0} component={Link} to={'/payment'} className='paymentButton'>
                                     PAYMENT
                                 </Button>
                             </div>

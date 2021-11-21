@@ -1,5 +1,8 @@
 import React, { Component } from "react";
+import Slick from "./component/Slick.js";
 import HomeIcon from '@material-ui/icons/Home';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import Cart from './component/Cart'
 import ListFoodManagement from "./component/ListFoodManagement";
 
 export default class App extends Component {
@@ -14,7 +17,7 @@ export default class App extends Component {
           <div style={{width: '40vw'}}>
             <span className="bth">
               <HomeIcon className="home-icon"/>
-              <span style={{color: 'rgba(16, 3, 75, 0.89)'}}>Đi đến QUẢN LÝ ĐƠN HÀNG  </span>
+              <span style={{color: 'rgba(16, 3, 75, 0.89)'}}>Back to home</span>
             </span >
           </div>
           <div>

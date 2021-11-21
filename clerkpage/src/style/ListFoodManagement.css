@@ -1,16 +1,25 @@
-.list-food-management {
+.search {
     height: 6vh;
     background-color: #e5e7e9;
     display: flex;
     justify-content: right;
 }
+  
+.inputSearch {
+    height: 4vh;
+    width: 16vw;
+    margin-top: 0.5vh;
+}
 
-.sort-by-name {
-    width: 6vw;
+.buttonAdd {
+    width: 10vw;
     height: 5vh;
+    background-color: rgba(16, 3, 75, 0.89);   
+    color: white;
     border-radius: 5px;
     border-color: white;
     margin-top: 0.5vh;
+    margin-right: 1.3vw;
     cursor: pointer;
     text-align: center;
     font-size: smaller;
@@ -22,32 +31,10 @@
     margin-right: 1.3vw;
     font-size: smaller;
 }
-
-.input-search {
-    height: 4vh;
-    width: 16vw;
-    margin-top: 0.5vh;
-}
-
-.button-add {
-    width: 10vw;
+  
+.sort-by-name {
+    width: 6vw;
     height: 5vh;
-    background-color: rgba(16, 3, 75, 0.89);   
-    color: white;
-    border-radius: 5px;
-    border-color: white;
-    margin-top: 0.5vh;
-    margin-right: 1.3vw;
-    cursor: pointer;
-    text-align: center;
-    font-size: smaller;
-}
-
-.button-load {
-    width: 10vw;
-    height: 5vh;
-    background-color: rgba(16, 3, 75, 0.89);   
-    color: white;
     border-radius: 5px;
     border-color: white;
     margin-top: 0.5vh;
@@ -59,4 +46,17 @@
 .group-name {
     width: 100vw;
     background-color: #BDB76B;
+}
+
+.loadButton {
+    width: 10vw;
+    height: 5vh;
+    background-color: rgba(16, 3, 75, 0.89);   
+    color: white;
+    border-radius: 5px;
+    border-color: white;
+    margin-top: 0.5vh;
+    cursor: pointer;
+    text-align: center;
+    font-size: smaller;
 }

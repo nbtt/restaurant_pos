@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, { Component, forwardRef } from "react";
+=======
+import React, { Component } from "react";
+>>>>>>> master
 import { ListViewComponent } from '@syncfusion/ej2-react-lists';
 import { DataManager, Query } from "@syncfusion/ej2-data";
 import Select from 'react-select';
@@ -6,21 +10,19 @@ import { BsFillTrashFill } from "react-icons/bs";
 import "../../node_modules/@syncfusion/ej2-base/styles/material.css";
 import "../../node_modules/@syncfusion/ej2-react-lists/styles/material.css";
 import "../style/ListFoodManagement.css"
-import FoodDescription from "./FoodDescription";
+import FoodDescription from "./FoodDescription.js";
 import NewFood from "./NewFood";
 
-export default class ListFoodManagement extends Component {
+export default class ListSearch extends Component {
     constructor(props) {
         super(props);
         // Define an array of JSON data
         this.listViewInstance = null;
         this.fields = { text: 'name', groupBy: 'category', iconCss: 'icon' };
-        this.state = {
-            originalData: [],
+        this.state = { 
             listData: [], 
             isSorted: false, 
-            isChose: false,
-            new: false,
+            isChose: false, 
             numElement: 7,
             typeID: 0,
             foodID: -2,
@@ -31,30 +33,21 @@ export default class ListFoodManagement extends Component {
         ).then(
             (data) => data.map(item => {item["icon"] = "delete-icon"; return item})
         ).then(
-            (data) => this.setState({originalData: data, listData: data})
+            (data) => this.setState({listData: data})
         );
 
-        this.clickButtonName = this.clickButtonName.bind(this);
-        this.clickButtonLoad = this.clickButtonLoad.bind(this);
-        this.clickButtonAdd = this.clickButtonAdd.bind(this);
-        this.setFoodID = this.setFoodID.bind(this);
-        this.setData = this.setData.bind(this);
-    }
+        this.data = this.state.listData; // Maybe need fixing
 
-    setData() {
-        fetch('/api/menu_management/data/all').then(
-            (u) => u.json()
-        ).then(
-            (data) => data.map(item => {item["icon"] = "delete-icon"; return item})
-        ).then(
-            (data) => this.setState({originalData: data, listData: data})
-        );
+        this.clickButtonName = this.clickButtonName.bind(this)
+        this.clickButtonLoad = this.clickButtonLoad.bind(this)
+        this.clickButtonAdd = this.clickButtonAdd.bind(this)
+        this.setFoodID = this.setFoodID.bind(this)
     }
 
     // Set customized list template
     listTemplate(data) {
         return (
-            <div className="e-list-wrapper e-list-multi-line e-list-avatar" style={{display: 'flex', alignItems: 'center'}}>
+            <div className="e-list-wrapper e-list-multi-line e-list-avatar" style={{alignItems: 'center', display: 'flex'}}>
                 <div style={{width: '95vw'}}>
                     <img className="e-avatar e-avatar-circle" src={data.image}/>
                     <span className="e-list-item-header">{data.name}</span>
@@ -66,7 +59,6 @@ export default class ListFoodManagement extends Component {
             </div>
         );
     }
-
     // Set customized group-header template
     groupTemplate(data) {
         return (
@@ -76,7 +68,38 @@ export default class ListFoodManagement extends Component {
             </div>
         );
     }
-
+    addItem() {
+        // Add new data
+        let data = {
+            name: "Dish -- " + (Math.random() * 1000).toFixed(0),
+            price: "20.000 VNĐ -- " + (Math.random() * 1000).toFixed(0),
+            id: (Math.random() * 1000).toFixed(0).toString(),
+            image: 'https://shipdoandemff.com/wp-content/uploads/2018/05/Hamburger-bò.png',
+            category: "New",
+            icon: "delete-icon"
+        };
+        this.listViewInstance.addItem([data]);
+    }
+    deleteItem(args) {
+        // Remove data
+        args.stopPropagation();
+        let liItem = args.target.closest('li');
+        this.listViewInstance.removeItem(liItem);
+    }
+    onKeyUp(e) {
+        let value = e.target.value;
+        let data = new DataManager(this.state.listData).executeLocal(new Query().where("name", "startswith", value, true));
+        if (!value) {
+            this.setState({
+                listData: this.data
+            });
+        }
+        else {
+            this.setState({
+                listData: data
+            });
+        }
+    }
     clickButtonName() {
         this.setState(prevState => ({
             isSorted: !prevState.isSorted,
@@ -89,83 +112,8 @@ export default class ListFoodManagement extends Component {
         }));
     }
     clickButtonAdd() {
-        this.setState({
-            new: true
-        })
+        this.setState({foodID: -1})
     }
-    disableAddNew() {
-        this.setState({
-            new: false
-        });
-    }
-
-    // Filter
-    onKeyUp(event) {
-        let value = event.target.value;
-        let data = new DataManager(this.state.listData).executeLocal(new Query().where("name", "startswith", value, true));
-        if (!value) {
-            this.setState({
-                listData: this.state.originalData
-            });
-        }
-        else {
-            this.setState({
-                listData: data
-            });
-        }
-    }
-
-    // Add function
-    addItem(food) {
-        // Add to Front-end
-        let type = {
-            categoryImage: food.categoryImage
-        }
-        let data = {
-            image: food.image,
-            name: food.name,
-            price: parseInt(food.price, 10),
-            category: food.category
-        };
-        this.listViewInstance.addItem([data]);
-        // Add to Back-end
-        fetch('/api/menu_management/data', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        }).then(
-            (u) => console.log(u)
-        );
-        // Set Data
-        this.setData()
-    }
-
-    // Delete function
-    deleteItem(args) {
-        // Remove from Front-end
-        args.stopPropagation();
-        let liItem = args.target.closest('li');
-        let data = {
-            id: args.target.getAttribute('id'),
-            category: args.target.getAttribute('category')
-        }
-        this.listViewInstance.removeItem(liItem);
-        // Remove from Back-end
-        fetch('/api/menu_management/data/delete', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        }).then(
-            (u) => console.log(u)
-        );
-        // Set Data
-        this.setData()
-    }
-
     setFoodID(id) {
         this.setState({foodID: id})
     }
@@ -176,25 +124,25 @@ export default class ListFoodManagement extends Component {
         ]
         return (
             <div>
-                <div className='list-food-management'>
+                <div className='search'>
                     <label>
                         Sắp xếp theo:
                         <button className="sort-by-name" onClick={this.clickButtonName} style={{backgroundColor: this.state.isChose ? 'rgba(16, 3, 75, 0.89)' : 'white', color: this.state.isChose ? 'white' : 'black'}}>Tên</button>
                     </label>
                     <Select options={options} className="price" placeholder="Giá" isSearchable/>
-                    <input type='text' className='input-search' placeholder="Lọc" onKeyUp={this.onKeyUp.bind(this)} title="Type in a name"/>
-                    <button className='button-add' onClick={this.clickButtonAdd}>Thêm món mới</button>
+                    <input type='text' className='inputSearch' placeholder="Filter" onKeyUp={this.onKeyUp.bind(this)} title="Type in a name"/>
+                    <button className='buttonAdd' onClick={this.clickButtonAdd}>Thêm món mới</button>
                 </div>
                 <ListViewComponent id="sample-list" dataSource={this.state.listData.slice(0, this.state.numElement)} fields={this.fields} template={this.listTemplate.bind(this)} sortOrder={this.state.isSorted ? "Ascending" : null} groupTemplate={this.groupTemplate.bind(this)} cssClass='e-list-template' ref={listView => {
                     this.listViewInstance = listView;
                 }}/>
-                <div style={{display: 'flex', justifyContent: 'center'}}>
-                    <button className="button-load" onClick={this.clickButtonLoad}>
+                <div style={{justifyContent: 'center', display: 'flex'}}>
+                    <button className="loadButton" onClick={this.clickButtonLoad}>
                         Load More
                     </button>
                 </div>
                 <div>
-                    {this.state.new ? <NewFood disableAddNew={this.disableAddNew.bind(this)} updateList={this.addItem.bind(this)}/> : <div/>}
+                    {this.state.foodID === -1 ? <NewFood setFoodID={this.setFoodID} updateList={this.addItem.bind(this)}/> : <div/>}
                 </div>
             </div>
         );

@@ -142,7 +142,7 @@ color: #000000;
 .info .detail-info p
 {
     display: inline;
-    color: #ccc;
+    color: rgb(26, 24, 24);
     opacity: 0.7;
 }
 
