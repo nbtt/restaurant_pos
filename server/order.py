@@ -131,8 +131,6 @@ def addOrder():
 @order.route("/api/dishes_management/remove", methods = ["POST"])
 def removeOrder():
     '''remove order form list'''
-<<<<<<< HEAD
-
     #Handle both POST request in both json and form type
     if request.json != None and "id" in request.json:
         id = request.json["id"]
@@ -141,21 +139,6 @@ def removeOrder():
     else:
         return flask.Response("Please provide an ID", status=400)
 
-=======
-
-<<<<<<< HEAD
-'''run'''
-app.run()
-=======
-    #Handle both POST request in both json and form type
-    if request.json != None and "id" in request.json:
-        id = request.json["id"]
-    elif request.form != None and "id" in request.form:
-        id = request.form.get("id")
-    else:
-        return flask.Response("Please provide an ID", status=400)
-
->>>>>>> clerk
     SITEROOT = os.path.realpath(os.path.dirname(__file__))
     jsonUrl = os.path.join(SITEROOT, "data", "order.json")
     orderList = flask.json.load(open(jsonUrl, "r"))
@@ -166,9 +149,5 @@ app.run()
         orderList.pop(id)
         with open(jsonUrl, "w") as f:
             f.write(json.dumps(orderList, indent=4))
-<<<<<<< HEAD
         return flask.Response("Success", status=200)
-=======
-        return flask.Response("Success", status=200)
->>>>>>> master
->>>>>>> clerk
+
