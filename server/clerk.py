@@ -89,5 +89,3 @@ def removeDish():
     flask.json.dump(dishes, open(jsonUrl_dishes, "w", encoding="utf8"), indent=4, ensure_ascii=False)
 
     return "Delete OK"
-
-clerk.run()

@@ -1,12 +1,4 @@
-<<<<<<< HEAD
 import React, { Component } from "react";
-=======
-<<<<<<< HEAD
-import React, { Component, forwardRef } from "react";
-=======
-import React, { Component } from "react";
->>>>>>> master
->>>>>>> clerk
 import { ListViewComponent } from '@syncfusion/ej2-react-lists';
 import { DataManager, Query } from "@syncfusion/ej2-data";
 import Select from 'react-select';
