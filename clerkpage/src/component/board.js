@@ -49,7 +49,8 @@ export default class Table extends Component {
       var order = this.state.dataorders.find((e => e.id === id))
       order.status = status
       this.setState({dataorders: this.state.dataorders})
-      serversocket.emit('updateStatus', {id: id, status: status})
+
+      fetch('/api/order_management/updateStatus?id='+id+'&status='+status  )
    }
 
    setSortstate(id){

@@ -28,7 +28,7 @@
                 "quantity": 4
             }
         ],
-        "status": 1,
+        "status": 2,
         "id": "5",
         "date": "2021/11/24"
     },
@@ -94,7 +94,7 @@
                 "quantity": 2
             }
         ],
-        "status": 0,
+        "status": 1,
         "id": "2",
         "date": "2021/11/24"
     },
@@ -427,7 +427,7 @@
                 "quantity": 1
             }
         ],
-        "status": 0,
+        "status": 2,
         "id": "13",
         "date": "2021/11/24"
     }

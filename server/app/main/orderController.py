@@ -6,24 +6,11 @@ from datetime import datetime
 from . import main
 from .. import socketio
 
-@socketio.on("updateStatus")
-def updateStatus(msg):
-    id = int(msg['id'][2::])
-    SITEROOT = os.path.realpath(os.path.dirname(__file__))
-    jsonUrl = os.path.join(SITEROOT, "data", "order.json")
-    orderList = flask.json.load(open(jsonUrl, "r"))
-
-    order = orderList[str(id)]
-    order["status"] = int(msg['status'])
-    with open(jsonUrl, "w") as f:
-        f.write(json.dumps(orderList, indent=4))
-
-
 @main.route("/api/order_management/updateStatus", methods = ["GET"])
 def updateStatus():
     id = flask.request.args.get("id")
-    id = int(id['id'][2::])
-
+    id = int(id[2::])
+    
     SITEROOT = os.path.realpath(os.path.dirname(__file__))
     jsonUrl = os.path.join(SITEROOT, "data", "order.json")
     orderList = flask.json.load(open(jsonUrl, "r"))
@@ -33,7 +20,9 @@ def updateStatus():
     order["status"] = int(status)
     with open(jsonUrl, "w") as f:
         f.write(json.dumps(orderList, indent=4))
-    
+        
+    return flask.Response("Success", status=200)
+
 @main.route("/api/order_management/getList", methods = ["GET"])
 def getOrderList():
     '''Get order list'''
