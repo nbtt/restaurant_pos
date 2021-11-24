@@ -1,27 +1,27 @@
 import React, { Component } from "react";
 import { ListViewComponent } from '@syncfusion/ej2-react-lists';
 import { DataManager, Query } from "@syncfusion/ej2-data";
-import Select from 'react-select';
 import { BsFillTrashFill } from "react-icons/bs";
 import "../../node_modules/@syncfusion/ej2-base/styles/material.css";
 import "../../node_modules/@syncfusion/ej2-react-lists/styles/material.css";
 import "../style/ListFoodManagement.css"
-import FoodDescription from "./FoodDescription.js";
+import FoodDescription from "./FoodDescription";
 import NewFood from "./NewFood";
 
-export default class ListSearch extends Component {
+export default class ListFoodManagement extends Component {
     constructor(props) {
         super(props);
-        // Define an array of JSON data
-        this.listViewInstance = null;
         this.fields = { text: 'name', groupBy: 'category', iconCss: 'icon' };
-        this.state = { 
+        this.state = {
+            originalData: [],
             listData: [], 
             isSorted: false, 
-            isChose: false, 
+            isChose: false,
+            new: false,
             numElement: 7,
-            typeID: 0,
-            foodID: -2,
+            categoryData: null,
+            foodData: null,
+            foodSelected: false
         };
         
         fetch('/api/menu_management/data/all').then(
@@ -29,73 +29,52 @@ export default class ListSearch extends Component {
         ).then(
             (data) => data.map(item => {item["icon"] = "delete-icon"; return item})
         ).then(
-            (data) => this.setState({listData: data})
+            (data) => this.setState({originalData: data, listData: data})
         );
-
-        this.data = this.state.listData; // Maybe need fixing
-
-        this.clickButtonName = this.clickButtonName.bind(this)
-        this.clickButtonLoad = this.clickButtonLoad.bind(this)
-        this.clickButtonAdd = this.clickButtonAdd.bind(this)
-        this.setFoodID = this.setFoodID.bind(this)
+        
+        this.listTemplate = this.listTemplate.bind(this);
+        this.groupTemplate = this.groupTemplate.bind(this);
+        this.clickButtonName = this.clickButtonName.bind(this);
+        this.clickButtonLoad = this.clickButtonLoad.bind(this);
+        this.clickButtonAdd = this.clickButtonAdd.bind(this);
+        this.disableAddNew = this.disableAddNew.bind(this);
+        this.onKeyUp = this.onKeyUp.bind(this);
+        this.onSelect = this.onSelect.bind(this);
+        this.disableFoodSelected = this.disableFoodSelected.bind(this);
+        this.addItem = this.addItem.bind(this);
+        this.deleteItem = this.deleteItem.bind(this);
+        this.updateItem = this.updateItem.bind(this);
     }
 
     // Set customized list template
-    listTemplate(data) {
+    listTemplate(food) {
         return (
-            <div className="e-list-wrapper e-list-multi-line e-list-avatar" style={{alignItems: 'center', display: 'flex'}}>
+            <div className="e-list-wrapper e-list-multi-line e-list-avatar" style={{display: 'flex', alignItems: 'center'}}>
                 <div style={{width: '95vw'}}>
-                    <img className="e-avatar e-avatar-circle" src={data.image}/>
-                    <span className="e-list-item-header">{data.name}</span>
-                    <span className="e-list-content">{data.price}</span>
+                    <img className="e-avatar e-avatar-circle" src={food.image}/>
+                    <span className="e-list-item-header">{food.name}</span>
+                    <span className="e-list-content">{food.price} VNĐ</span>
                 </div>
                 <div>
-                    <BsFillTrashFill onClick={this.deleteItem.bind(this)}/>
+                    <span>
+                        <BsFillTrashFill onClick={(event) => this.confirmFunction(food, event)}/>
+                    </span>
                 </div>
             </div>
         );
     }
+
     // Set customized group-header template
-    groupTemplate(data) {
+    groupTemplate(food) {
         return (
             <div className="group-name">
-                <span className="category">{data.items[0].category}</span>
-                <span className="count"> {data.items.length} Item(s)</span>
+                <span className="category">{food.items[0].category}</span>
+                <span className="count"> {food.items.length} Item(s)</span>
             </div>
         );
     }
-    addItem() {
-        // Add new data
-        let data = {
-            name: "Dish -- " + (Math.random() * 1000).toFixed(0),
-            price: "20.000 VNĐ -- " + (Math.random() * 1000).toFixed(0),
-            id: (Math.random() * 1000).toFixed(0).toString(),
-            image: 'https://shipdoandemff.com/wp-content/uploads/2018/05/Hamburger-bò.png',
-            category: "New",
-            icon: "delete-icon"
-        };
-        this.listViewInstance.addItem([data]);
-    }
-    deleteItem(args) {
-        // Remove data
-        args.stopPropagation();
-        let liItem = args.target.closest('li');
-        this.listViewInstance.removeItem(liItem);
-    }
-    onKeyUp(e) {
-        let value = e.target.value;
-        let data = new DataManager(this.state.listData).executeLocal(new Query().where("name", "startswith", value, true));
-        if (!value) {
-            this.setState({
-                listData: this.data
-            });
-        }
-        else {
-            this.setState({
-                listData: data
-            });
-        }
-    }
+
+    // Handle click
     clickButtonName() {
         this.setState(prevState => ({
             isSorted: !prevState.isSorted,
@@ -108,37 +87,150 @@ export default class ListSearch extends Component {
         }));
     }
     clickButtonAdd() {
-        this.setState({foodID: -1})
+        this.setState({
+            new: true
+        })
     }
-    setFoodID(id) {
-        this.setState({foodID: id})
+    disableAddNew() {
+        this.setState({
+            new: false
+        });
     }
+
+    // Filter
+    onKeyUp(event) {
+        let value = event.target.value;
+        let data = new DataManager(this.state.listData).executeLocal(new Query().where("name", "startswith", value, true));
+        if (!value) {
+            this.setState({
+                listData: this.state.originalData
+            });
+        }
+        else {
+            this.setState({
+                listData: data
+            });
+        }
+    }
+
+    // Select
+    onSelect(args) {
+        this.setState({
+            foodData: args.data,
+            foodSelected: true
+        })
+        console.log(args.data)
+    }
+    disableFoodSelected() {
+        this.setState({
+            foodSelected: false
+        })
+    }
+
+    // Confirm function
+    confirmFunction(food, event) {
+        if (window.confirm("This dish will be deleted! Are you sure?")) {
+            this.deleteItem(food)
+        }
+        event.stopPropagation()
+    }
+
+    // Add function
+    addItem(food) {
+        // Add to Front-end
+        let data = {
+            categoryImage: food.categoryImage,
+            image: food.image,
+            category: food.category,
+            name: food.name,
+            price: parseInt(food.price, 10),
+            quantity: food.quantity,
+            Description: {
+                "Protein": parseInt(food.protein, 10),
+                "Additives": parseInt(food.additives, 10),
+                "Baking materials": parseInt(food.bakingMaterial, 10),
+                "Food decoration": parseInt(food.foodDecoration, 10),
+            }
+        };
+        this.state.originalData.push(data)
+        this.setState({
+            originalData: this.state.originalData,
+            listData: this.state.originalData
+        })
+        // Add to Back-end
+        fetch('/api/menu_management/data', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(
+            (u) => console.log(u)
+        );
+    }
+
+    // Delete function
+    deleteItem(food) {
+        // Remove from Front-end
+        let index = this.state.originalData.findIndex((e => food.idcategory === e.idcategory && food.id === e.id))
+        this.state.originalData.splice(index, 1)
+        this.setState({
+            originalData: this.state.originalData,
+            listData: this.state.originalData
+        })
+        let data = {
+            idcategory: food.idcategory,
+            id: food.id
+        }
+        // Remove from Back-end
+        fetch('/api/menu_management/data/delete', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(
+            (u) => console.log(u)
+        );
+    }
+
+    // Update function
+    updateItem(oldFood, newFood) {
+        this.deleteItem(oldFood);
+        this.addItem(newFood);
+    }
+
     render() {
-        const options = [
-            { value: 'lowToHigh', label: 'Thấp đến Cao' },
-            { value: 'highToLow', label: 'Cao đến Thấp' }
-        ]
         return (
             <div>
-                <div className='search'>
+                <div className='list-food-management'>
                     <label>
                         Sắp xếp theo:
                         <button className="sort-by-name" onClick={this.clickButtonName} style={{backgroundColor: this.state.isChose ? 'rgba(16, 3, 75, 0.89)' : 'white', color: this.state.isChose ? 'white' : 'black'}}>Tên</button>
                     </label>
-                    <Select options={options} className="price" placeholder="Giá" isSearchable/>
-                    <input type='text' className='inputSearch' placeholder="Filter" onKeyUp={this.onKeyUp.bind(this)} title="Type in a name"/>
-                    <button className='buttonAdd' onClick={this.clickButtonAdd}>Thêm món mới</button>
+                    <input type='text' className='input-search' placeholder="Lọc" onKeyUp={this.onKeyUp} title="Type in a name"/>
+                    <button className='button-add' onClick={this.clickButtonAdd}>Thêm món mới</button>
                 </div>
-                <ListViewComponent id="sample-list" dataSource={this.state.listData.slice(0, this.state.numElement)} fields={this.fields} template={this.listTemplate.bind(this)} sortOrder={this.state.isSorted ? "Ascending" : null} groupTemplate={this.groupTemplate.bind(this)} cssClass='e-list-template' ref={listView => {
-                    this.listViewInstance = listView;
-                }}/>
-                <div style={{justifyContent: 'center', display: 'flex'}}>
-                    <button className="loadButton" onClick={this.clickButtonLoad}>
+                <ListViewComponent 
+                    id="sample-list"
+                    cssClass='e-list-template'
+                    fields={this.fields}
+                    dataSource={this.state.listData.slice(0, this.state.numElement)}
+                    template={this.listTemplate}
+                    groupTemplate={this.groupTemplate}
+                    select={this.onSelect}
+                    sortOrder={this.state.isSorted ? "Ascending" : null}
+                />
+                <div style={{display: 'flex', justifyContent: 'center'}}>
+                    <button className="button-load" onClick={this.clickButtonLoad}>
                         Load More
                     </button>
                 </div>
                 <div>
-                    {this.state.foodID === -1 ? <NewFood setFoodID={this.setFoodID} updateList={this.addItem.bind(this)}/> : <div/>}
+                    {this.state.foodSelected ? <FoodDescription food={this.state.foodData} disableFoodSelected={this.disableFoodSelected} updateItem={this.updateItem}/> : <div/>}  
+                </div>
+                <div>
+                    {this.state.new ? <NewFood disableAddNew={this.disableAddNew} updateList={this.addItem}/> : <div/>}
                 </div>
             </div>
         );
