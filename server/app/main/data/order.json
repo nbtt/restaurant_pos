@@ -28,7 +28,7 @@
                 "quantity": 4
             }
         ],
-        "status": 0,
+        "status": 1,
         "id": "5",
         "date": "2021/11/24"
     },
@@ -61,7 +61,7 @@
                 "quantity": 2
             }
         ],
-        "status": 0,
+        "status": 2,
         "id": "1",
         "date": "2021/11/24"
     },
@@ -399,32 +399,17 @@
         "phoneNumber": "0702493836",
         "listDish": [
             {
-                "typeID": 2,
+                "typeID": 0,
                 "foodID": "2",
-                "quantity": 5
+                "quantity": 1
             },
             {
-                "typeID": 2,
-                "foodID": "1",
-                "quantity": 5
-            },
-            {
-                "typeID": 4,
+                "typeID": 0,
                 "foodID": "3",
-                "quantity": 2
-            },
-            {
-                "typeID": 5,
-                "foodID": "3",
-                "quantity": 6
-            },
-            {
-                "typeID": 3,
-                "foodID": "0",
-                "quantity": 4
+                "quantity": 1
             }
         ],
-        "status": 0,
+        "status": 1,
         "id": "12",
         "date": "2021/11/24"
     },
@@ -432,132 +417,18 @@
         "phoneNumber": "0702493836",
         "listDish": [
             {
-                "typeID": 2,
+                "typeID": 0,
                 "foodID": "2",
-                "quantity": 5
+                "quantity": 1
             },
             {
-                "typeID": 2,
-                "foodID": "1",
-                "quantity": 5
-            },
-            {
-                "typeID": 4,
+                "typeID": 0,
                 "foodID": "3",
-                "quantity": 2
-            },
-            {
-                "typeID": 5,
-                "foodID": "3",
-                "quantity": 6
-            },
-            {
-                "typeID": 3,
-                "foodID": "0",
-                "quantity": 4
+                "quantity": 1
             }
         ],
-        "status": 1,
+        "status": 0,
         "id": "13",
-        "date": "2021/11/24"
-    },
-    "14": {
-        "phoneNumber": "0702493836",
-        "listDish": [
-            {
-                "typeID": 2,
-                "foodID": "2",
-                "quantity": 5
-            },
-            {
-                "typeID": 2,
-                "foodID": "1",
-                "quantity": 5
-            },
-            {
-                "typeID": 4,
-                "foodID": "3",
-                "quantity": 2
-            },
-            {
-                "typeID": 5,
-                "foodID": "3",
-                "quantity": 6
-            },
-            {
-                "typeID": 3,
-                "foodID": "0",
-                "quantity": 4
-            }
-        ],
-        "status": 0,
-        "id": "14",
-        "date": "2021/11/24"
-    },
-    "15": {
-        "phoneNumber": "0702493836",
-        "listDish": [
-            {
-                "typeID": 2,
-                "foodID": "2",
-                "quantity": 5
-            },
-            {
-                "typeID": 2,
-                "foodID": "1",
-                "quantity": 5
-            },
-            {
-                "typeID": 4,
-                "foodID": "3",
-                "quantity": 2
-            },
-            {
-                "typeID": 5,
-                "foodID": "3",
-                "quantity": 6
-            },
-            {
-                "typeID": 3,
-                "foodID": "0",
-                "quantity": 4
-            }
-        ],
-        "status": 0,
-        "id": "15",
-        "date": "2021/11/24"
-    },
-    "16": {
-        "phoneNumber": "0702493836",
-        "listDish": [
-            {
-                "typeID": 2,
-                "foodID": "2",
-                "quantity": 5
-            },
-            {
-                "typeID": 2,
-                "foodID": "1",
-                "quantity": 5
-            },
-            {
-                "typeID": 4,
-                "foodID": "3",
-                "quantity": 2
-            },
-            {
-                "typeID": 5,
-                "foodID": "3",
-                "quantity": 6
-            },
-            {
-                "typeID": 3,
-                "foodID": "0",
-                "quantity": 4
-            }
-        ],
-        "status": 0,
-        "id": "16",
         "date": "2021/11/24"
     }
 }

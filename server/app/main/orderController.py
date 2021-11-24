@@ -1,5 +1,4 @@
 import os
-import typing
 import flask
 from flask import request
 import json
@@ -7,48 +6,20 @@ from datetime import datetime
 from . import main
 from .. import socketio
 
-# @main.route("/", methods=["GET"])
-# def index():
-#     return '''<h1>Test API for Software engineering</h1>'''
+@socketio.on("updateStatus")
+def updateStatus(msg):
+    id = int(msg['id'][2::])
+    
+    SITEROOT = os.path.realpath(os.path.dirname(__file__))
+    jsonUrl = os.path.join(SITEROOT, "data", "order.json")
+    orderList = flask.json.load(open(jsonUrl, "r"))
 
-# @main.route("/api/order_management/order", methods = ["GET"])
-# def queryOrder():
-#     '''Get order by ID'''
-#     id = flask.request.args.get("id")
-#     if (id == None):
-#         return flask.Response("Invalid syntax, please specify an id", status=400)
-#     else:
-#         id = str(id)
-
-#     https://stackoverflow.com/questions/21133976/flask-load-local-json
-#     SITEROOT = os.path.realpath(os.path.dirname(__file__))
-#     jsonUrl = os.path.join(SITEROOT, "data", "order.json")
-#     orderList = flask.json.load(open(jsonUrl, "r"))
-
-#     jsonUrl = os.path.join(SITEROOT, "data", "foods.json")
-#     data = flask.json.load(open(jsonUrl, "r"))
-
-#     order = orderList[id]
-#     date = order["date"]
-#     status = order["status"]
-#     listDish = order["listDish"]
-#     dishes = []
-#     for i in range(len(listDish)):
-#         quantity = listDish[i]["quantity"]
-#         typeID, foodID = listDish[i]["typeID"], listDish[i]["foodID"] 
-#         foodName = data[str(typeID)][int(foodID)]["name"]
-#         foodPrice = data[str(typeID)][int(foodID)]["price"]
-#         dishes.append([foodName, quantity, foodPrice])
-#     return flask.jsonify([id, dishes, date, status])
-
-clerk = ""
-
-# @socketio.on('connect')
-# def addClerk():
-#     global clerk
-#     clerk = request.id
-   
-@main.route("/api/order_management/getLish", methods = ["GET"])
+    order = orderList[str(id)]
+    order["status"] = int(msg['status'])
+    with open(jsonUrl, "w") as f:
+        f.write(json.dumps(orderList, indent=4))
+    
+@main.route("/api/order_management/getList", methods = ["GET"])
 def getOrderList():
     '''Get order list'''
     SITEROOT = os.path.realpath(os.path.dirname(__file__))
@@ -81,9 +52,24 @@ def getOrderList():
     return flask.jsonify(ListOrder)
 
 def sendNewOrder(order):
+    SITEROOT = os.path.realpath(os.path.dirname(__file__))
+    jsonUrl = os.path.join(SITEROOT, "data", "foods.json")
+    data = flask.json.load(open(jsonUrl, "r"))
+
+    order["id"] = "DH{:02d}".format(int(order["id"]))
+    listDish = order["listDish"]
+    dishes = []
+    for i in range(len(order["listDish"])):
+        quantity = listDish[i]["quantity"]
+        typeID, foodID = listDish[i]["typeID"], listDish[i]["foodID"] 
+        foodName = data[str(typeID)][int(foodID)]["name"]
+        foodPrice = data[str(typeID)][int(foodID)]["price"]
+        dishes.append({"name": foodName, "quantity": quantity, "price": foodPrice})
+
+    order["listDish"] = dishes
     socketio.emit('addOrder', order)
 
-@main.route("/api/dishes_management/add", methods = ["POST"])
+@main.route("/api/order_management/add", methods = ["POST"])
 def addOrder():
     '''add new order'''
     SITEROOT = os.path.realpath(os.path.dirname(__file__))
@@ -116,12 +102,11 @@ def addOrder():
         #https://stackoverflow.com/questions/7907596/json-dumps-vs-flask-jsonify
         f.write(json.dumps(orderList, indent = 4))
 
-    json_data["id"] = "DH{:02d}".format(int(json_data["id"]))
     sendNewOrder(json_data)
     #return flask.jsonify(orderList)
     return flask.Response("Success", status=200)
 
-@main.route("/api/dishes_management/remove", methods = ["POST"])
+@main.route("/api/order_management/remove", methods = ["POST"])
 def removeOrder():
     '''remove order form list'''
     #Handle both POST request in both json and form type
@@ -131,16 +116,18 @@ def removeOrder():
         id = request.form.get("id")
     else:
         return flask.Response("Please provide an ID", status=400)
-
+    id = str(int(id[2::]))
     SITEROOT = os.path.realpath(os.path.dirname(__file__))
     jsonUrl = os.path.join(SITEROOT, "data", "order.json")
     orderList = flask.json.load(open(jsonUrl, "r"))
 
-    if id not in orderList:
+    if id not in orderList.keys():
         return flask.Response("Id is not in database", status=400)
     else:
         orderList.pop(id)
         with open(jsonUrl, "w") as f:
             f.write(json.dumps(orderList, indent=4))
         return flask.Response("Success", status=200)
+    
+
 
