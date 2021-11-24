@@ -1,78 +1,11 @@
 {
-    "1": {
-        "date": "2021/11/5",
-        "status": 1,
-        "listDish": [
-            {
-                "typeID": "1",
-                "foodID": "0",
-                "quantity": 2
-            },
-            {
-                "typeID": "1",
-                "foodID": "1",
-                "quantity": 2
-            }
-        ],
-        "id": "1"
-    },
     "0": {
-        "date": "2021/11/2",
-        "status": 0,
-        "listDish": [
-            {
-                "typeID": "0",
-                "foodID": "1",
-                "quantity": 1
-            },
-            {
-                "typeID": "0",
-                "foodID": "2",
-                "quantity": 2
-            }
-        ],
-        "id": "0"
-    },
-    "2": {
         "status": 1,
-        "date": "2021/11/16",
-        "listDish": [
-            {
-                "typeID": "1",
-                "foodID": "0",
-                "quantity": 2
-            },
-            {
-                "typeID": "1",
-                "foodID": "1",
-                "quantity": 2
-            }
-        ],
-        "id": "2"
-    },
-    "3": {
-        "phoneNumber": "123",
-        "listDish": [
-            {
-                "typeID": 0,
-                "foodID": "9",
-                "quantity": 1
-            },
-            {
-                "typeID": 0,
-                "foodID": "1",
-                "quantity": 1
-            }
-        ],
-        "id": "3",
-        "date": "2021/11/17"
-    },
-    "4": {
         "phoneNumber": "123123",
         "listDish": [
             {
                 "typeID": 5,
-                "foodID": "3",
+                "foodID": "1",
                 "quantity": 1
             },
             {
@@ -87,16 +20,34 @@
             },
             {
                 "typeID": 4,
-                "foodID": "3",
+                "foodID": "1",
                 "quantity": 1
             },
             {
                 "typeID": 4,
-                "foodID": "4",
+                "foodID": "1",
                 "quantity": 1
             }
         ],
-        "id": "4",
+        "id": "0",
+        "date": "2021/11/17"
+    },
+    "1": {
+        "status": 1,
+        "phoneNumber": "123123",
+        "listDish": [
+            {
+                "typeID": 1,
+                "foodID": "1",
+                "quantity": 1
+            },
+            {
+                "typeID": 2,
+                "foodID": "2",
+                "quantity": 1
+            }
+        ],
+        "id": "1",
         "date": "2021/11/17"
     }
 }

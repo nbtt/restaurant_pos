@@ -61,13 +61,13 @@ class CartItem extends Component {
                 <div className="iteminfo">
                     <h3 className= 'itemhead'>
                        <span className="itemname">{cartItem.food.name}</span>
-                       <span className='removeitem' onClick={() => deleteFood(cartItem.food)}>X</span> 
+                       <span className='removeitem' onClick={() => deleteFood(cartItem)}>X</span> 
                     </h3>
                     <div className='itembody'>
                         <span className="control">
-                            <RemoveOutlinedIcon className='sub' onClick={() => editQuantity(cartItem.food, -1)}/>
+                            <RemoveOutlinedIcon className='sub' onClick={() => editQuantity(cartItem, -1)}/>
                                 <span>{cartItem.qty}</span>
-                            <AddOutlinedIcon className='add' onClick={() => editQuantity(cartItem.food, 1)}/>
+                            <AddOutlinedIcon className='add' onClick={() => editQuantity(cartItem, 1)}/>
                         </span>
                         <span className='itemprice'>
                             <div className='Price'>

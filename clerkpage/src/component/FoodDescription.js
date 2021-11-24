@@ -2,7 +2,7 @@ import { Component } from "react";
 import '../style/FoodDescription.css'
 import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
 import RemoveOutlinedIcon from '@material-ui/icons/RemoveOutlined';
-import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
+// import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 
 export default class FoodDescription extends Component {
     constructor(props) {

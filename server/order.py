@@ -115,6 +115,7 @@ def addOrder():
         maxId = max([int(id) for id in orderList])
         newId = str(maxId + 1)
         json_data["id"] = newId
+    json_data["status"] = 0
     orderList[newId] = json_data
 
     #Check date param
