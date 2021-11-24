@@ -29,7 +29,8 @@ def updateStatus():
     orderList = flask.json.load(open(jsonUrl, "r"))
 
     order = orderList[str(id)]
-    order["status"] = int(msg['status'])
+    status = flask.request.args.get("status")
+    order["status"] = int(status)
     with open(jsonUrl, "w") as f:
         f.write(json.dumps(orderList, indent=4))
     
