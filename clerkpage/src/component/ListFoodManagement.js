@@ -48,7 +48,7 @@ export default class ListFoodManagement extends Component {
     // Set customized list template
     listTemplate(food) {
         return (
-            <div className="e-list-wrapper e-list-multi-line e-list-avatar" style={{display: 'flex', alignItems: 'center'}}>
+            <div className="e-list-wrapper e-list-multi-line e-list-avatar" style={{display: 'flex', alignItems: 'center'}} onClick={() => this.onSelect(food)}>
                 <div style={{width: '95vw'}}>
                     <img className="e-avatar e-avatar-circle" src={food.image}/>
                     <span className="e-list-item-header">{food.name}</span>
@@ -114,12 +114,11 @@ export default class ListFoodManagement extends Component {
     }
 
     // Select
-    onSelect(args) {
+    onSelect(food) {
         this.setState({
-            foodData: args.data,
+            foodData: food,
             foodSelected: true
         })
-        console.log(args.data)
     }
     disableFoodSelected() {
         this.setState({
