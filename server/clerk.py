@@ -15,7 +15,8 @@ def getListDishes():
     jsonUrl = os.path.join(SITEROOT, "data", "types.json")
     type_dishes = flask.json.load(open(jsonUrl, "r", encoding="utf8"))
 
-    dishes = [{**dish, "category" : type_dishes[type_id]["name"], "idcategory" : int(type_id)} for type_id in dishes for dish in dishes[type_id]]
+    dishes = [{**dish, "category" : type_dishes[type_id]["name"], "idcategory" : int(type_id), 
+        "categoryImage" : type_dishes[type_id]["img"]} for type_id in dishes for dish in dishes[type_id]]
     
     return flask.jsonify(dishes)
 
@@ -33,6 +34,7 @@ def addDish():
     data = flask.request.get_json()
     if "idcategory" not in data.keys():
         return flask.Response("Category Id must be included.", status=400)
+    print(data)
     typeid_new = str(data.pop("idcategory"))
     # If new type
     if typeid_new not in type_dishes.keys():
@@ -41,11 +43,25 @@ def addDish():
             type_new = data.pop("category")
         else:
             type_new = "type" + typeid_new
-        type_dishes[typeid_new] = {"id" : int(typeid_new), "name" : type_new, "img" : ""}
-
-    # If new type
-    if typeid_new not in dishes.keys():
+        
+        if "categoryImage" in data.keys():
+            type_img_new = data.pop("categoryImage")
+        else:
+            type_img_new = ""
+        # Create new type of dishes
+        type_dishes[typeid_new] = {"id" : int(typeid_new), "name" : type_new, "img" : type_img_new}
+        
         dishes[typeid_new] = []
+        # Set new id
+        data["id"] = "1"
+    else:
+        # Create new id
+        data["id"] = str(int(dishes[typeid_new][-1]["id"]) + 1)
+
+    if "categoryImage" in data.keys():
+        data.pop("categoryImage")
+    if "category" in data.keys():
+        data.pop("category")
 
     # Add data
     dishes[typeid_new].append(data)

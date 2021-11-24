@@ -8,6 +8,7 @@ export default class NewFood extends Component {
             categoryImage: '',
             image: '',
             category: '',
+            idcategory: '',
             name: '',
             price: null,
             protein: null,
@@ -19,6 +20,7 @@ export default class NewFood extends Component {
         this.handleCategoryImage = this.handleCategoryImage.bind(this);
         this.handleImage = this.handleImage.bind(this);
         this.handleCategory = this.handleCategory.bind(this);
+        this.handleIdCategory = this.handleIdCategory.bind(this);
         this.handleName = this.handleName.bind(this);
         this.handlePrice = this.handlePrice.bind(this);
         this.handleProtein = this.handleProtein.bind(this);
@@ -41,6 +43,11 @@ export default class NewFood extends Component {
     handleCategory(event) {
         this.setState({
             category: event.target.value
+        });
+    }
+    handleIdCategory(event) {
+        this.setState({
+            idcategory: event.target.value
         });
     }
     handleName(event) {
@@ -85,6 +92,17 @@ export default class NewFood extends Component {
                     </div>        
                     <div className = "body">
                         <div className="img">
+                            <div>
+                                <label style={{fontWeight: 'bold', marginLeft: '5px'}}>
+                                    Category ID
+                                </label>
+                                <input 
+                                    style={{width: '12vw', marginLeft: '5px', marginTop: '10px'}}
+                                    type="text" 
+                                    value={this.state.idcategory}
+                                    onChange={this.handleIdCategory}
+                                />
+                            </div>
                             <div>
                                 <label style={{fontWeight: 'bold', marginLeft: '5px'}}>
                                     Link Category Image

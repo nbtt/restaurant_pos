@@ -68,6 +68,7 @@ export default class ListFoodManagement extends Component {
         return (
             <div className="group-name">
                 <span className="category">{food.items[0].category}</span>
+                <span className="categoryid"> (ID: {food.items[0].idcategory})</span>
                 <span className="count"> {food.items.length} Item(s)</span>
             </div>
         );
@@ -135,12 +136,13 @@ export default class ListFoodManagement extends Component {
     }
 
     // Add function
-    addItem(food) {
+    async addItem(food) {
         // Add to Front-end
         let data = {
             categoryImage: food.categoryImage,
             image: food.image,
             category: food.category,
+            idcategory: food.idcategory,
             name: food.name,
             price: parseInt(food.price, 10),
             quantity: food.quantity,
@@ -157,7 +159,7 @@ export default class ListFoodManagement extends Component {
             listData: this.state.originalData
         })
         // Add to Back-end
-        fetch('/api/menu_management/data', {
+        await fetch('/api/menu_management/data', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -169,7 +171,7 @@ export default class ListFoodManagement extends Component {
     }
 
     // Delete function
-    deleteItem(food) {
+    async deleteItem(food) {
         // Remove from Front-end
         let index = this.state.originalData.findIndex((e => food.idcategory === e.idcategory && food.id === e.id))
         this.state.originalData.splice(index, 1)
@@ -182,7 +184,7 @@ export default class ListFoodManagement extends Component {
             id: food.id
         }
         // Remove from Back-end
-        fetch('/api/menu_management/data/delete', {
+        await fetch('/api/menu_management/data/delete', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -194,9 +196,9 @@ export default class ListFoodManagement extends Component {
     }
 
     // Update function
-    updateItem(oldFood, newFood) {
-        this.deleteItem(oldFood);
-        this.addItem(newFood);
+    async updateItem(oldFood, newFood) {
+        await this.deleteItem(oldFood);
+        await this.addItem(newFood);
     }
 
     render() {

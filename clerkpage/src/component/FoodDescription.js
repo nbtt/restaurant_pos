@@ -10,6 +10,7 @@ export default class FoodDescription extends Component {
             image: props.food.image,
             sku: props.food.idcategory + props.food.id,
             category: props.food.category,
+            idcategory: props.food.idcategory,
             name: props.food.name,
             price: props.food.price,
             protein: props.food.Description["Protein"],
@@ -23,6 +24,7 @@ export default class FoodDescription extends Component {
         this.handleCategoryImage = this.handleCategoryImage.bind(this);
         this.handleImage = this.handleImage.bind(this);
         this.handleCategory = this.handleCategory.bind(this);
+        this.handleIdCategory = this.handleIdCategory.bind(this);
         this.handleName = this.handleName.bind(this);
         this.handlePrice = this.handlePrice.bind(this);
         this.handleProtein = this.handleProtein.bind(this);
@@ -57,6 +59,11 @@ export default class FoodDescription extends Component {
     handleCategory(event) {
         this.setState({
             category: event.target.value
+        });
+    }
+    handleIdCategory(event) {
+        this.setState({
+            idcategory: event.target.value
         });
     }
     handleName(event) {
@@ -101,6 +108,25 @@ export default class FoodDescription extends Component {
                     </div>        
                     <div className = "body">
                         <div className="img">
+                            <div>
+                                {!this.state.modify ?
+                                <div>
+                                    <label style={{fontWeight: 'bold', marginLeft: '5px'}}>
+                                        Category ID: {this.state.idcategory}
+                                    </label>
+                                </div> :
+                                <div>
+                                    <label style={{fontWeight: 'bold', marginLeft: '5px'}}>
+                                        Category ID
+                                    </label>
+                                    <input 
+                                        style={{width: '12vw', marginLeft: '5px', marginTop: '10px'}}
+                                        type="text" 
+                                        value={this.state.idcategory}
+                                        onChange={this.handleIdCategory}
+                                    />
+                                </div>}
+                            </div>
                             <div>
                                 {!this.state.modify ?
                                 <div>

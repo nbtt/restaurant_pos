@@ -3,6 +3,9 @@
     background-color: #e5e7e9;
     display: flex;
     justify-content: right;
+    position: sticky;
+    top: 0;
+    z-index: 2;
 }
 
 .sort-by-name {
