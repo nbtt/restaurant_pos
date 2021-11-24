@@ -35,14 +35,14 @@ export default class FoodDescription extends Component {
                           <table className="info-table">
                               <thead>
                                   <tr>
-                                      {/* <th>SKU</th> */}
+                                      <th>SKU</th>
                                       <th>{food.name}</th>
                                       <th className="last-col">Unit Price</th>
                                   </tr>
                               </thead>
                               <tbody>
                                   <tr>
-                                      {/* <td>401</td> */}
+                                      <td>401</td>
                                       <td>Burgur</td>
                                       <td className="last-col-row">{food.price} VND</td>
                                   </tr>
