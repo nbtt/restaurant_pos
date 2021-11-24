@@ -29,27 +29,13 @@ def getOrderList():
     jsonUrl = os.path.join(SITEROOT, "data", "foods.json")
     data = flask.json.load(open(jsonUrl, "r"))
 
-    ListOrder = []
-    for id in range(len(orderList)):
-        order = orderList[str(id)]
-        date = order["date"]
-        status = order["status"]
-        listDish = order["listDish"]
-        phoneNumber = order["phoneNumber"]
-        dishes = []
-        for i in range(len(listDish)):
-            quantity = listDish[i]["quantity"]
-            typeID, foodID = listDish[i]["typeID"], listDish[i]["foodID"] 
-            foodName = data[str(typeID)][int(foodID)]["name"]
-            foodPrice = data[str(typeID)][int(foodID)]["price"]
-            dishes.append({"name": foodName, "quantity": quantity, "price": foodPrice})
-        ListOrder.append({"id": "DH{:02d}".format(id), 
-                            "listDish": dishes,
-                            "date": date,
-                            "phoneNumber": phoneNumber,
-                            "status": status
-                            })
-    return flask.jsonify(ListOrder)
+    for id, order in orderList.items():
+        for dish in order["listDish"]:
+            typeID, foodID = dish["typeID"], dish["foodID"] 
+            dish["name"] = data[str(typeID)][int(foodID)]["name"]
+            dish["price"] = data[str(typeID)][int(foodID)]["price"]
+        order["id"] = "DH{:02d}".format(int(id))
+    return flask.jsonify(list(orderList.values()))
 
 def sendNewOrder(order):
     SITEROOT = os.path.realpath(os.path.dirname(__file__))
@@ -128,6 +114,3 @@ def removeOrder():
         with open(jsonUrl, "w") as f:
             f.write(json.dumps(orderList, indent=4))
         return flask.Response("Success", status=200)
-    
-
-
