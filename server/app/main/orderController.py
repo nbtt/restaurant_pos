@@ -22,7 +22,7 @@ def updateStatus(msg):
 @main.route("/api/order_management/updateStatus", methods = ["GET"])
 def updateStatus():
     id = flask.request.args.get("id")
-    id = int(id['id'][2::])
+    id = int(id[2::])
 
     SITEROOT = os.path.realpath(os.path.dirname(__file__))
     jsonUrl = os.path.join(SITEROOT, "data", "order.json")
