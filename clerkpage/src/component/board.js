@@ -1,126 +1,121 @@
-import React, { Component } from "react";
-import HomeIcon from '@material-ui/icons/Home';
+import React, { Component} from "react";
 import '../style/board.css'
-import ViewFrame from "./viewframe";
 import EditFrame from "./editframe";
 import SortState from "./sortstate";
+import {serversocket} from "../App"
 
 export default class Table extends Component {
    constructor(props) {
       super(props)
-         this.setIsview = this.setIsview.bind(this)
-         this.setIsEdit = this.setIsEdit.bind(this)
-         this.setSortstate = this.setSortstate.bind(this)
+      this.setIsview = this.setIsview.bind(this)
+      this.setIsEdit = this.setIsEdit.bind(this)
+      this.setSortstate = this.setSortstate.bind(this)
+      
       this.state = {
-         dataorders: [
-            {No: 1, ID: 'DH01', Name: 'Trịnh Văn A', Date: '22-12-2020', Total: '300$', Status: 1, Active: ''},
-            {No: 2, ID: 'DH54', Name: 'Trần Văn E', Date: '22-12-2020', Total: '240$', Status: 1, Active: ''},
-            {No: 3, ID: 'DH05', Name: 'Vũ Văn R', Date: '22-12-2020', Total: '350$', Status: 2, Active: ''},
-            {No: 4, ID: 'DH22', Name: 'Lê Văn S', Date: '22-12-2020', Total: '250$', Status: 1, Active: ''},
-            {No: 5, ID: 'DH45', Name: 'Hoàng Văn U', Date: '22-12-2020', Total: '900$', Status: 3, Active: ''},
-            {No: 6, ID: 'DH67', Name: 'Trịnh Văn B', Date: '22-12-2020', Total: '300$', Status: 1, Active: ''},
-            {No: 7, ID: 'DH08', Name: 'Trần Văn V', Date: '22-12-2020', Total: '240$', Status: 1, Active: ''},
-            {No: 8, ID: 'DH72', Name: 'Vũ Văn N', Date: '22-12-2020', Total: '350$', Status: 3, Active: ''},
-            {No: 9, ID: 'DH66', Name: 'Lê Văn M', Date: '22-12-2020', Total: '250$', Status: 1, Active: ''},
-            {No: 10, ID: 'DH09', Name: 'Hoàng Văn K', Date: '22-12-2020', Total: '900$', Status: 3, Active: ''},
-            {No: 11, ID: 'DH10', Name: 'Trịnh Văn L', Date: '22-12-2020', Total: '300$', Status: 1, Active: ''},
-            {No: 12, ID: 'DH21', Name: 'Trần Văn T', Date: '22-12-2020', Total: '240$', Status: 1, Active: ''},
-            {No: 13, ID: 'DH43', Name: 'Vũ Văn F', Date: '22-12-2020', Total: '350$', Status: 2, Active: ''},
-            {No: 14, ID: 'DH78', Name: 'Lê Văn Q', Date: '22-12-2020', Total: '250$', Status: 1, Active: ''},
-            {No: 15, ID: 'DH82', Name: 'Hoàng Văn W', Date: '22-12-2020', Total: '900$', Status: 3, Active: ''}
-         ],  
-         isview : 0,
-         isedit: 0,
-         isstate: 4
+         dataorders: [],   
+         isview : 0,       // if isview != 0 then display VIEW
+         isedit: 0,        // if isedit != 0 then display VIEW
+         isstate: 3,       // Filter by State
       }
+
+      // get data from backend
+      fetch('/api/order_management/getList').then(
+         (response) => response.json()
+      ).then(
+         (data) => {this.setState({dataorders: data});}
+      );
+
       this.clickDeleteButton = this.clickDeleteButton.bind(this)
+      this.changeStatusOrder = this.changeStatusOrder.bind(this)
    }
-   changeStatus(e){
-      if(e === 1) return "Chưa Thanh Toán"
-      else if(e === 2) return "Đã Thanh Toán"
-      else if(e === 3) return "Đã Giao"
+
+   componentDidMount() {
+      serversocket.on('addOrder', data => {
+         this.state.dataorders.push(data)
+         this.setState({dataorders: this.state.dataorders})
+      })
+    }
+
+   orderTotal(id) {
+      var index = this.state.dataorders.findIndex((e => id === e.id))
+      var total = 0
+      this.state.dataorders[index].listDish.forEach(listDish => {
+         total += listDish.price * listDish.quantity
+      });
+      return total
    }
+
+   changeStatusOrder(id, status) {
+      var order = this.state.dataorders.find((e => e.id === id))
+      order.status = status
+      this.setState({dataorders: this.state.dataorders})
+      serversocket.emit('updateStatus', {id: id, status: status})
+   }
+
    setSortstate(id){
       this.setState({isstate : id})
    }
+
    setIsview(id){
       this.setState({isview : id})
    }
+
    setIsEdit(id){
       this.setState({isedit : id})
    }
-   clickViewButton(){
-      this.setState({isview : 1})
-   }
-   clickEditButton(){
-      this.setState({isedit : 1})
-   }
+   
    clickDeleteButton(id){
       alert('Delete This Order!')
-      var index = this.state.dataorders.findIndex((e => id === e.ID))
+      var index = this.state.dataorders.findIndex((e => id === e.id))
       this.state.dataorders.splice(index, 1)
       this.setState({
          dataorders: this.state.dataorders
       })
+      const requestOptions = {
+         method: 'POST',
+         headers: {'Content-Type': 'application/json'},
+         body: JSON.stringify({id: id})
+      };
+      fetch('/api/order_management/remove', requestOptions)
    }
 
-   renderTableHeader() {
-      let header = Object.keys(this.state.dataorders[0])
-      return header.map((key, index) => {
-         return <th key={index}>{key.toUpperCase()}</th>
-      })
+   renderTableHeader(){
+      return(
+         <tr>
+            <th>ID</th>
+            <th>PHONENUMBER</th>
+            <th>DATE</th>
+            <th>TOTAL</th>
+            <th>STATUS</th>
+            <th>ACTIVE</th>
+         </tr>
+      )
    }
 
-   renderTableData() {
-      // this.changeStatus()
-      // this.changeState()
-      return this.state.dataorders.map((student, index) => {
-         //const {choosestate} = issort
-         var { No, ID, Name, Date, Total, Status, Active } = student //destructuring
-         if(Status === this.state.isstate)
-         {
-            return (
-               <tr key={ID}>
-                  <td>{No}</td>
-                  <td>{ID}</td>
-                  <td>{Name}</td>
-                  <td>{Date}</td>
-                  <td>{Total}</td>
-                  <td>{this.changeStatus(Status)}</td>
-                  <td>{Active}
-                  <div>
-                     <button class="view-btn" onClick={() => this.clickViewButton()}>View</button>
-                     <button class="edit-btn" onClick={() => this.clickEditButton()}>Edit</button>
-                     <button class="delete-btn" onClick={() => this.clickDeleteButton(ID)}>Delete</button>
-                  </div>
-                  </td>
-               </tr>
-            )
-         }
-         else if(this.state.isstate === 4){
-            return (
-               <tr key={ID}>
-                  <td>{No}</td>
-                  <td>{ID}</td>
-                  <td>{Name}</td>
-                  <td>{Date}</td>
-                  <td>{Total}</td>
-                  <td>{this.changeStatus(Status)}</td>
-                  <td>{Active}
-                  <div>
-                     <button class="view-btn" onClick={() => this.clickViewButton()}>View</button>
-                     <button class="edit-btn" onClick={() => this.clickEditButton()}>Edit</button>
-                     <button class="delete-btn" onClick={() => this.clickDeleteButton(ID)}>Delete</button>
-                  </div>
-                  </td>
-               </tr>
-            )
-         }
-         else{
-            return(
-               null
-            )
-         }
+   renderTableData(isstate) {
+      return this.state.dataorders.filter(e => (isstate === 3 || e.status === isstate)).map((order) => {
+         const id = order.id
+         const date = order.date
+         const status = order.status
+         const phone = order.phoneNumber
+
+         return (
+            <tr key={id}>
+               <td>{id}</td>
+               <td>{phone}</td>
+               <td>{date}</td>
+               <td>{this.orderTotal(id)}</td>
+               <td>{(status === 0 || status === '0') ? "Chưa Thanh Toán"
+                     : (status === 1 || status === '1') ? "Đã Thanh Toán"
+                     : "Đã Giao"}</td>
+               <td>{}
+               <div>
+                  <button class="edit-btn" onClick={() => this.setState({isedit : id})}>Edit</button>
+                  <button class="delete-btn" onClick={() => this.clickDeleteButton(id)}>Delete</button>
+               </div>
+               </td>
+            </tr>
+         )
       })
    }
 
@@ -128,23 +123,18 @@ export default class Table extends Component {
       return (
          <div class="board">
             <div>
-            <h1 id='title'>DANH SÁCH ĐƠN HÀNG</h1>
-            <div>
-               <SortState statesort={this.state.isstate} setisstate={this.setSortstate}/>
-               <span className="next">
-                  <HomeIcon className="homeicon"/>
-                  <span>Go To ManageFood</span>
-               </span>
-            </div>
-            <br/>
-            <table id='students'>
-               <thead>{this.renderTableHeader()}</thead>
-               <tbody>{this.renderTableData()}</tbody>
-            </table>
+               <h1 id='title'>DANH SÁCH ĐƠN HÀNG</h1>
+               <div>
+                  <SortState statesort={this.state.isstate} setisstate={this.setSortstate}/>
+               </div>
+               <br/>
+               <table id='table'>
+                  <thead>{this.renderTableHeader()}</thead>
+                  <tbody>{this.renderTableData(this.state.isstate)}</tbody>
+               </table>
             </div>
             <div>
-               {this.state.isview !== 0 ? <ViewFrame view={this.state.isview} setview={this.setIsview}/> : null}
-               {this.state.isedit !== 0 ? <EditFrame view={this.state.isedit} setedit={this.setIsEdit}/> : null}
+               {this.state.isedit !== 0 ? <EditFrame order={this.state.dataorders.find((e => e.id === this.state.isedit))} total={this.orderTotal(this.state.isedit)} setedit={this.setIsEdit} changeStatusOrder={this.changeStatusOrder}/> : null}
             </div>
          </div>
       )

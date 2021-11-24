@@ -1,17 +1,19 @@
-.sortstate{
+.sortstate {
     margin-left: 20px;
     font-size: 20px;
     font-weight: bold;
     display:contents;
 }
-.st{
+
+.st {
     position: absolute;
     font-weight: bold;
     font-size: 20px;
     margin-left: 20px;
     margin-top: 25px;
 }
-.choose{
+
+.choose {
     position: static;
     width: 200px;
     height: 30px;
@@ -20,7 +22,8 @@
     margin-top: 25px;
     background-color: antiquewhite;
 }
-.statesort-btn{
+
+.statesort-btn {
     position: absolute;
     margin-left: 20px;
     margin-top: 25px;

@@ -1,82 +1,89 @@
-#students td, #students th {
-    border: 1px solid #fff;
-    padding: 8px;
-  }
-  
-  /* #students tr:nth-child(even){background-color: #666161;} */
-  
-  #students tr:hover {background-color: #ddd;}
-  
-  #students th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: center;
-    background-color: rgb(255, 0, 0);
-    color: #fff;
-  }
-  #title {
-    text-align: center;
-    font-family: arial, sans-serif;
-    font-weight: bold;
-    font-size: 50px;
-  }
-  
-  #students {
-    text-align: center;
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    border: 3px solid #ddd;
-    width: 100%;
-  }
-  #board{
-    z-index: 4;
-  }
-  .view-btn{
-    font-size: 15px;
-    font-weight: bold;
-    background-color: aqua;
-  } 
-  .edit-btn{
-    margin-left: 5px;
-    margin-right: 5px;
-    font-size: 15px;
-    font-weight: bold;
-    background-color: rgb(238, 234, 11);
-  } 
-  .delete-btn{
-    font-size: 15px;
-    font-weight: bold;
-    background-color: rgb(255, 0, 0);
-  } 
-  .next {
-    cursor: pointer;
-    padding: 5px;
-    position: relative;
-    margin-left: 900px;
-  }
-  
-  .homeicon {
-    background-color: rgba(16, 3, 75, 0.89);
-    border-radius: 20%;
-    color: white;
-    padding: 2px;
-  }
-  
-  .next span {
-    color: rgba(16, 3, 75, 0.89);
-    position: absolute;
-    margin-left: 20px;
-    width: 200px;
-    font-weight: bold;
-    margin-top: 19px;
-    font-size: 20px;
-  }
-  
-  .next:hover .homeicon {
-    background-color: rgb(16, 3, 75);
+#table td, #table th {
+  border: 1px solid #fff;
+  padding: 8px;
+}
 
-  }
-  
-  .bth:hover span {
-    color: rgb(16, 3, 75);
-  }
+#table {
+  overflow: auto;
+}
+
+#table tr:hover {background-color: #ddd;}
+
+#table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: rgb(255, 0, 0);
+  color: #fff;
+}
+
+#title {
+  text-align: center;
+  font-family: arial, sans-serif;
+  font-weight: bold;
+  font-size: 50px;
+}
+
+#table {
+  text-align: center;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  border: 3px solid #ddd;
+  width: 100%;
+}
+
+#board {
+  z-index: 4;
+}
+
+.view-btn {
+  font-size: 15px;
+  font-weight: bold;
+  background-color: aqua;
+} 
+
+.edit-btn {
+  margin-left: 5px;
+  margin-right: 5px;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: rgb(238, 234, 11);
+} 
+
+.delete-btn {
+  font-size: 15px;
+  font-weight: bold;
+  background-color: rgb(255, 0, 0);
+} 
+
+.next {
+  cursor: pointer;
+  padding: 5px;
+  position: relative;
+  margin-left: 900px;
+}
+
+.homeicon {
+  background-color: rgba(16, 3, 75, 0.89);
+  border-radius: 20%;
+  color: white;
+  padding: 2px;
+}
+
+.next span {
+  color: rgba(16, 3, 75, 0.89);
+  position: absolute;
+  margin-left: 20px;
+  width: 200px;
+  font-weight: bold;
+  margin-top: 19px;
+  font-size: 20px;
+}
+
+.next:hover .homeicon {
+  background-color: rgb(16, 3, 75);
+}
+
+.bth:hover span {
+  color: rgb(16, 3, 75);
+}

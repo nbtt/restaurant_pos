@@ -1,15 +1,23 @@
-h1{
+h1 {
     text-align: center;
     font-size: 40px;
 }
-button{
+
+h2 {
+    text-align: center;
+    font-size: 25px;
+}
+
+button {
     font-weight: bold;
 }
-legend{
+
+legend {
     font-weight: bold;
     font-size: 20px;
 }
-fieldset{
+
+fieldset {
     width: 100%;
     margin: 0 auto; 
     position: absolute;
@@ -24,23 +32,24 @@ fieldset{
     top: 50px;
     left: 350px;
     border: 3px solid
-    
-    /* background: rgb(255, 255, 255); */
 }
 
-.ID{
+.ID {
     display: flex;
     text-align: center;
 }
-.quantity{
+
+.quantity {
     display: flex;
     justify-content: center;
 }
-.qty{
+
+.qty {
     padding-left: 5px;
     padding-right: 5px;
 }
-.close-icon{
+
+.close-icon {
     color: rgb(255, 0, 0);
     position: fixed;
     text-align:center;
@@ -57,51 +66,58 @@ fieldset{
     border-width: 5px;
 }
 
-table, th, td{
+table, th, td {
     border:1px solid #ccc;
 }
-table{
+
+table {
     border-collapse:collapse; 
     width:100%;
 }
-th, td{
+
+th, td {
     text-align:center;
     padding:10px;
 }
 
-/* tr:hover{
-    background-color:#ddd;
-    cursor:pointer;
-} */
-nav{
+nav {
     padding:100px
 }
-.OK{
+
+.OK {
     text-align: center;
 }
-.OK button{
+
+.OK button {
     width: 150px;
     height: 30px;
     font-size: 20px;
     font-weight: bold;
     background-color:rgb(255, 251, 0)
 }
-.status .tt{
+
+.status .tt {
     font-weight: bold;
 }
-.status{
+
+.status {
     display: flex;
 }
-.search .add{
+
+.search .add {
     font-weight: bold;
 }
-.search{
+
+.search {
     display: flex;
 }
+
 .tongtien{
     font-weight: bold;
+    font-size: 20px;
 }
-select{
+
+select {
     width: 150px;
     height: 25px;
     border-style: solid;
@@ -110,7 +126,8 @@ select{
     top: 15px;
     text-align: center;
 }
-.btn-addfood{
+
+.btn-addfood {
     margin-bottom: 10px;
     font-size: 15px;
     border-width: 3px;
@@ -120,20 +137,22 @@ select{
     height: 35px;
 }
 
-.choosestatus{
+.choosestatus {
     margin-left: 0px;
     font-size: 20px;
     font-weight: bold;
     display:contents;
 }
-.trangthai{
+
+.trangthai {
     position:relative;
     font-weight: bold;
     font-size: 20px;
     margin-left: 5px;
     margin-top: 25px;
 }
-.choosestate{
+
+.choosestate {
     position: static;
     width: 200px;
     height: 30px;

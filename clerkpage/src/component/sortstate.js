@@ -4,48 +4,27 @@ import '../style/sortstate.css'
 export default class SortState extends Component {
     constructor(props) {
         super(props);
-        this.state = {value: "Tất Cả"};
-
+        this.setisstate = this.props.setisstate
         this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange(event) {
-        this.setState({value: event.target.value});
-    }
-
-    handleSubmit() {
-        alert('State Now: ' + this.state.value);
-        // event.preventDefault();
-        // event.preventDefault();
-        if(this.state.value === "Chưa Thanh Toán")  return 1
-        else if(this.state.value === "Đã Thanh Toán")  return 2
-        else if(this.state.value === "Đã Giao") return 3
-        else return 4
+        this.setisstate(parseInt(event.target.value));
     }
 
     render() {
-        const {setisstate} = this.props
         return (
         <form class="sortstate">
             <label class="st">
                 Trạng Thái:
             </label>
-            <select class="choose" value={this.state.value} onChange={this.handleChange}>
-                <option value="Tất Cả">Tất Cả</option>
-                <option value="Chưa Thanh Toán">Chưa Thanh Toán</option>
-                <option value="Đã Thanh Toán">Đã Thanh Toán</option>
-                <option value="Đã Giao">Đã Giao</option>
+            <select class="choose" onChange={this.handleChange}>
+                <option value="3">Tất Cả</option>
+                <option value="0">Chưa Thanh Toán</option>
+                <option value="1">Đã Thanh Toán</option>
+                <option value="2">Đã Giao</option>
             </select>
-            <button class="statesort-btn" type="button" onClick={() => {
-                if(this.state.value === "Chưa Thanh Toán")  setisstate(1)
-                else if(this.state.value === "Đã Thanh Toán")  setisstate(2)
-                else if(this.state.value === "Đã Giao")  setisstate(3)
-                else setisstate(4)
-            }}>Confirm
-            </button>
         </form>
-        
         );
     }
 }

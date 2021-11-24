@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import HomeIcon from '@material-ui/icons/Home';
-import ListFoodManagement from "./component/ListFoodManagement";
+import Table from "./component/board.js";
+import socketIOClient from "socket.io-client";
+
+var serversocket = socketIOClient('http://127.0.0.1:5000')
 
 export default class App extends Component {
   constructor(props) {
@@ -10,21 +13,18 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <div className="header" style={{display: 'flex', alignItems: 'center'}}>
-          <div style={{width: '40vw'}}>
-            <span className="bth">
-              <HomeIcon className="home-icon"/>
-              <span style={{color: 'rgba(16, 3, 75, 0.89)'}}>Back to home</span>
-            </span >
-          </div>
-          <div>
-            <span style={{color: 'rgba(16, 3, 75, 0.89)'}}>QUẢN LÝ DANH SÁCH MÓN ĂN</span>
-          </div>
+        <div className="header">
+          <span className="bth">
+            <HomeIcon className="homeicon"/>
+            <span>Back to home</span>
+          </span>
         </div>
-        <div className="body">
-          <ListFoodManagement/>
+        <div>
+          <Table/>
         </div>
       </div>
     )
   }
 }
+
+export {serversocket}
