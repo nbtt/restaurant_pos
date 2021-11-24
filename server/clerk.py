@@ -34,7 +34,6 @@ def addDish():
     data = flask.request.get_json()
     if "idcategory" not in data.keys():
         return flask.Response("Category Id must be included.", status=400)
-    print(data)
     typeid_new = str(data.pop("idcategory"))
     # If new type
     if typeid_new not in type_dishes.keys():
