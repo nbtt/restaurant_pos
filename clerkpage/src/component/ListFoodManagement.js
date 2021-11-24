@@ -19,7 +19,6 @@ export default class ListFoodManagement extends Component {
             isChose: false,
             new: false,
             numElement: 7,
-            categoryData: null,
             foodData: null,
             foodSelected: false
         };
