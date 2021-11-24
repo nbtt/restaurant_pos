@@ -4,8 +4,7 @@ from . import main
 
 @main.route("/", methods=["GET"])
 def index():
-    return '''<h1>Test API for Software engineering</h1>
-<p>Frost's stupid code</p>'''
+    return '''<h1>API for Software engineering</h1>'''
 
 @main.route("/api/dishes_management/types/all", methods = ["GET"])
 def queryAllDishesType():
