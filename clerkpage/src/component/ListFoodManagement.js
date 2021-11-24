@@ -83,7 +83,7 @@ export default class ListFoodManagement extends Component {
     }
     clickButtonLoad() {
         this.setState(prevState => ({
-            numElement: prevState.numElement + 5
+            numElement: prevState.numElement + 10
         }));
     }
     clickButtonAdd() {
