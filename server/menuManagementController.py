@@ -3,10 +3,10 @@ import os
 import flask
 from flask.wrappers import Response
 
-clerk = flask.Blueprint('clerk', __name__)
+menuManagementController = flask.Blueprint('clerk', __name__)
 
 
-@clerk.route('/api/menu_management/data/all', methods=["GET"])
+@menuManagementController.route('/api/menu_management/data/all', methods=["GET"])
 def getListDishes():
     SITEROOT = os.path.realpath(os.path.dirname(__file__))
     jsonUrl = os.path.join(SITEROOT, "data", "foods.json")
@@ -20,7 +20,7 @@ def getListDishes():
     
     return flask.jsonify(dishes)
 
-@clerk.route('/api/menu_management/data', methods=['POST'])
+@menuManagementController.route('/api/menu_management/data', methods=['POST'])
 def addDish():
     # Open data
     SITEROOT = os.path.realpath(os.path.dirname(__file__))
@@ -72,7 +72,7 @@ def addDish():
 
     return flask.Response("Add OK", status=200)
 
-@clerk.route('/api/menu_management/data/delete', methods=['POST'])
+@menuManagementController.route('/api/menu_management/data/delete', methods=['POST'])
 def removeDish():
     # Open data
     SITEROOT = os.path.realpath(os.path.dirname(__file__))
@@ -87,6 +87,7 @@ def removeDish():
     data = flask.request.get_json()
     # Data example:
     # data = {'id' : 10, 'idcategory' : 1}
+    print(data)
     if "id" not in data.keys() or "idcategory" not in data.keys():
         return flask.Response("Must contains id and idcategory fields.", 400)
 
