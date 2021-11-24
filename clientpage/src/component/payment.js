@@ -95,7 +95,7 @@ function FullWidthGrid() {
             const requestOptions = {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({phoneNumber: phoneNumer, listDish: listDish})
+                body: JSON.stringify({phoneNumber: phoneNumer, listDish: listDish, status: (typePayment === 2 ? 0 : 1)})
             };
 
             fetch('/api/dishes_management/add', requestOptions)

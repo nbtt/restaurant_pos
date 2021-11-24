@@ -1,11 +1,6 @@
-from flask import Flask
-from menuController import menuController
-from clerk import clerk
-from order import order
+from app import create_app, socketio
 
-app = Flask(__name__)
-app.register_blueprint(clerk)
-app.register_blueprint(menuController)
-app.register_blueprint(order)
+app = create_app()
 
-app.run()
+if __name__ == '__main__':
+    socketio.run(app)

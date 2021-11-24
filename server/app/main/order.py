@@ -1,16 +1,17 @@
 import os
+import typing
 import flask
-from flask import request, session, redirect, url_for
+from flask import request
 import json
 from datetime import datetime
+from . import main
+from .. import socketio
 
-order = flask.Blueprint('order', __name__)
-
-# @order.route("/", methods=["GET"])
+# @main.route("/", methods=["GET"])
 # def index():
 #     return '''<h1>Test API for Software engineering</h1>'''
 
-# @order.route("/api/order_management/order", methods = ["GET"])
+# @main.route("/api/order_management/order", methods = ["GET"])
 # def queryOrder():
 #     '''Get order by ID'''
 #     id = flask.request.args.get("id")
@@ -39,8 +40,15 @@ order = flask.Blueprint('order', __name__)
 #         foodPrice = data[str(typeID)][int(foodID)]["price"]
 #         dishes.append([foodName, quantity, foodPrice])
 #     return flask.jsonify([id, dishes, date, status])
-    
-@order.route("/api/order_management/getLish", methods = ["GET"])
+
+clerk = ""
+
+# @socketio.on('connect')
+# def addClerk():
+#     global clerk
+#     clerk = request.id
+   
+@main.route("/api/order_management/getLish", methods = ["GET"])
 def getOrderList():
     '''Get order list'''
     SITEROOT = os.path.realpath(os.path.dirname(__file__))
@@ -61,7 +69,7 @@ def getOrderList():
         for i in range(len(listDish)):
             quantity = listDish[i]["quantity"]
             typeID, foodID = listDish[i]["typeID"], listDish[i]["foodID"] 
-            foodName = data[str(typeID)][int(foodID)-1]["name"]
+            foodName = data[str(typeID)][int(foodID)]["name"]
             foodPrice = data[str(typeID)][int(foodID)]["price"]
             dishes.append({"name": foodName, "quantity": quantity, "price": foodPrice})
         ListOrder.append({"id": "DH{:02d}".format(id), 
@@ -71,7 +79,11 @@ def getOrderList():
                             "status": status
                             })
     return flask.jsonify(ListOrder)
-@order.route("/api/dishes_management/add", methods = ["POST"])
+
+def sendNewOrder(order):
+    socketio.emit('addOrder', order)
+
+@main.route("/api/dishes_management/add", methods = ["POST"])
 def addOrder():
     '''add new order'''
     SITEROOT = os.path.realpath(os.path.dirname(__file__))
@@ -90,10 +102,10 @@ def addOrder():
         if (newId in orderList):
             return flask.Response("Duplicate ID", status=400)
     else:
-        maxId = max([int(id) for id in orderList])
+        maxId = -1 if len(orderList) == 0 else max([int(id) for id in orderList])
         newId = str(maxId + 1)
         json_data["id"] = newId
-    json_data["status"] = 0
+
     orderList[newId] = json_data
 
     #Check date param
@@ -104,10 +116,12 @@ def addOrder():
         #https://stackoverflow.com/questions/7907596/json-dumps-vs-flask-jsonify
         f.write(json.dumps(orderList, indent = 4))
 
+    json_data["id"] = "DH{:02d}".format(int(json_data["id"]))
+    sendNewOrder(json_data)
     #return flask.jsonify(orderList)
     return flask.Response("Success", status=200)
 
-@order.route("/api/dishes_management/remove", methods = ["POST"])
+@main.route("/api/dishes_management/remove", methods = ["POST"])
 def removeOrder():
     '''remove order form list'''
     #Handle both POST request in both json and form type
