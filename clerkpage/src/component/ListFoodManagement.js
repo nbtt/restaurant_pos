@@ -165,7 +165,9 @@ export default class ListFoodManagement extends Component {
             },
             body: JSON.stringify(data)
         }).then(
-            (u) => console.log(u)
+            (u) => u.text()
+        ).then(
+            (msg) => console.log(msg)
         );
     }
 
@@ -190,7 +192,9 @@ export default class ListFoodManagement extends Component {
             },
             body: JSON.stringify(data)
         }).then(
-            (u) => console.log(u)
+            (u) => u.text()
+        ).then(
+            (msg) => console.log(msg)
         );
     }
 
