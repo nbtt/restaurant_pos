@@ -42,7 +42,7 @@ export default class FoodDescription extends Component {
                               </thead>
                               <tbody>
                                   <tr>
-                                      <td>401</td>
+                                      <td>{typeID}{food.id}</td>
                                       <td>Burgur</td>
                                       <td className="last-col-row">{food.price} VND</td>
                                   </tr>
