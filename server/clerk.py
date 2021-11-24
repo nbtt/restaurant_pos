@@ -51,7 +51,8 @@ def addDish():
         type_dishes[typeid_new] = {"id" : int(typeid_new), "name" : type_new, "img" : type_img_new}
         
         dishes[typeid_new] = []
-        # Set new id
+
+    if dishes[typeid_new] == []:
         data["id"] = "1"
     else:
         # Create new id
