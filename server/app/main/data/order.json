@@ -1,43 +1,114 @@
 {
-    "0": {
-        "phoneNumber": "0999999998",
-        "listDish": [
-            {
-                "typeID": 1,
-                "foodID": "0",
-                "quantity": 2
-            },
-            {
-                "typeID": 2,
-                "foodID": "2",
-                "quantity": 1
-            },
-            {
-                "typeID": 3,
-                "foodID": "2",
-                "quantity": 1
-            }
-        ],
-        "status": 0,
-        "id": "0",
-        "date": "2021/11/24"
-    },
-    "1": {
+    "2": {
         "phoneNumber": "0702493836",
         "listDish": [
             {
-                "typeID": 0,
-                "foodID": "1",
-                "quantity": 1
+                "quantity": 5,
+                "name": "Aquafina",
+                "price": 10000
             },
             {
-                "typeID": 0,
-                "foodID": "3",
-                "quantity": 1
+                "quantity": 2,
+                "name": "Vegan Spring Roll",
+                "price": 100000
+            },
+            {
+                "quantity": 3,
+                "name": "Basic Vegan Hotpot",
+                "price": 100000
+            },
+            {
+                "quantity": 3,
+                "name": "Vegan Broccoli Soup",
+                "price": 150000
+            }
+        ],
+        "status": 2,
+        "id": "2",
+        "date": "2021/11/25"
+    },
+    "3": {
+        "phoneNumber": "0702493836",
+        "listDish": [
+            {
+                "quantity": 5,
+                "name": "Aquafina",
+                "price": 10000
+            },
+            {
+                "quantity": 2,
+                "name": "Vegan Spring Roll",
+                "price": 100000
+            },
+            {
+                "quantity": 3,
+                "name": "Basic Vegan Hotpot",
+                "price": 100000
+            },
+            {
+                "quantity": 3,
+                "name": "Vegan Broccoli Soup",
+                "price": 150000
+            }
+        ],
+        "status": 2,
+        "id": "3",
+        "date": "2021/11/25"
+    },
+    "4": {
+        "phoneNumber": "0702493836",
+        "listDish": [
+            {
+                "quantity": 1,
+                "name": "Tiger Beer",
+                "price": 25000
+            },
+            {
+                "quantity": 1,
+                "name": "Vegan Spring Roll",
+                "price": 100000
+            },
+            {
+                "quantity": 1,
+                "name": "Banh Xeo",
+                "price": 35000
+            },
+            {
+                "quantity": 1,
+                "name": "Log Cake",
+                "price": 35000
             }
         ],
         "status": 1,
-        "id": "1",
+        "id": "4",
+        "date": "2021/11/25"
+    },
+    "5": {
+        "phoneNumber": "0702493836",
+        "listDish": [
+            {
+                "quantity": 1,
+                "name": "Tiger Beer",
+                "price": 25000
+            },
+            {
+                "quantity": 1,
+                "name": "Vegan Spring Roll",
+                "price": 100000
+            },
+            {
+                "quantity": 1,
+                "name": "Banh Xeo",
+                "price": 35000
+            },
+            {
+                "quantity": 1,
+                "name": "Log Cake",
+                "price": 35000
+            }
+        ],
+        "status": 1,
+        "id": "5",
         "date": "2021/11/25"
     }
 }
