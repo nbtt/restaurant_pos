@@ -80,7 +80,11 @@ function FullWidthGrid() {
 
     const submit = function(cartItems) {
         setsubmited(true)
-        
+        if (cartItems.length === 0) {
+            navigate("/");
+            return;
+        }
+
         if (isValidPhoneNumber(phoneNumer) && (typePayment !== 0 || (isValidCardNumber(cardNumber) && isValidCVV(CVV) && isValidDate(date)))) {
             var listDish = []
             for (var i = 0; i < cartItems.length; i++) {
@@ -98,8 +102,12 @@ function FullWidthGrid() {
                 body: JSON.stringify({phoneNumber: phoneNumer, listDish: listDish, status: (typePayment === 2 ? 0 : 1)})
             };
 
-            fetch('/api/dishes_management/add', requestOptions)
-            navigate("/payment-done");
+            fetch('/api/order_management/add', requestOptions)
+            if(typePayment === 2 || typePayment === '2') {
+                navigate("/payment-cash");
+            } else {
+                navigate("/payment-done");
+            }
         }
     }
 

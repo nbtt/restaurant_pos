@@ -20,13 +20,13 @@ export default class Menu extends Component {
                        foods: [],
                        nameType: ""};
         
-        fetch('/api/dishes_management/types/all').then(
+        fetch('/api/menu_view/types/all').then(
             (response) => response.json()
         ).then(
             (data) => {this.setState({types: data, nameType: data[0].name})}
         );
 
-        fetch('/api/dishes_management/dishes?id=' + 0).then(
+        fetch('/api/menu_view/dishes?id=' + 0).then(
             (reponse) => reponse.json()
         ).then(
             (data) => {this.setState({foods: data})}
@@ -35,7 +35,7 @@ export default class Menu extends Component {
 
     setFoodType(id) {
         this.setState({typeID: id, nameType: this.state.types[id].name})
-        fetch('/api/dishes_management/dishes?id=' + id).then(
+        fetch('/api/menu_view/dishes?id=' + id).then(
             (u) => u.json()
         ).then(
             (data) => {this.setState({foods: data})}

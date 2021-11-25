@@ -6,7 +6,7 @@ from . import main
 def index():
     return '''<h1>API for Software engineering</h1>'''
 
-@main.route("/api/dishes_management/types/all", methods = ["GET"])
+@main.route("/api/menu_view/types/all", methods = ["GET"])
 def queryAllDishesType():
     '''Get dishes type by ID'''
     #https://stackoverflow.com/questions/21133976/flask-load-local-json
@@ -15,7 +15,7 @@ def queryAllDishesType():
     typeList = flask.json.load(open(jsonUrl, "r"))
     return flask.jsonify(list(typeList.values()))
 
-@main.route("/api/dishes_management/types", methods = ["GET"])
+@main.route("/api/menu_view/types", methods = ["GET"])
 def queryDishesType():
     '''Get dishes type by ID'''
 
@@ -33,7 +33,7 @@ def queryDishesType():
     else:
         return flask.Response("Can't find the specified type", status=404)
 
-@main.route("/api/dishes_management/dishes", methods = ["GET"])
+@main.route("/api/menu_view/dishes", methods = ["GET"])
 def queryAllDishes():
     id = flask.request.args.get("id")
     if (id == None):
