@@ -30,33 +30,13 @@ def getOrderList():
     jsonUrl = os.path.join(SITEROOT, "data", "order.json")
     orderList = flask.json.load(open(jsonUrl, "r"))
 
-    jsonUrl = os.path.join(SITEROOT, "data", "foods.json")
-    data = flask.json.load(open(jsonUrl, "r"))
-
     for id, order in orderList.items():
-        for dish in order["listDish"]:
-            typeID, foodID = dish["typeID"], dish["foodID"] 
-            dish["name"] = data[str(typeID)][int(foodID)]["name"]
-            dish["price"] = data[str(typeID)][int(foodID)]["price"]
         order["id"] = "DH{:02d}".format(int(id))
+
     return flask.jsonify(list(orderList.values()))
 
 def sendNewOrder(order):
-    SITEROOT = os.path.realpath(os.path.dirname(__file__))
-    jsonUrl = os.path.join(SITEROOT, "data", "foods.json")
-    data = flask.json.load(open(jsonUrl, "r"))
-
     order["id"] = "DH{:02d}".format(int(order["id"]))
-    listDish = order["listDish"]
-    dishes = []
-    for i in range(len(order["listDish"])):
-        quantity = listDish[i]["quantity"]
-        typeID, foodID = listDish[i]["typeID"], listDish[i]["foodID"] 
-        foodName = data[str(typeID)][int(foodID)]["name"]
-        foodPrice = data[str(typeID)][int(foodID)]["price"]
-        dishes.append({"name": foodName, "quantity": quantity, "price": foodPrice})
-
-    order["listDish"] = dishes
     socketio.emit('addOrder', order)
 
 @main.route("/api/order_management/add", methods = ["POST"])
@@ -81,6 +61,19 @@ def addOrder():
         maxId = -1 if len(orderList) == 0 else max([int(id) for id in orderList])
         newId = str(maxId + 1)
         json_data["id"] = newId
+
+    foodUrl = os.path.join(SITEROOT, "data", "foods.json")
+    data = flask.json.load(open(foodUrl, "r"))
+
+    for dish in json_data["listDish"]:
+        typeID, foodID = dish["typeID"], dish["foodID"] 
+        for food in data[str(typeID)]:
+            if int(foodID) == int(food["id"]):
+                dish["name"] = food["name"]
+                dish["price"] = food["price"]
+                dish.pop('typeID')
+                dish.pop('foodID')
+                break
 
     orderList[newId] = json_data
 
