@@ -5,10 +5,10 @@ export default class NewFood extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            idcategory: '',
             categoryImage: '',
             image: '',
             category: '',
-            idcategory: '',
             name: '',
             price: null,
             protein: null,
@@ -17,10 +17,10 @@ export default class NewFood extends Component {
             foodDecoration: null
         };
 
+        this.handleIdCategory = this.handleIdCategory.bind(this);
         this.handleCategoryImage = this.handleCategoryImage.bind(this);
         this.handleImage = this.handleImage.bind(this);
         this.handleCategory = this.handleCategory.bind(this);
-        this.handleIdCategory = this.handleIdCategory.bind(this);
         this.handleName = this.handleName.bind(this);
         this.handlePrice = this.handlePrice.bind(this);
         this.handleProtein = this.handleProtein.bind(this);
@@ -30,6 +30,11 @@ export default class NewFood extends Component {
     }
 
     // Handle
+    handleIdCategory(event) {
+        this.setState({
+            idcategory: event.target.value
+        });
+    }
     handleCategoryImage(event) {
         this.setState({
             categoryImage: event.target.value
@@ -43,11 +48,6 @@ export default class NewFood extends Component {
     handleCategory(event) {
         this.setState({
             category: event.target.value
-        });
-    }
-    handleIdCategory(event) {
-        this.setState({
-            idcategory: event.target.value
         });
     }
     handleName(event) {

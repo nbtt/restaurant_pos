@@ -6,17 +6,17 @@ export default class FoodDescription extends Component {
         super(props);
         this.state = {
             modify: false,
+            idcategory: props.food.idcategory,
             categoryImage: props.food.categoryImage,
             image: props.food.image,
             sku: props.food.idcategory + props.food.id,
             category: props.food.category,
-            idcategory: props.food.idcategory,
             name: props.food.name,
             price: props.food.price,
-            protein: props.food.Description["Protein"],
-            additives: props.food.Description["Additives"],
-            bakingMaterial: props.food.Description["Baking materials"],
-            foodDecoration: props.food.Description["Food decoration"]
+            protein: props.food.Description['Protein'],
+            additives: props.food.Description['Additives'],
+            bakingMaterial: props.food.Description['Baking materials'],
+            foodDecoration: props.food.Description['Food decoration']
         };
 
         this.clickModify = this.clickModify.bind(this);
@@ -99,6 +99,7 @@ export default class FoodDescription extends Component {
 
     render() {
         const {food, disableFoodSelected, updateItem} = this.props
+        console.log(food)
         return (
             <div className="popup-background">
                 <div className="box">

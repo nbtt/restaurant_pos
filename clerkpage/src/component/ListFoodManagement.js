@@ -15,7 +15,6 @@ export default class ListFoodManagement extends Component {
             originalData: [],
             listData: [], 
             isSorted: false,
-            isChose: false,
             new: false,
             numElement: 7,
             foodData: null,
@@ -34,11 +33,11 @@ export default class ListFoodManagement extends Component {
         
         this.listTemplate = this.listTemplate.bind(this);
         this.groupTemplate = this.groupTemplate.bind(this);
-        this.clickButtonName = this.clickButtonName.bind(this);
-        this.clickButtonLoad = this.clickButtonLoad.bind(this);
+        this.sortByName = this.sortByName.bind(this);
+        this.searchByName = this.searchByName.bind(this);
         this.clickButtonAdd = this.clickButtonAdd.bind(this);
         this.disableAddNew = this.disableAddNew.bind(this);
-        this.onKeyUp = this.onKeyUp.bind(this);
+        this.clickButtonLoad = this.clickButtonLoad.bind(this);
         this.onSelect = this.onSelect.bind(this);
         this.disableFoodSelected = this.disableFoodSelected.bind(this);
         this.addItem = this.addItem.bind(this);
@@ -58,9 +57,9 @@ export default class ListFoodManagement extends Component {
     // Set customized list template
     listTemplate(food) {
         return (
-            <div className="e-list-wrapper e-list-multi-line e-list-avatar" style={{display: 'flex', alignItems: 'center'}} onClick={() => this.onSelect(food)}>
+            <div className="e-list-wrapper e-list-multi-line e-list-avatar" style={{display: 'flex', alignItems: 'center'}} onClick={(event) => this.onSelect(food, event)}>
                 <div style={{width: '95vw'}}>
-                    <img className="e-avatar e-avatar-circle" src={food.image}/>
+                    <img className="e-avatar e-avatar-circle" src={food.image} alt=""/>
                     <span className="e-list-item-header">{food.name}</span>
                     <span className="e-list-content">{food.price} VNĐ</span>
                 </div>
@@ -84,31 +83,14 @@ export default class ListFoodManagement extends Component {
         );
     }
 
-    // Handle click
-    clickButtonName() {
+    // Handle click button Tên
+    sortByName() {
         this.setState(prevState => ({
-            isSorted: !prevState.isSorted,
-            isChose: !prevState.isChose
+            isSorted: !prevState.isSorted
         }));
     }
-    clickButtonLoad() {
-        this.setState(prevState => ({
-            numElement: prevState.numElement + 10
-        }));
-    }
-    clickButtonAdd() {
-        this.setState({
-            new: true
-        })
-    }
-    disableAddNew() {
-        this.setState({
-            new: false
-        });
-    }
-
     // Filter
-    onKeyUp(event) {
+    searchByName(event) {
         let value = event.target.value;
         let data = new DataManager(this.state.listData).executeLocal(new Query().where("name", "startswith", value, true));
         if (!value) {
@@ -122,18 +104,36 @@ export default class ListFoodManagement extends Component {
             });
         }
     }
-
+    // Handle click button Thêm món mới
+    clickButtonAdd() {
+        this.setState({
+            new: true
+        });
+    }
+    disableAddNew() {
+        this.setState({
+            new: false
+        });
+    }
+    // Handle click button Load More
+    clickButtonLoad() {
+        this.setState(prevState => ({
+            numElement: prevState.numElement + 10
+        }));
+    }
+    
     // Select
-    onSelect(food) {
+    onSelect(food, event) {
         this.setState({
             foodData: food,
             foodSelected: true
-        })
+        });
+        event.stopPropagation();
     }
     disableFoodSelected() {
         this.setState({
             foodSelected: false
-        })
+        });
     }
 
     // Confirm function
@@ -141,7 +141,7 @@ export default class ListFoodManagement extends Component {
         if (window.confirm("This dish will be deleted! Are you sure?")) {
             this.deleteItem(food)
         }
-        event.stopPropagation()
+        event.stopPropagation();
     }
 
     // Add function
@@ -173,7 +173,7 @@ export default class ListFoodManagement extends Component {
             (msg) => console.log(msg)
         );
         // Set originalData and listData after adding
-        this.setData()
+        this.setData();
     }
 
     // Delete function
@@ -181,7 +181,7 @@ export default class ListFoodManagement extends Component {
         let data = {
             idcategory: food.idcategory,
             id: food.id
-        }
+        };
         // Remove from Back-end
         await fetch('/api/menu_management/data/delete', {
             method: 'POST',
@@ -195,7 +195,7 @@ export default class ListFoodManagement extends Component {
             (msg) => console.log(msg)
         );
         // Set originalData and listData after deleting
-        this.setData()
+        this.setData();
     }
 
     // Update function
@@ -210,21 +210,33 @@ export default class ListFoodManagement extends Component {
                 <div className="list-food-management">
                     <label>
                         Sắp xếp theo:
-                        <button className="sort-by-name" onClick={this.clickButtonName} style={{backgroundColor: this.state.isChose ? 'rgba(16, 3, 75, 0.89)' : 'white', color: this.state.isChose ? 'white' : 'black'}}>Tên</button>
+                        <button 
+                            className="sort-by-name"
+                            style={{backgroundColor: this.state.isSorted ? 'rgba(16, 3, 75, 0.89)' : 'white', color: this.state.isSorted ? 'white' : 'black'}} 
+                            onClick={this.sortByName} 
+                        >
+                            Tên
+                        </button>
                     </label>
-                    <input type="text" className="input-search" placeholder="Lọc" title="Type in a name" onKeyUp={this.onKeyUp} />
-                    <button className="button-add" onClick={this.clickButtonAdd}>Thêm món mới</button>
+                    <input className="input-search" type="text" title="Type in a name" placeholder="Lọc" onKeyUp={this.searchByName}/>
+                    <button 
+                        className="button-add" 
+                        onClick={this.clickButtonAdd}
+                    >
+                        Thêm món mới
+                    </button>
                 </div>
-                <ListViewComponent 
-                    id="sample-list"
-                    cssClass="e-list-template"
-                    fields={this.fields}
-                    dataSource={this.state.listData.slice(0, this.state.numElement)}
-                    template={this.listTemplate}
-                    groupTemplate={this.groupTemplate}
-                    select={this.onSelect}
-                    sortOrder={this.state.isSorted ? "Ascending" : null}
-                />
+                <div>
+                    <ListViewComponent 
+                        id="sample-list"
+                        cssClass="e-list-template"
+                        fields={this.fields}
+                        dataSource={this.state.listData.slice(0, this.state.numElement)}
+                        template={this.listTemplate}
+                        groupTemplate={this.groupTemplate}
+                        sortOrder={this.state.isSorted ? "Ascending" : null}
+                    />
+                </div>
                 <div style={{display: 'flex', justifyContent: 'center'}}>
                     <button className="button-load" onClick={this.clickButtonLoad}>
                         Load More
