@@ -11,22 +11,23 @@ import NewFood from "./NewFood";
 export default class ListFoodManagement extends Component {
     constructor(props) {
         super(props);
-        this.fields = { text: 'name', groupBy: 'category', iconCss: 'icon' };
         this.state = {
             originalData: [],
             listData: [], 
-            isSorted: false, 
+            isSorted: false,
             isChose: false,
             new: false,
             numElement: 7,
             foodData: null,
             foodSelected: false
         };
+        this.fields = { 
+            text: 'name', 
+            groupBy: 'category'
+        };
         
         fetch('/api/menu_management/data/all').then(
             (u) => u.json()
-        ).then(
-            (data) => data.map(item => {item["icon"] = "delete-icon"; return item})
         ).then(
             (data) => this.setState({originalData: data, listData: data})
         );
@@ -43,6 +44,15 @@ export default class ListFoodManagement extends Component {
         this.addItem = this.addItem.bind(this);
         this.deleteItem = this.deleteItem.bind(this);
         this.updateItem = this.updateItem.bind(this);
+    }
+
+    // Set Data
+    setData() {
+        fetch('/api/menu_management/data/all').then(
+            (u) => u.json()
+        ).then(
+            (data) => this.setState({originalData: data, listData: data})
+        );
     }
 
     // Set customized list template
@@ -136,15 +146,13 @@ export default class ListFoodManagement extends Component {
 
     // Add function
     async addItem(food) {
-        // Add to Front-end
         let data = {
-            categoryImage: food.categoryImage,
-            image: food.image,
-            category: food.category,
             idcategory: food.idcategory,
+            categoryImage: food.categoryImage,
+            category: food.category,
+            image: food.image,
             name: food.name,
             price: parseInt(food.price, 10),
-            quantity: food.quantity,
             Description: {
                 "Protein": parseInt(food.protein, 10),
                 "Additives": parseInt(food.additives, 10),
@@ -152,11 +160,6 @@ export default class ListFoodManagement extends Component {
                 "Food decoration": parseInt(food.foodDecoration, 10),
             }
         };
-        this.state.originalData.push(data)
-        this.setState({
-            originalData: this.state.originalData,
-            listData: this.state.originalData
-        })
         // Add to Back-end
         await fetch('/api/menu_management/data', {
             method: 'POST',
@@ -169,17 +172,12 @@ export default class ListFoodManagement extends Component {
         ).then(
             (msg) => console.log(msg)
         );
+        // Set originalData and listData after adding
+        this.setData()
     }
 
     // Delete function
     async deleteItem(food) {
-        // Remove from Front-end
-        let index = this.state.originalData.findIndex((e => food.idcategory === e.idcategory && food.id === e.id))
-        this.state.originalData.splice(index, 1)
-        this.setState({
-            originalData: this.state.originalData,
-            listData: this.state.originalData
-        })
         let data = {
             idcategory: food.idcategory,
             id: food.id
@@ -196,6 +194,8 @@ export default class ListFoodManagement extends Component {
         ).then(
             (msg) => console.log(msg)
         );
+        // Set originalData and listData after deleting
+        this.setData()
     }
 
     // Update function
@@ -207,17 +207,17 @@ export default class ListFoodManagement extends Component {
     render() {
         return (
             <div>
-                <div className='list-food-management'>
+                <div className="list-food-management">
                     <label>
                         Sắp xếp theo:
                         <button className="sort-by-name" onClick={this.clickButtonName} style={{backgroundColor: this.state.isChose ? 'rgba(16, 3, 75, 0.89)' : 'white', color: this.state.isChose ? 'white' : 'black'}}>Tên</button>
                     </label>
-                    <input type='text' className='input-search' placeholder="Lọc" onKeyUp={this.onKeyUp} title="Type in a name"/>
-                    <button className='button-add' onClick={this.clickButtonAdd}>Thêm món mới</button>
+                    <input type="text" className="input-search" placeholder="Lọc" title="Type in a name" onKeyUp={this.onKeyUp} />
+                    <button className="button-add" onClick={this.clickButtonAdd}>Thêm món mới</button>
                 </div>
                 <ListViewComponent 
                     id="sample-list"
-                    cssClass='e-list-template'
+                    cssClass="e-list-template"
                     fields={this.fields}
                     dataSource={this.state.listData.slice(0, this.state.numElement)}
                     template={this.listTemplate}
