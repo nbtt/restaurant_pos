@@ -65,7 +65,7 @@ export default class ListFoodManagement extends Component {
                 </div>
                 <div>
                     <span>
-                        <BsFillTrashFill onClick={(event) => this.confirmFunction(food, event)}/>
+                        <BsFillTrashFill onClick={(event) => this.clickIconDelete(food, event)}/>
                     </span>
                 </div>
             </div>
@@ -136,8 +136,8 @@ export default class ListFoodManagement extends Component {
         });
     }
 
-    // Confirm function
-    confirmFunction(food, event) {
+    // Handle click icon Delete 
+    clickIconDelete(food, event) {
         if (window.confirm("This dish will be deleted! Are you sure?")) {
             this.deleteItem(food)
         }
