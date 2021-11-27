@@ -1,37 +1,37 @@
 {
     "0": {
         "id": 0,
-        "name": "Cupcake",
-        "img": "https://media.cooky.vn/images/blog-2016/cach-phan-biet-2-loai-banh-cupcake-voi-muffin-3.jpg"
+        "img": "https://media.cooky.vn/images/blog-2016/cach-phan-biet-2-loai-banh-cupcake-voi-muffin-3.jpg",
+        "name": "Cupcake"
     },
     "1": {
         "id": 1,
-        "name": "Sea Food",
-        "img": "https://images.pexels.com/photos/1194431/pexels-photo-1194431.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+        "img": "https://images.pexels.com/photos/1194431/pexels-photo-1194431.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+        "name": "Sea Food"
     },
     "2": {
         "id": 2,
-        "name": "Juice",
-        "img": "https://thumbs.dreamstime.com/b/ripe-fruit-juice-17306008.jpg"
+        "img": "https://thumbs.dreamstime.com/b/ripe-fruit-juice-17306008.jpg",
+        "name": "Juice"
     },
     "3": {
         "id": 3,
-        "name": "Drink",
-        "img": "https://popeyes.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/c/o/coca.png"
+        "img": "https://popeyes.vn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/c/o/coca.png",
+        "name": "Drink"
     },
-    "4": { 
+    "4": {
         "id": 4,
-        "name": "Vietnamese Foods",
-        "img": "https://thewanderlustkitchen.com/wp-content/uploads/2017/02/vegan-bun-chay-vietnamese-noodle-salad-7.jpg"
+        "img": "https://thewanderlustkitchen.com/wp-content/uploads/2017/02/vegan-bun-chay-vietnamese-noodle-salad-7.jpg",
+        "name": "Vietnamese Foods"
     },
-    "5": { 
+    "5": {
         "id": 5,
-        "name": "Vegetarian Foods",
-        "img": "https://i.ibb.co/kQBqr0X/ve.jpg"
+        "img": "https://i.ibb.co/kQBqr0X/ve.jpg",
+        "name": "Vegetarian Foods"
     },
-    "6": { 
+    "6": {
         "id": 6,
-        "name": "Dessert",
-        "img": "https://imgs.vietnamnet.vn/Images/2017/10/17/14/20171017144313-banh-flan.JPG"
+        "img": "https://imgs.vietnamnet.vn/Images/2017/10/17/14/20171017144313-banh-flan.JPG",
+        "name": "Dessert"
     }
 }

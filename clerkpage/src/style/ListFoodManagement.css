@@ -1,8 +1,20 @@
 .list-food-management {
     height: 6vh;
+    padding: 10px;
     background-color: #e5e7e9;
     display: flex;
     justify-content: right;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+#title2 {
+    margin-top: 10px;
+    text-align: center;
+    font-family: arial, sans-serif;
+    font-weight: bold;
+    font-size: 50px;
 }
 
 .sort-by-name {
@@ -13,13 +25,6 @@
     margin-top: 0.5vh;
     cursor: pointer;
     text-align: center;
-    font-size: smaller;
-}
-
-.price {
-    width: 10vw;
-    margin-top: 0.5vh;
-    margin-right: 1.3vw;
     font-size: smaller;
 }
 

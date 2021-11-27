@@ -11,9 +11,9 @@
 
 .box {
     position: relative;
-    width: calc(350px + 20%);
+    width: calc(400px + 20%);
     margin: auto;
-    height: calc(300px + 20%);
+    height: calc(325px + 20%);
     max-height: 70vh;
     margin-top: calc(100vh - 85vh - 20px);
     background: #fff;
@@ -99,169 +99,14 @@ color: #000000;
 }
 /* END OF TABLE */
 
-.quantity
-{
-    position: relative;
-    background-color: white;
-    height: 10%;
-    border-bottom: grey solid 0.5px ;
-    border-top: grey solid 0.5px ;
-    display: flex;
-}
-
-.quantity-text
-{
-    position: absolute;
-    top: 20%;
-    flex: 1;
-}
-
-.controlQty {
-    position: absolute;   
-    flex: 2;
-    right: 20px;
-    top: 20%;
-    display: flex;
-}
-
-.valueQty {
-    margin: 0 15px;
-    top: 30%
-}
-
 .info .detail-info
 {
     background-color: white;
     width: 100%;
-    height: 35%;
-    line-height: 40px;
+    height: 30%;
+    line-height: 28px;
 }
 
-.info .detail-info p
-{
-    display: inline;
-    color: #ccc;
-    opacity: 0.7;
-}
-
-.info .side-dishes
-{
-    width: 100%;
-    height: 20%;
-    background-color: white;
-    padding-top: 20px;
-}
-.info .side-dishes span
-{
-    font-weight: bold;
-}
-.info .side-dishes b
-{
-    color: red;
-}
-
-.info .side-dishes p
-{
-    position: absolute;
-    display: inline-block;
-    right: 2%;
-    margin: 0;
-    color: #ccc;
-    opacity: 0.7;
-    font-style: italic;
-}
-.info .side-dishes article
-{
-    color: #ccc;
-    opacity: 0.7;
-    font-style: italic;
-}
-
-/* THIS IS FOR CHECK BOX */
-.info .dishes
-{
-    position: relative;
-    padding-top: 10px;
-}
-
-.info .dishes input[type=checkbox] + label {
-    position: absolute;
-    left: 0;
-    display: block;
-    margin: 0.2em;
-    cursor: pointer;
-}
-
-input[type=checkbox] {
-    display: none;
-}
-.info .side-dishes label
-{
-    font-weight: bold;
-    opacity: 0.8;
-}
-.info .side-dishes input[type=checkbox] + label:before 
-{
-    content: "\2714";
-    border: 0.1em solid #000;
-    border-radius: 0.2em;
-    display: inline-block;
-    width: 1em;
-    height: 1em;
-    padding-left: 0.2em;
-    padding-bottom: 0.3em;
-    margin-right: 0.8em;
-    vertical-align: bottom;
-    color: transparent;
-    transition: .2s;
-}
-.info .dishes input[type=checkbox] + label:active:before {
-    transform: scale(0);
-  }
-  
-.info .dishes input[type=checkbox]:checked + label:before {
-    background-color: red;
-    border-color: red;
-    color: #fff;
-}
-  
-/* END CHECK BOX AREA */
-
-.paymentButton
-{
-    position: relative;
-    background-color: red;
-    border-radius: 10px;
-    color: white;
-    width: 90%;
-    height: 10%;
-    top: 10px;
-    cursor: pointer;
-}
-
-.paymentButton .cart-payment
-{
-    display: inline-block;
-    position: relative;
-    font-size: 30px;
-    text-align: center;
-    left: 35%;
-    top: 50%;
-    
-    transform: translateY(-50%);
-}
-
-.paymentButton p
-{
-    position: absolute;
-    display: inline-block;
-    height: inherit;
-    left: 60%;
-    transform: translateX(-60%);
-    line-height: 100%;
-    font-weight: bold;
-    
-}
 /* END INFO */
 
 .popup-background .pop-img {

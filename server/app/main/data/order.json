@@ -1,32 +1,4 @@
 {
-    "2": {
-        "phoneNumber": "0702493836",
-        "listDish": [
-            {
-                "quantity": 5,
-                "name": "Aquafina",
-                "price": 10000
-            },
-            {
-                "quantity": 2,
-                "name": "Vegan Spring Roll",
-                "price": 100000
-            },
-            {
-                "quantity": 3,
-                "name": "Basic Vegan Hotpot",
-                "price": 100000
-            },
-            {
-                "quantity": 3,
-                "name": "Vegan Broccoli Soup",
-                "price": 150000
-            }
-        ],
-        "status": 2,
-        "id": "2",
-        "date": "2021/11/25"
-    },
     "3": {
         "phoneNumber": "0702493836",
         "listDish": [
@@ -55,34 +27,6 @@
         "id": "3",
         "date": "2021/11/25"
     },
-    "4": {
-        "phoneNumber": "0702493836",
-        "listDish": [
-            {
-                "quantity": 1,
-                "name": "Tiger Beer",
-                "price": 25000
-            },
-            {
-                "quantity": 1,
-                "name": "Vegan Spring Roll",
-                "price": 100000
-            },
-            {
-                "quantity": 1,
-                "name": "Banh Xeo",
-                "price": 35000
-            },
-            {
-                "quantity": 1,
-                "name": "Log Cake",
-                "price": 35000
-            }
-        ],
-        "status": 1,
-        "id": "4",
-        "date": "2021/11/25"
-    },
     "5": {
         "phoneNumber": "0702493836",
         "listDish": [
@@ -107,8 +51,36 @@
                 "price": 35000
             }
         ],
-        "status": 1,
+        "status": 2,
         "id": "5",
         "date": "2021/11/25"
+    },
+    "6": {
+        "phoneNumber": "0702493836",
+        "listDish": [
+            {
+                "quantity": 5,
+                "name": "Strawberry Cupcake",
+                "price": 35000
+            },
+            {
+                "quantity": 3,
+                "name": "Orange Juice",
+                "price": 10000
+            },
+            {
+                "quantity": 5,
+                "name": "Sprite",
+                "price": 20000
+            },
+            {
+                "quantity": 5,
+                "name": "Pepsi",
+                "price": 20000
+            }
+        ],
+        "status": 1,
+        "id": "6",
+        "date": "2021/11/27"
     }
 }
