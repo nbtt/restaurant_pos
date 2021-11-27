@@ -107,6 +107,18 @@ color: #000000;
     line-height: 28px;
 }
 
+.info .detail-info .footer button
+{
+    width: 10vw;
+    height: 5vh;
+    background-color: rgba(16, 3, 75, 0.89);   
+    color: white;
+    border-radius: 5px;
+    border-color: white;
+    cursor: pointer;
+    text-align: center;
+    font-size: smaller;
+}
 /* END INFO */
 
 .popup-background .pop-img {
