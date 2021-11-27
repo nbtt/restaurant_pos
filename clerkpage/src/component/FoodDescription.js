@@ -224,7 +224,7 @@ export default class FoodDescription extends Component {
                                 <div className="footer" style={{display: 'flex', justifyContent: 'center', marginTop: '5vh'}}>
                                     {!this.state.modify ? 
                                     <button onClick={this.clickModify}>Chỉnh Sửa</button> :
-                                    <button onClick={() => {this.finishModify(); updateItem(food, this.state)}}>Hoàn tất</button>}
+                                    <button onClick={() => {this.finishModify(); disableFoodSelected(); updateItem(food, this.state)}}>Hoàn tất</button>}
                                 </div>
                             </div>
                         </div>
