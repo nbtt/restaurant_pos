@@ -1,6 +1,6 @@
 import React, { Component} from "react";
 import '../style/board.css'
-import EditFrame from "./editframe";
+import EditOrder from "./EditOrder";
 import SortState from "./sortstate";
 import {serversocket} from "../App"
 import Typography from '@mui/material/Typography';
@@ -124,8 +124,19 @@ export default class OrderManagement extends Component {
       })
    }
 
-   navigation() {
-
+   listOrder() {
+      return (
+         <div>
+            <div>
+               <SortState statesort={this.state.isstate} setisstate={this.setSortstate}/>
+            </div>
+            <br/>
+            <table id='table'>
+               <thead>{this.renderTableHeader()}</thead>
+               <tbody>{this.renderTableData(this.state.isstate)}</tbody>
+            </table>
+         </div>
+      )
    }
 
    render() {
@@ -148,17 +159,10 @@ export default class OrderManagement extends Component {
             </div>
             <div>
                <h1 id='title'>DANH SÁCH ĐƠN HÀNG</h1>
-               <div>
-                  <SortState statesort={this.state.isstate} setisstate={this.setSortstate}/>
-               </div>
-               <br/>
-               <table id='table'>
-                  <thead>{this.renderTableHeader()}</thead>
-                  <tbody>{this.renderTableData(this.state.isstate)}</tbody>
-               </table>
+               {this.listOrder()}
             </div>
             <div>
-               {this.state.isedit !== 0 ? <EditFrame order={this.state.dataorders.find((e => e.id === this.state.isedit))} total={this.orderTotal(this.state.isedit)} setedit={this.setIsEdit} changeStatusOrder={this.changeStatusOrder}/> : null}
+               {this.state.isedit !== 0 ? <EditOrder order={this.state.dataorders.find((e => e.id === this.state.isedit))} total={this.orderTotal(this.state.isedit)} setedit={this.setIsEdit} changeStatusOrder={this.changeStatusOrder}/> : null}
             </div>
          </div>
       )
