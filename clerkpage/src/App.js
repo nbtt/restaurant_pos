@@ -1,6 +1,11 @@
 import React, { Component } from "react";
-import HomeIcon from '@material-ui/icons/Home';
-import Table from "./component/board.js";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+} from "react-router-dom";
+import OrderManagement from "./component/OrderManagement.js";
+import ListFoodManagement from "./component/ListFoodManagement"
 import socketIOClient from "socket.io-client";
 
 var serversocket = socketIOClient('http://127.0.0.1:5000')
@@ -9,15 +14,12 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <div className="header">
-          <span className="bth">
-            <HomeIcon className="homeicon"/>
-            <span>Back to home</span>
-          </span>
-        </div>
-        <div>
-          <Table/>
-        </div>
+      <Router>
+        <Routes>
+          <Route path="/" element={<OrderManagement/>}/>
+          <Route path="/foodManagement" element={<ListFoodManagement/>}/>
+        </Routes>
+      </Router>
       </div>
     )
   }
