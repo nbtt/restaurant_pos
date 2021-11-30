@@ -1,5 +1,15 @@
 # Restaurant POS
-
+## Install
+### `Install Clerkpage`
+```
+cd clerkpage
+npm install
+```
+### `Install Clientpage`
+```
+cd clientpage
+npm install
+```
 ## Usage
 ### `Run server`
 ```
