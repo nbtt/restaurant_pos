@@ -1,4 +1,5 @@
 # Restaurant POS
+## Report & Meeting Minutes file in `docs` folder
 ## Install
 ### `Install Clerkpage`
 ```
